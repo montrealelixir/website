@@ -7,19 +7,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello MontrealElixir!</title>
+    <title>Montreal Elixir</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
     <div class="container">
       <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
+        <h1>Montreal Elixir</h1>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
@@ -29,6 +24,13 @@
         <%= render @view_module, @view_template, assigns %>
       </main>
 
+      <footer class="footer">
+        <h4>Sponsors</h4>
+        <ul>
+          <li><a href="http://www.civilcode.io">CivilCode Inc.</a> (community sponsor)</li>
+          <li><a href="http://www.shopify.ca">Shopify</a> (event sponsor)</li>
+        </ul>
+      </footer>
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
