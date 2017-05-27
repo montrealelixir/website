@@ -1,0 +1,11 @@
+language: elixir
+
+elixir:
+  - 1.4.2
+otp_release:
+  - 19.3
+services:
+  - postgresql
+before_script:
+  - cp apps/montreal_elixir/config/travis.exs apps/montreal_elixir/config/test.exs
+  - mix do ecto.create, ecto.migrate
