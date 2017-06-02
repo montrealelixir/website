@@ -21,7 +21,7 @@ The website has three main purposes:
 
   * Promote the Elixir community in Montreal
   * Inform the community members about events and new content
-  * Provide an opportunity to to learn about Elixir and Phoenix by contributing to an
+  * Provide an opportunity to learn about Elixir and Phoenix by contributing to an
     open source project    
 
 ## Getting started
@@ -45,9 +45,9 @@ We assume you have the following installed:
 After you have cloned the repository:
 
 * Install dependencies with `mix deps.get`
-* Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-* Install Node.js dependencies with `cd assets && npm install`
-* Start Phoenix endpoint with `mix phx.server`
+* Create and migrate your database with `mix do ecto.create, ecto.migrate`
+* Install Node.js dependencies with `cd apps/montreal_elixir_web/assets && npm install`
+* Start Phoenix endpoint with `cd ../../.. && mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 

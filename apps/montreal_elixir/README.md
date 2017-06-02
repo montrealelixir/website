@@ -1,3 +1,0 @@
-# MontrealElixir
-
-**TODO: Add description**
