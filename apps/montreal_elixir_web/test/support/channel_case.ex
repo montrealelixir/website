@@ -25,7 +25,6 @@ defmodule MontrealElixir.Web.ChannelCase do
     end
   end
 
-
   setup tags do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(MontrealElixir.Repo)
     unless tags[:async] do
@@ -33,5 +32,4 @@ defmodule MontrealElixir.Web.ChannelCase do
     end
     :ok
   end
-
 end
