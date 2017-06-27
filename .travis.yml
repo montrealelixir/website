@@ -9,3 +9,5 @@ services:
 before_script:
   - cp apps/montreal_elixir/config/travis.exs apps/montreal_elixir/config/test.exs
   - mix do ecto.create, ecto.migrate
+script:
+  - mix project.check

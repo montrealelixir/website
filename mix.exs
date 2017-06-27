@@ -2,9 +2,25 @@ defmodule MontrealElixir.Umbrella.Mixfile do
   use Mix.Project
 
   def project do
-    [apps_path: "apps",
-     start_permanent: Mix.env == :prod,
-     deps: deps()]
+    [
+      apps_path: "apps",
+      start_permanent: Mix.env == :prod,
+      deps: deps(),
+      aliases: aliases(),
+      preferred_cli_env: [
+        "project.check": :test
+      ]
+    ]
+  end
+
+  def aliases do
+    [
+      "project.check": [
+        "compile --force --warnings-as-errors",
+        "test",
+        "credo --strict"
+      ]
+    ]
   end
 
   # Dependencies can be Hex packages:
@@ -20,6 +36,9 @@ defmodule MontrealElixir.Umbrella.Mixfile do
   # Dependencies listed here are available only for this project
   # and cannot be accessed from applications inside the apps folder
   defp deps do
-    []
+    [
+      {:credo, "~> 0.8.1", only: [:dev, :test], runtime: false}
+    ]
   end
 end
+

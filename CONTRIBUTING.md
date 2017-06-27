@@ -52,6 +52,8 @@ When creating a PR for your contribution:
 * Include thoughtfully-worded, well-structured test docstrings. See the Test Style Guide below.
 * Document new code based on the Documentation Style Guide
 * End all files with a newline
+* Ensure your code will pass on CI by running `mix project.check`. See [`mix.exs`](mix.exs) to see
+  what tasks are executed for this `mix` alias.
 
 ## Style Guides
 
