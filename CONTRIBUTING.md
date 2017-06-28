@@ -45,13 +45,14 @@ Understand the purpose and direction of the website:
 
 When creating a PR for your contribution:
 
-* Fill in the [the required template](PULL_REQUEST_TEMPLATE.md)
+* Fill in the [required template](PULL_REQUEST_TEMPLATE.md)
 * Do not include issue numbers in the PR title
 * Include screenshots and animated GIFs in your pull request whenever possible.
-* Follow the Elixir and JavaScript style guides.
-* Include thoughtfully-worded, well-structured test docstrings. See the Test Style Guide below.
-* Document new code based on the Documentation Style Guide
+* Follow the [Elixir](#elixir-style-guide) and [JavaScript](#javascript-style-guide) style guides.
+* Include thoughtfully-worded, well-structured test docstrings. See the [Test Style Guide](#test-style-guide) below.
+* Document new code based on the [Documentation Style Guide](#documentation-style-guide)
 * End all files with a newline
+* Make sure tabs are converted to spaces
 * Ensure your code will pass on CI by running `mix project.check`. See [`mix.exs`](mix.exs) to see
   what tasks are executed for this `mix` alias.
 
@@ -63,17 +64,17 @@ When creating a PR for your contribution:
 * Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
 * Limit the first line to 72 characters or less
 * Reference issues and pull requests liberally after the first line
-* When only changing documentation, include [ci skip] in the commit description
+* When only changing documentation, include `[ci skip]` in the commit description
 
 ### Elixir Style Guide
 
-The style is enforced by the  static code analysis tool, [Credo](https://github.com/rrrene/credo).
+The style is enforced by the static code analysis tool, [Credo](https://github.com/rrrene/credo).
 Anything outside of what Credo provides is outlined in [Elixir Community Style Guide](https://github.com/christopheradams/elixir_style_guide).
 If there is a conflict between these two resources, Credo takes precedence.
 
 ### Javascript Style Guide
 
-All JavaScript must adhere to JavaScript Standard Style.
+All JavaScript must adhere to [JavaScript Standard Style](http://standardjs.com/).
 
 ### Test Style Guide
 
@@ -83,7 +84,7 @@ All JavaScript must adhere to JavaScript Standard Style.
 * Treat `test` as a statement about the state under test and expected behavior.
 * Variable names should express the expected input and state; e.g. `invalid_customer_params`,
 `empty_list`
-* Separate the three parts of the test with a single line, if any of the three parts are two
+* Separate the three parts of the test (arrange, act, assert) with a single line, if any of the three parts are two
   lines or more. Otherwise keep all three parts/lines together (no line separation).
 
 ```elixir
@@ -91,9 +92,11 @@ describe "sum" do
   test "negative number as 1st param throws exception" do
     # arrange, act, assert
   end
+
   test "negative number as 2nd param throws exception" do
     # arrange, act, assert    
   end
+
   test "simple values calculate" do
     # arrange, act, assert    
   end
