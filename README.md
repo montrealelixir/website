@@ -56,6 +56,9 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 * Ensure you have the test database created `MIX_ENV=test mix ecto.create`
 * Run the tests `mix test`
 
+You can also use the [`mix_test_watch`](https://github.com/lpil/mix-test.watch) package to
+automatically run the tests after you save a file: `mix test.watch`
+
 ### Learn more about Phoenix Framework
 
   * Official website: http://www.phoenixframework.org/

@@ -37,8 +37,8 @@ defmodule MontrealElixir.Umbrella.Mixfile do
   # and cannot be accessed from applications inside the apps folder
   defp deps do
     [
-      {:credo, "~> 0.8.1", only: [:dev, :test], runtime: false}
+      {:credo, "~> 0.8.1", only: [:dev, :test], runtime: false},
+      {:mix_test_watch, "~> 0.3", only: :dev, runtime: false}
     ]
   end
 end
-
