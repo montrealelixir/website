@@ -19,4 +19,11 @@ defmodule MontrealElixir.Web.Application do
     opts = [strategy: :one_for_one, name: MontrealElixir.Web.Supervisor]
     Supervisor.start_link(children, opts)
   end
+
+  # Tell Phoenix to update the endpoint configuration
+  # whenever the application is updated.
+  def config_change(changed, _new, removed) do
+    MontrealElixirWeb.Endpoint.config_change(changed, removed)
+    :ok
+  end
 end
