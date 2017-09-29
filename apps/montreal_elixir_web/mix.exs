@@ -1,4 +1,4 @@
-defmodule MontrealElixir.Web.Mixfile do
+defmodule MontrealElixirWeb.Mixfile do
   use Mix.Project
 
   def project do
@@ -20,7 +20,7 @@ defmodule MontrealElixir.Web.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {MontrealElixir.Web.Application, []},
+    [mod: {MontrealElixirWeb.Application, []},
      extra_applications: [:logger, :runtime_tools]]
   end
 

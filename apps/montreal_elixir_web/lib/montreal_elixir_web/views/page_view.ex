@@ -1,3 +1,3 @@
-defmodule MontrealElixir.Web.PageView do
-  use MontrealElixir.Web, :view
+defmodule MontrealElixirWeb.PageView do
+  use MontrealElixirWeb, :view
 end

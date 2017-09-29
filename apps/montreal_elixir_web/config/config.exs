@@ -7,15 +7,15 @@ use Mix.Config
 
 # General application configuration
 config :montreal_elixir_web,
-  namespace: MontrealElixir.Web,
+  namespace: MontrealElixirWeb,
   ecto_repos: [MontrealElixir.Repo]
 
 # Configures the endpoint
-config :montreal_elixir_web, MontrealElixir.Web.Endpoint,
+config :montreal_elixir_web, MontrealElixirWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "CLjhBsp77HnQqpmfCSJrl22oWm1z6gg7LYabDTlENifC9zeO0XaIdBeVwxcoMKSe",
-  render_errors: [view: MontrealElixir.Web.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: MontrealElixir.Web.PubSub,
+  render_errors: [view: MontrealElixirWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: MontrealElixirWeb.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

@@ -1,3 +1,3 @@
-defmodule MontrealElixir.Web.LayoutViewTest do
-  use MontrealElixir.Web.ConnCase, async: true
+defmodule MontrealElixirWeb.LayoutViewTest do
+  use MontrealElixirWeb.ConnCase, async: true
 end
