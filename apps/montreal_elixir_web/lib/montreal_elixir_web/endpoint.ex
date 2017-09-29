@@ -1,7 +1,7 @@
-defmodule MontrealElixir.Web.Endpoint do
+defmodule MontrealElixirWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :montreal_elixir_web
 
-  socket "/socket", MontrealElixir.Web.UserSocket
+  socket "/socket", MontrealElixirWeb.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -38,7 +38,7 @@ defmodule MontrealElixir.Web.Endpoint do
     key: "_montreal_elixir_web_key",
     signing_salt: "e9FWV39l"
 
-  plug MontrealElixir.Web.Router
+  plug MontrealElixirWeb.Router
 
   @doc """
   Callback invoked for dynamically configuring the endpoint.

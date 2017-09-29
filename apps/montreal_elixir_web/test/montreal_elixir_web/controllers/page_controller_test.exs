@@ -1,5 +1,5 @@
-defmodule MontrealElixir.Web.PageControllerTest do
-  use MontrealElixir.Web.ConnCase
+defmodule MontrealElixirWeb.PageControllerTest do
+  use MontrealElixirWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

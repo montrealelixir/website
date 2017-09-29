@@ -1,5 +1,5 @@
-defmodule MontrealElixir.Web.Router do
-  use MontrealElixir.Web, :router
+defmodule MontrealElixirWeb.Router do
+  use MontrealElixirWeb, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -13,7 +13,7 @@ defmodule MontrealElixir.Web.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", MontrealElixir.Web do
+  scope "/", MontrealElixirWeb do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
@@ -21,7 +21,7 @@ defmodule MontrealElixir.Web.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", MontrealElixir.Web do
+  # scope "/api", MontrealElixirWeb do
   #   pipe_through :api
   # end
 end
