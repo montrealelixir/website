@@ -1,4 +1,4 @@
-defmodule MontrealElixir.Web.Mixfile do
+defmodule MontrealElixirWeb.Mixfile do
   use Mix.Project
 
   def project do
@@ -20,7 +20,7 @@ defmodule MontrealElixir.Web.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {MontrealElixir.Web.Application, []},
+    [mod: {MontrealElixirWeb.Application, []},
      extra_applications: [:logger, :runtime_tools]]
   end
 
@@ -32,10 +32,10 @@ defmodule MontrealElixir.Web.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.3.0-rc"},
+    [{:phoenix, "~> 1.3.0"},
      {:phoenix_pubsub, "~> 1.0"},
      {:phoenix_ecto, "~> 3.2"},
-     {:phoenix_html, "~> 2.6"},
+     {:phoenix_html, "~> 2.10"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:montreal_elixir, in_umbrella: true},

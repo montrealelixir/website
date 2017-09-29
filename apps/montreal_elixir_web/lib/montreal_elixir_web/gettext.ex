@@ -1,11 +1,11 @@
-defmodule MontrealElixir.Web.Gettext do
+defmodule MontrealElixirWeb.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.
 
   By using [Gettext](https://hexdocs.pm/gettext),
   your module gains a set of macros for translations, for example:
 
-      import MontrealElixir.Web.Gettext
+      import MontrealElixirWeb.Gettext
 
       # Simple translation
       gettext "Here is the string to translate"

@@ -1,5 +1,5 @@
-defmodule MontrealElixir.Web.PageController do
-  use MontrealElixir.Web, :controller
+defmodule MontrealElixirWeb.PageController do
+  use MontrealElixirWeb, :controller
 
   def index(conn, _params) do
     render conn, "index.html"

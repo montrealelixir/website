@@ -4,7 +4,7 @@ defmodule MontrealElixir.Application do
 
   The montreal_elixir system business domain lives in this application.
 
-  Exposes API to clients such as the `MontrealElixir.Web` application
+  Exposes API to clients such as the `MontrealElixirWeb` application
   for use in channels, controllers, and elsewhere.
   """
   use Application

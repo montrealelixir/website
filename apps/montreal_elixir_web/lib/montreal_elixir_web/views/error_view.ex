@@ -1,5 +1,5 @@
-defmodule MontrealElixir.Web.ErrorView do
-  use MontrealElixir.Web, :view
+defmodule MontrealElixirWeb.ErrorView do
+  use MontrealElixirWeb, :view
 
   def render("404.html", _assigns) do
     "Page not found"
