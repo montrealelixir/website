@@ -24,7 +24,7 @@
   },
   "buildpacks": [
     {
-      "url": "https://github.com/HashNuke/heroku-buildpack-elixir.git#560e1bd7d22edf8e4d0c6706dfbcaa94fa60c397"
+      "url": "https://github.com/ondreian/heroku-buildpack-elixir.git#6344b1cf0e4b1179e6ab77ff8a662d04c25ae342"
     },
     {
       "url": "https://github.com/gjaldon/heroku-buildpack-phoenix-static.git#45e77b3b64996422e846d375a6f57e79d212488f"
