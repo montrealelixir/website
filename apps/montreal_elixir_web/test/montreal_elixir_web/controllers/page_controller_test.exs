@@ -12,7 +12,7 @@ defmodule MontrealElixirWeb.PageControllerTest do
       resp = html_response(conn, 200)
 
       assert resp =~ "Next event"
-      assert resp =~ "Wed June 14 at 6:30 PM"
+      assert resp =~ "Wed October 11 at 6:30 PM"
       assert resp =~ "490 rue de la Gauchetiere Ouest"
     end
   end
