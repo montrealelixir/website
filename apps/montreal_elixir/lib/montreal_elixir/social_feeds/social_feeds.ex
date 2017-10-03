@@ -15,6 +15,6 @@ defmodule MontrealElixir.SocialFeeds do
 
   """
   def get_next_meetup_event do
-    MeetupApiClient.get_next_meetup_event
+    MeetupApiClient.get_next_meetup_event()
   end
 end

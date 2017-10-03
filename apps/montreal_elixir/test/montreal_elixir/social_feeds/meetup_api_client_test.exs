@@ -16,7 +16,7 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClientTest do
         url: "https://www.meetup.com/montrealelixir/events/243582390/"
       }
 
-      assert MeetupApiClient.get_next_meetup_event == event
+      assert MeetupApiClient.get_next_meetup_event() == event
     end
   end
 end
