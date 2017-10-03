@@ -4,19 +4,19 @@
   </div>
 
   <div class="col-lg-7">
-    <p class="lead">Montreal Elixir Meetup</p>
+    <p class="lead"><%= @next_meetup.name %></p>
   </div>
 
   <div class="col-lg-4">
-    <p>Wed June 14 at 6:30 PM</p>
+    <p><%= @next_meetup.time %></p>
     <p>
-      Shopify Montreal<br/>
-      490 rue de la Gauchetiere Ouest
+      <%= @next_meetup.venue_name %><br/>
+      <%= @next_meetup.venue_address %>
     </p>
   </div>
 
   <div class="col-lg-12">
-    <p>Learn more on <a href="https://www.meetup.com/montrealelixir/events/240183837/">Meetup.com</a></p>
+    <p>Learn more on <a href=<%= @next_meetup.url %>>Meetup.com</a></p>
   </div>
 </div>
 
