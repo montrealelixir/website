@@ -3,6 +3,6 @@ defmodule MontrealElixirWeb.PageControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"
-    assert html_response(conn, 200) =~ "Welcome to Montreal Elixir!"
+    assert html_response(conn, 200) =~ "About Montreal Elixir"
   end
 end
