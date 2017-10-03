@@ -16,7 +16,8 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
   """
   def get_next_meetup_event do
     fetch_meetups()
-    |> get_next_meetup()
+    |> List.first()
+    |> to_meetup_event()
   end
 
   @http Application.get_env(:montreal_elixir, :meetup_api_client)[:http_client] || :httpc
@@ -25,11 +26,6 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
     {:ok, {_, _, body}} = @http.request(@url)
     {:ok, events} = Poison.decode(body)
     events
-  end
-
-  defp get_next_meetup(events) do
-    [event | _] = events
-    to_meetup_event(event)
   end
 
   defp to_meetup_event(event_map) do
