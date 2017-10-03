@@ -15,12 +15,29 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
 
   """
   def get_next_meetup_event do
+    fetch_meetups()
+    |> get_next_meetup()
+  end
+
+  @http Application.get_env(:montreal_elixir, :meetup_api_client)[:http_client] || :httpc
+  defp fetch_meetups do
+    {:ok, {_, _, body}} = @http.request('https://api.meetup.com/montrealelixir/events\?scroll=next_upcoming')
+    {:ok, events} = Poison.decode(body)
+    events
+  end
+
+  defp get_next_meetup(events) do
+    [event | _] = events
+    to_meetup_event(event)
+  end
+
+  defp to_meetup_event(event_map) do
     %MeetupEvent{
-      name: "Montreal Elixir Meetup",
-      time: "Wed June 14 at 6:30 PM",
-      venue_name: "Shopify Montreal",
-      venue_address: "490 rue de la Gauchetiere Ouest",
-      url: "https://www.meetup.com/montrealelixir/events/240183837/"
+      name: event_map["name"],
+      time: div(event_map["time"], 1000) |> DateTime.from_unix!(),
+      venue_name: event_map["venue"]["name"],
+      venue_address: event_map["venue"]["address_1"],
+      url: event_map["link"]
     }
   end
 end
