@@ -20,8 +20,9 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
   end
 
   @http Application.get_env(:montreal_elixir, :meetup_api_client)[:http_client] || :httpc
+  @url 'https://api.meetup.com/montrealelixir/events?scroll=future_or_past&page=1'
   defp fetch_meetups do
-    {:ok, {_, _, body}} = @http.request('https://api.meetup.com/montrealelixir/events\?scroll=future_or_past&page=1')
+    {:ok, {_, _, body}} = @http.request(@url)
     {:ok, events} = Poison.decode(body)
     events
   end
