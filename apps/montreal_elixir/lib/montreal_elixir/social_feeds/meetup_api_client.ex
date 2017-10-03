@@ -34,7 +34,7 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
   defp to_meetup_event(event_map) do
     %MeetupEvent{
       name: event_map["name"],
-      time: div(event_map["time"], 1000) |> DateTime.from_unix!(),
+      utc_datetime: div(event_map["time"], 1000) |> DateTime.from_unix!(),
       venue_name: event_map["venue"]["name"],
       venue_address: event_map["venue"]["address_1"],
       url: event_map["link"]

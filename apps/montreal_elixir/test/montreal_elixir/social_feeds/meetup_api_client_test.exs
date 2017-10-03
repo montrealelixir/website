@@ -10,7 +10,7 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClientTest do
       {:ok, expected_time, _offset} = DateTime.from_iso8601("2017-10-11 22:30:00Z")
       event = %MeetupEvent{
         name: "Montreal Elixir Meetup",
-        time: expected_time,
+        utc_datetime: expected_time,
         venue_name: "Shopify Montreal",
         venue_address: "490 rue de la Gauchetiere Ouest",
         url: "https://www.meetup.com/montrealelixir/events/243582390/"

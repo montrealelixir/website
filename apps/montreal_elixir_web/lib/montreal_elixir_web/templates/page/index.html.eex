@@ -8,7 +8,7 @@
   </div>
 
   <div class="col-lg-4">
-    <p><%= format_montreal_time(@next_meetup.time) %></p>
+    <p><%= format_montreal_time(@next_meetup.utc_datetime) %></p>
     <p>
       <%= @next_meetup.venue_name %><br/>
       <%= @next_meetup.venue_address %>
