@@ -25,7 +25,7 @@ defmodule MontrealElixir.SocialFeeds.Cache do
   defp get(key) do
     case GenServer.call(__MODULE__, {:get, key}) do
       :error -> {:not_found}
-      {:ok, result} -> if :os.system_time(:second) >= result.expires_at do
+      {:ok, result} -> if now() >= result.expires_at do
         {:not_found}
       else
         {:found, result.value}
@@ -37,6 +37,10 @@ defmodule MontrealElixir.SocialFeeds.Cache do
     GenServer.call(__MODULE__, {:set, key, value, expires_in})
   end
 
+  def now do
+    :os.system_time(:millisecond)
+  end
+
   ## Server Callbacks
 
   def handle_call({:get, key}, _from, state) do
@@ -46,7 +50,7 @@ defmodule MontrealElixir.SocialFeeds.Cache do
   def handle_call({:set, key, value, expires_in}, _from, state) do
     state = Map.put(state,
                     key,
-                    %Entry{value: value, expires_at: :os.system_time(:second) + expires_in})
+                    %Entry{value: value, expires_at: now() + expires_in})
     {:reply, value, state}
   end
 end
