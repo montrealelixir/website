@@ -3,11 +3,14 @@ defmodule MontrealElixir.SocialFeeds do
   The SocialFeeds context.
   """
 
+  alias MontrealElixir.SocialFeeds.Cache
   alias MontrealElixir.SocialFeeds.MeetupApiClient
 
   @doc """
   Returns the next (upcoming) meetup_event.
   If there is no upcoming event, returns the last (recent) meetup_event.
+
+  This function does not hit external API if there is an unexpired next_meetup_event in cache.
 
   ## Examples
 
@@ -16,6 +19,8 @@ defmodule MontrealElixir.SocialFeeds do
 
   """
   def get_next_meetup_event do
-    MeetupApiClient.get_next_meetup_event()
+    Cache.fetch(:next_meetup_event,
+                fn -> MeetupApiClient.get_next_meetup_event() end,
+                %{expires_in: 600})
   end
 end
