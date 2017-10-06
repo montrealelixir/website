@@ -24,8 +24,7 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
   @url 'https://api.meetup.com/montrealelixir/events?scroll=future_or_past&page=1'
   defp fetch_meetups do
     {:ok, {_, _, body}} = @http.request(@url)
-    {:ok, events} = Poison.decode(body)
-    events
+    Poison.decode!(body)
   end
 
   defp to_meetup_event(event_map) do
