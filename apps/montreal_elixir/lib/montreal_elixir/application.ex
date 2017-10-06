@@ -14,6 +14,7 @@ defmodule MontrealElixir.Application do
 
     Supervisor.start_link([
       worker(MontrealElixir.Repo, []),
+      worker(MontrealElixir.SocialFeeds.Supervisor, []),
     ], strategy: :one_for_one, name: MontrealElixir.Supervisor)
   end
 end
