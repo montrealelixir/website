@@ -7,6 +7,7 @@ defmodule MontrealElixir.SocialFeeds do
 
   @doc """
   Returns the next (upcoming) meetup_event.
+  If there is no upcoming event, returns the last (recent) meetup_event.
 
   ## Examples
 
