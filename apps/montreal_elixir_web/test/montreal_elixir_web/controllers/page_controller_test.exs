@@ -2,11 +2,13 @@ defmodule MontrealElixirWeb.PageControllerTest do
   use MontrealElixirWeb.ConnCase
 
   describe "GET /" do
+    @tag :capture_log
     test "shows About section", %{conn: conn} do
       conn = get conn, "/"
       assert html_response(conn, 200) =~ "About Montreal Elixir"
     end
 
+    @tag :capture_log
     test "shows the next meetup from Meetup.com", %{conn: conn} do
       conn = get conn, "/"
       resp = html_response(conn, 200)

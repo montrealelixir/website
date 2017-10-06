@@ -5,6 +5,8 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
 
   alias MontrealElixir.SocialFeeds.MeetupEvent
 
+  require Logger
+
   @doc """
   Returns the next (upcoming) meetup_event.
   If there is no upcoming event, returns the last (recent) meetup_event.
@@ -24,6 +26,7 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
   @http Application.get_env(:montreal_elixir, :meetup_api_client)[:http_client] || :httpc
   @url 'https://api.meetup.com/montrealelixir/events?scroll=future_or_past&page=1'
   defp fetch_meetups do
+    Logger.info "Meetup API: requesting #{@url}"
     {:ok, {_, _, body}} = @http.request(@url)
     Poison.decode!(body)
   end
