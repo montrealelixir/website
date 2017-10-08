@@ -22,6 +22,13 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClientTest do
 
   describe "get_events/1" do
     @tag :capture_log
+    test "returns list of MeetupEvents" do
+      result = MeetupApiClient.get_events() |> Enum.map(&(&1.name))
+
+      assert result == ["Meetup 1", "Meetup 2"]
+    end
+
+    @tag :capture_log
     test "returns empty list on API error" do
       assert MeetupApiClient.get_events(%{error: true}) == []
     end

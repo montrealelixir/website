@@ -23,7 +23,7 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
     |> to_meetup_event()
   end
 
-  def get_events(opts) do
+  def get_events(opts \\ %{}) do
     fetch_meetups(opts)
     |> Enum.map(&to_meetup_event/1)
   end
