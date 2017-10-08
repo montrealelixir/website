@@ -13,11 +13,11 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
 
   ## Examples
 
-      iex> get_next_meetup_event()
+      iex> get_next_event()
       %MeetupEvent{}
 
   """
-  def get_next_meetup_event do
+  def get_next_event do
     get_events(%{scroll: "future_or_past", page: 1})
     |> List.first()
   end
