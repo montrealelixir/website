@@ -22,6 +22,17 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
     |> List.first()
   end
 
+  @doc """
+  Returns a list of meetup_events.
+
+  See https://www.meetup.com/meetup_api/docs/:urlname/events/#list for the list of query options.
+
+  ## Examples
+
+      iex> get_events(%{status: "past,upcoming"})
+      [%MeetupEvent{}, %MeetupEvent{}, ...]
+
+  """
   def get_events(opts \\ %{}) do
     fetch_meetups(opts)
     |> Enum.map(&to_meetup_event/1)
