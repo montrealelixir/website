@@ -18,17 +18,26 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
 
   """
   def get_next_meetup_event do
-    fetch_meetups()
+    fetch_meetups(%{scroll: "future_or_past", page: 1})
     |> List.first()
     |> to_meetup_event()
   end
 
+  def get_events(opts) do
+    fetch_meetups(opts)
+    |> Enum.map(&to_meetup_event/1)
+  end
+
   @http Application.get_env(:montreal_elixir, :meetup_api_client)[:http_client] || :httpc
-  @url 'https://api.meetup.com/montrealelixir/events?scroll=future_or_past&page=1'
-  defp fetch_meetups do
-    Logger.info "Meetup API: requesting #{@url}"
-    {:ok, {_, _, body}} = @http.request(@url)
-    Poison.decode!(body)
+  @url "https://api.meetup.com/montrealelixir/events"
+  defp fetch_meetups(opts) do
+    url = String.to_charlist(@url <> "?" <> URI.encode_query(opts))
+    Logger.info "Meetup API: requesting #{url}"
+
+    case @http.request(url) do
+      {:ok, {_, _, body}} -> Poison.decode!(body)
+      {:error, _} -> []
+    end
   end
 
   defp to_meetup_event(event_map) do

@@ -3,7 +3,12 @@ defmodule MontrealElixir.SocialFeeds.Test.MeetupApiHTTPClient do
 
   @meetup_json File.read!("test/montreal_elixir/fixtures/meetup_upcoming_events.json")
 
-  def request(_url) do
-    {:ok, {[], [], @meetup_json}}
+  def request(url) do
+    url = to_string(url)
+    cond do
+      String.contains?(url, "page=1") -> {:ok, {[], [], @meetup_json}}
+      String.contains?(url, "error=true") -> {:error, {}}
+      true -> {:ok, {[], [], "<queryresult></queryresult>"}}
+    end
   end
 end
