@@ -18,9 +18,8 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
 
   """
   def get_next_meetup_event do
-    fetch_meetups(%{scroll: "future_or_past", page: 1})
+    get_events(%{scroll: "future_or_past", page: 1})
     |> List.first()
-    |> to_meetup_event()
   end
 
   def get_events(opts \\ %{}) do
