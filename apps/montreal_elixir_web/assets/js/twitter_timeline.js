@@ -15,6 +15,10 @@ let TwitterTimeline = {
     this.channel.on("updated_list", msg => {
       this._refreshAll(msg.tweets)
     })
+
+    this.channel.on("new_tweet", tweet => {
+      this._newTweet(tweet)
+    })
   },
 
   _refreshAll(tweets) {
@@ -22,6 +26,11 @@ let TwitterTimeline = {
     for(var tweet of tweets.slice(0,3)) {
       this.tweets.append(`<li>${tweet.text}<br><i>${tweet.timestamp}</i></li>`)
     }
+    this.container.scrollTop(this.container[0].scrollHeight)
+  },
+
+  _newTweet(tweet) {
+    this.tweets.prepend(`<li>${tweet.text}<br><i>${tweet.timestamp}</i></li>`)
     this.container.scrollTop(this.container[0].scrollHeight)
   }
 }
