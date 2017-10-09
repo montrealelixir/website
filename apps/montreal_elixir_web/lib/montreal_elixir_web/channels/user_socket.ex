@@ -2,7 +2,7 @@ defmodule MontrealElixirWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", MontrealElixirWeb.RoomChannel
+  channel "twitter_timeline", MontrealElixirWeb.TwitterTimelineChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket, timeout: 45_000
