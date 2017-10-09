@@ -30,7 +30,8 @@ defmodule Twitter.Mixfile do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
       # {:sibling_app_in_umbrella, in_umbrella: true},
       {:mix_test_watch, "~> 0.3", only: :dev, runtime: false},
-      {:blocking_queue, "~> 1.0"}
+      {:blocking_queue, "~> 1.0"},
+      {:extwitter, "~> 0.8"}
     ]
   end
 end
