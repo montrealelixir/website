@@ -31,7 +31,8 @@ defmodule Twitter.Mixfile do
       # {:sibling_app_in_umbrella, in_umbrella: true},
       {:mix_test_watch, "~> 0.3", only: :dev, runtime: false},
       {:blocking_queue, "~> 1.0"},
-      {:extwitter, "~> 0.8"}
+      {:extwitter, "~> 0.8"},
+      {:pubsub, "~> 1.0"}
     ]
   end
 end
