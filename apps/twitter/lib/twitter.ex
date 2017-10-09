@@ -1,18 +1,10 @@
 defmodule Twitter do
   @moduledoc """
-  Documentation for Twitter.
+  Application for listening to the timeline of a Twitter user.
+
+  Upon start-up, the latest tweets are fetched from Twitter.  The application
+  then starts listening to the user's stream.
+
+  New tweets and tweet deletions are published to `PubSub`.
   """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Twitter.hello
-      :world
-
-  """
-  def hello do
-    :world
-  end
 end
