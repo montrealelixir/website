@@ -9,14 +9,18 @@ defmodule Twitter.Application do
     PubSub.start_link()
 
     # List all child processes to be supervised
-    children = [
-      # Starts a worker by calling: Twitter.Worker.start_link(arg)
-      # {Twitter.Worker, arg},
-    ]
+    children = workers(Mix.env)
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Twitter.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  defp workers(:test), do: []
+  defp workers(_) do
+    [
+      {Twitter.Timeline, []}
+    ]
   end
 end
