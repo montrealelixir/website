@@ -18,7 +18,8 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
 
   """
   def get_next_event do
-    get_events(%{scroll: "future_or_past", page: 1})
+    %{scroll: "future_or_past", page: 1}
+    |> get_events()
     |> List.first()
   end
 
@@ -34,7 +35,8 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
 
   """
   def get_events(opts \\ %{}) do
-    fetch_meetups(opts)
+    opts
+    |> fetch_meetups()
     |> Enum.map(&to_meetup_event/1)
   end
 
@@ -53,7 +55,7 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
   defp to_meetup_event(event_map) do
     %MeetupEvent{
       name: event_map["name"],
-      utc_datetime: div(event_map["time"], 1000) |> DateTime.from_unix!(),
+      utc_datetime: event_map["time"] |> div(1000) |> DateTime.from_unix!(),
       venue_name: event_map["venue"]["name"],
       venue_address: event_map["venue"]["address_1"],
       url: event_map["link"]
