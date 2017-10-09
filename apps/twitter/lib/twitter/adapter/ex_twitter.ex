@@ -6,6 +6,10 @@ defmodule Twitter.Adapter.ExTwitter do
       %Twitter.Tweet{id: id, text: text, timestamp: timestamp}
     end
 
+    def convert(%ExTwitter.Model.DeletedTweet{status: %{id: id}}) do
+      %Twitter.TweetDeletion{tweet_id: id}
+    end
+
     def convert(message), do: message
 
     def filter_stream(stream) do

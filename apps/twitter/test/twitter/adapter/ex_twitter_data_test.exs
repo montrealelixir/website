@@ -1,7 +1,7 @@
 defmodule Twitter.Adapter.ExTwitter.DataTest do
   use ExUnit.Case, async: false
 
-  alias Twitter.{Adapter, Tweet}
+  alias Twitter.{Adapter, Tweet, TweetDeletion}
 
   test "converts a ExTwitter.Model.Tweet to Tweet" do
     ex_twitter_tweet = %ExTwitter.Model.Tweet{id: ":id:", text: ":text:", created_at: ":time:"}
@@ -9,6 +9,14 @@ defmodule Twitter.Adapter.ExTwitter.DataTest do
     tweet = Adapter.ExTwitter.Data.convert(ex_twitter_tweet)
 
     assert tweet == %Tweet{id: ":id:", text: ":text:", timestamp: ":time:"}
+  end
+
+  test "converts a ExTwitter.Model.DeletedTweet to TweetDeletion" do
+    ex_twitter_deleted_tweet = %ExTwitter.Model.DeletedTweet{status: %{id: ":id:"}}
+
+    tweet_deletion = Adapter.ExTwitter.Data.convert(ex_twitter_deleted_tweet)
+
+    assert tweet_deletion == %TweetDeletion{tweet_id: ":id:"}
   end
 
   test "filters a stream of tweets" do

@@ -1,6 +1,6 @@
 defmodule Twitter.Timeline do
   use GenServer
-  alias Twitter.Tweet
+  alias Twitter.{Tweet, TweetDeletion}
   require Logger
 
   # Public interface
@@ -46,6 +46,13 @@ defmodule Twitter.Timeline do
     {:reply, :ok, %{state | tweets: [tweet | tweets]}}
   end
 
+  def handle_call({:remove, tweet_id}, _from, %{tweets: tweets} = state) do
+    new_tweets = Enum.filter(tweets, &(&1.id != tweet_id))
+    PubSub.publish(state.topic, {:all_tweets, new_tweets})
+
+    {:reply, :ok, %{state | tweets: new_tweets}}
+  end
+
   defp listen_to_user_stream(adapter) do
     stream = adapter.get_user_stream()
     timeline = self()
@@ -63,6 +70,7 @@ defmodule Twitter.Timeline do
   end
 
   defp determine_call(%Tweet{} = tweet), do: {:push, tweet}
+  defp determine_call(%TweetDeletion{tweet_id: tweet_id}), do: {:remove, tweet_id}
   defp determine_call(message) do
     Logger.debug("Unhandled message #{inspect(message)}")
     :noop
