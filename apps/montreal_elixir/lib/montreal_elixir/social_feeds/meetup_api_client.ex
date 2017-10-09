@@ -1,3 +1,7 @@
+if Mix.env == :test || Mix.env == :travis do
+  Code.require_file("../../../test/montreal_elixir/social_feeds/api_clients/meetup_api_http_client.exs", __DIR__)
+end
+
 defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
   @moduledoc """
   The client for meetup.com API.
