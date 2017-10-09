@@ -31,6 +31,25 @@ defmodule Twitter.TimelineTest do
     end
   end
 
+  describe "publishing tweets" do
+    setup %{adapter: adapter} do
+      topic = "test:timeline"
+      PubSub.start_link()
+      PubSub.subscribe(self(), topic)
+
+      {:ok, pid} = Timeline.start_link(adapter: adapter, topic: topic)
+      on_exit fn -> assert_down(pid) end
+
+      :ok
+    end
+
+    test "publishes a new tweet", %{adapter: adapter} do
+      tweet = %Tweet{text: ":text:"}
+      adapter.stream_tweet(tweet)
+      assert_receive {:new_tweet, ^tweet}, 100
+    end
+  end
+
   # As suggested here:
   # https://elixirforum.com/t/how-to-stop-otp-processes-started-in-exunit-setup-callback/3794/5
   defp assert_down(pid) do

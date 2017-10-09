@@ -1,19 +1,21 @@
 defmodule Twitter.Timeline do
   use GenServer
   alias Twitter.Tweet
+  require Logger
 
   # Public interface
 
   def start_link(opts \\ []) do
     adapter = Application.get_env(:twitter, :adapter, opts[:adapter])
-    GenServer.start_link(__MODULE__, [adapter], name: __MODULE__)
+    topic = Keyword.get(opts, :topic, "twitter:timeline")
+    GenServer.start_link(__MODULE__, [adapter, topic], name: __MODULE__)
   end
 
-  def init([adapter]) do
+  def init([adapter, topic]) do
     # Defer initialization to prevent timeout
     GenServer.cast(self(), :init)
 
-    {:ok, %{adapter: adapter, tweets: []}}
+    {:ok, %{adapter: adapter, tweets: [], topic: topic}}
   end
 
   @doc """
@@ -29,11 +31,40 @@ defmodule Twitter.Timeline do
   def handle_cast(:init, %{adapter: adapter} = state) do
     latest_tweets = adapter.fetch_user_timeline()
     new_state = %{state | tweets: latest_tweets}
+    listen_to_user_stream(adapter)
 
     {:noreply, new_state}
   end
 
   def handle_call(:list, _from, %{tweets: tweets} = state) do
     {:reply, tweets, state}
+  end
+
+  def handle_call({:push, tweet}, _from, %{tweets: tweets, topic: topic} = state) do
+    PubSub.publish(topic, {:new_tweet, tweet})
+
+    {:reply, :ok, %{state | tweets: [tweet | tweets]}}
+  end
+
+  defp listen_to_user_stream(adapter) do
+    stream = adapter.get_user_stream()
+    timeline = self()
+
+    Task.start_link(fn -> read_stream(stream, timeline) end)
+  end
+
+  defp read_stream(stream, timeline) do
+    for message <- stream do
+      case determine_call(message) do
+        :noop -> :ok
+        action -> GenServer.call(timeline, action)
+      end
+    end
+  end
+
+  defp determine_call(%Tweet{} = tweet), do: {:push, tweet}
+  defp determine_call(message) do
+    Logger.debug("Unhandled message #{inspect(message)}")
+    :noop
   end
 end
