@@ -1,1 +1,21 @@
 /* This file is for your main application css. */
+
+#tweets-container ul li i {
+  color: #aaa;
+  font-style: normal;
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+
+#tweets-container ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#tweets-container ul li {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 5px;
+  padding-left: 24px;
+  background: url('/images/twitter-li.png') no-repeat left 4px;
+}
