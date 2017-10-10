@@ -24,13 +24,15 @@ let TwitterTimeline = {
   _refreshAll(tweets) {
     this.tweets.empty()
     for(var tweet of tweets.slice(0,3)) {
-      this.tweets.append(`<li>${tweet.text}<br><i>${tweet.timestamp}</i></li>`)
+      var text = tweet.text.autoLink({target: "_blank"})
+      this.tweets.append(`<li>${text}<br><i>${tweet.timestamp}</i></li>`)
     }
     this.container.scrollTop(this.container[0].scrollHeight)
   },
 
   _newTweet(tweet) {
-    this.tweets.prepend(`<li>${tweet.text}<br><i>${tweet.timestamp}</i></li>`)
+    var text = tweet.text.autoLink({target: "_blank"})
+    this.tweets.prepend(`<li>${text}<br><i>${tweet.timestamp}</i></li>`)
     this.container.scrollTop(this.container[0].scrollHeight)
   }
 }
