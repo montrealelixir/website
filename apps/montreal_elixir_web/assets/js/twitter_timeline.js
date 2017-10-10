@@ -21,9 +21,9 @@ let TwitterTimeline = {
     })
   },
 
-  _refreshAll(tweets) {
+  _refreshAll(tweetsList) {
     this.tweets.empty()
-    for(var tweet of tweets.slice(0,3)) {
+    for(var tweet of tweetsList.slice(0,3)) {
       var text = tweet.text.autoLink({target: "_blank"})
       this.tweets.append(`<li>${text}<br><i>${tweet.timestamp}</i></li>`)
     }
