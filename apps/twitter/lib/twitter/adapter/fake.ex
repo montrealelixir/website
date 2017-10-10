@@ -1,4 +1,5 @@
 defmodule Twitter.Adapter.Fake do
+  @moduledoc false
   @behaviour Twitter.Adapter
 
   # Public interface

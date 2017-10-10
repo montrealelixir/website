@@ -1,7 +1,10 @@
 defmodule Twitter.Adapter.ExTwitter do
+  @moduledoc false
   @behaviour Twitter.Adapter
 
   defmodule Data do
+    @moduledoc false
+
     def convert(%ExTwitter.Model.Tweet{id: id, text: text, created_at: timestamp}) do
       %Twitter.Tweet{id: id, text: text, timestamp: timestamp}
     end
@@ -31,7 +34,10 @@ defmodule Twitter.Adapter.ExTwitter do
 
   @spec get_user_stream() :: Stream.t
   def get_user_stream do
-    ExTwitter.stream_user(with: :user, receive_messages: true, timeout: :infinity)
+    options = [with: :user, receive_messages: true, timeout: :infinity]
+
+    options
+    |> ExTwitter.stream_user
     |> Data.filter_stream
   end
 end

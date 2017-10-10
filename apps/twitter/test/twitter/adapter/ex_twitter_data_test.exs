@@ -22,7 +22,7 @@ defmodule Twitter.Adapter.ExTwitter.DataTest do
   test "filters a stream of tweets" do
     unwanted_messages = [
       %ExTwitter.Model.User{},
-      {:friends, %{friends: [3720341, 5444392, 16573941]}}
+      {:friends, %{friends: [343, 22, 344]}}
     ]
     wanted_message = [
       %ExTwitter.Model.Tweet{},

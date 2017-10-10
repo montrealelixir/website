@@ -1,4 +1,5 @@
 defmodule MontrealElixirWeb.TwitterTimelineChannel do
+  @moduledoc false
   use Phoenix.Channel
 
   def join("twitter_timeline", message, socket) do

@@ -1,4 +1,10 @@
 defmodule Twitter.Timeline do
+  @moduledoc """
+  Module for keeping track of the Twitter timeline of a user.  It fetches
+  the most recent tweet when initializing and listens to the user stream.
+  New tweets are published to a PubSub topic.  When a tweet is deleted,
+  the updated list of tweets is published to PubSub topic.
+  """
   use GenServer
   alias Twitter.{Tweet, TweetDeletion}
   require Logger
@@ -72,7 +78,7 @@ defmodule Twitter.Timeline do
   defp determine_call(%Tweet{} = tweet), do: {:push, tweet}
   defp determine_call(%TweetDeletion{tweet_id: tweet_id}), do: {:remove, tweet_id}
   defp determine_call(message) do
-    Logger.debug("Unhandled message #{inspect(message)}")
+    Logger.debug fn -> "Unhandled message #{inspect(message)}" end
     :noop
   end
 end

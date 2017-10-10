@@ -1,4 +1,5 @@
 defmodule Twitter.Adapter do
+  @moduledoc false
   alias Twitter.Tweet
 
   @doc """

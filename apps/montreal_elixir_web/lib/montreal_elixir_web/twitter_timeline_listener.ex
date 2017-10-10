@@ -1,4 +1,5 @@
 defmodule MontrealElixirWeb.TwitterTimelineListener do
+  @moduledoc false
   use GenServer
   alias MontrealElixirWeb.Endpoint
 
