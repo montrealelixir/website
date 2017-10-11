@@ -23,7 +23,7 @@ defmodule Twitter.Adapter.ExTwitter do
 
     defp valid_message(%ExTwitter.Model.Tweet{}), do: true
     defp valid_message(%ExTwitter.Model.DeletedTweet{}), do: true
-    defp valid_message(_), do: false
+    defp valid_message(_message), do: false
   end
 
   @spec fetch_user_timeline() :: [Twitter.Tweet.t]

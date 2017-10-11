@@ -18,7 +18,7 @@ defmodule Twitter.Application do
   end
 
   defp workers(:test), do: []
-  defp workers(_) do
+  defp workers(_env) do
     [
       {Twitter.Timeline, []}
     ]
