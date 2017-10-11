@@ -17,7 +17,7 @@ defmodule MontrealElixir.SocialFeeds.CacheTest do
     end
 
     test "returns newly fetched value for expired key" do
-      Cache.fetch(:expired_key, fn -> 3 end, %{expires_in: 0})
+      Cache.fetch(:expired_key, fn -> 3 end, %{cache_ttl_in_sec: 0})
 
       assert Cache.fetch(:expired_key, fn -> :return_this end, %{}) == :return_this
     end

@@ -50,7 +50,7 @@ defmodule MontrealElixir.SocialFeeds.Cache do
   The default value is 600 seconds (5 minutes).
   """
   def fetch(key, default_value_function, opts) do
-    expires_in = opts[:expires_in] || 600
+    expires_in = opts[:cache_ttl_in_sec] || 600
     case get(key) do
       :not_found -> set(key, default_value_function.(), expires_in)
       {:found, result} -> result

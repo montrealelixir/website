@@ -21,6 +21,6 @@ defmodule MontrealElixir.SocialFeeds do
   def get_next_meetup_event do
     Cache.fetch(:next_meetup_event,
                 fn -> MeetupApiClient.get_next_event() end,
-                %{expires_in: 600})
+                %{cache_ttl_in_sec: 600})
   end
 end
