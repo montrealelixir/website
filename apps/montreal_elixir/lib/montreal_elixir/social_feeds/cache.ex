@@ -7,11 +7,31 @@ defmodule MontrealElixir.SocialFeeds.Cache do
 
   ## Client API
 
+  # TODO: add unit tests for Entry module
   defmodule Entry do
     @moduledoc """
     `Cache.Entry` struct capable of holding any value along with expiration timestamp.
     """
     defstruct [:value, :expires_at]
+
+    @doc """
+    Returns an Entry with `value` and expiry time based on `expires_in`
+    """
+    def build(value, expires_in) do
+      %Entry{value: value, expires_at: now() + expires_in}
+    end
+
+    @doc """
+    Returns `true` if the entry expired accoring to its `expired_in`.
+    Returns `false` otherwise.
+    """
+    def expired?(entry) do
+      now() >= entry.expires_at
+    end
+
+    defp now do
+      :os.system_time(:second)
+    end
   end
 
   @doc """
@@ -56,7 +76,7 @@ defmodule MontrealElixir.SocialFeeds.Cache do
   def handle_call({:get, key}, _from, state) do
     value = case Map.fetch(state, key) do
       :error -> {:not_found}
-      {:ok, result} -> if now() >= result.expires_at do
+      {:ok, result} -> if Entry.expired?(result) do
         {:not_found}
       else
         {:found, result.value}
@@ -71,13 +91,9 @@ defmodule MontrealElixir.SocialFeeds.Cache do
   Puts the key + value in the state map along with it's expiration timestamp.
   """
   def handle_call({:set, key, value, expires_in}, _from, state) do
-    state = Map.put(state,
-                    key,
-                    %Entry{value: value, expires_at: now() + expires_in})
-    {:reply, value, state}
-  end
+    entry = Entry.build(value, expires_in)
+    state = Map.put(state, key, entry)
 
-  defp now do
-    :os.system_time(:second)
+    {:reply, value, state}
   end
 end
