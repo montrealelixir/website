@@ -1,4 +1,4 @@
-defmodule MontrealElixir.SocialFeeds.Test.MeetupApiHTTPClient do
+defmodule MontrealElixir.SocialFeeds.Test.MeetupApiHttpClient do
   @moduledoc false
 
   @upcoming_meetups_json File.read!("test/montreal_elixir/fixtures/meetup_get_upcoming_events.json")

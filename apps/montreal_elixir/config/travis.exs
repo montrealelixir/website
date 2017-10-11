@@ -10,4 +10,4 @@ config :montreal_elixir, MontrealElixir.Repo,
   pool: Ecto.Adapters.SQL.Sandbox
 
 config :montreal_elixir, :meetup_api_client,
-  http_client: MontrealElixir.SocialFeeds.Test.MeetupApiHTTPClient
+  http_client: MontrealElixir.SocialFeeds.Test.MeetupApiHttpClient
