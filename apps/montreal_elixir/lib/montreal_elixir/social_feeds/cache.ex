@@ -9,7 +9,6 @@ defmodule MontrealElixir.SocialFeeds.Cache do
 
   ## Client API
 
-  # TODO: add unit tests for Entry module
   defmodule Entry do
     @moduledoc """
     `Cache.Entry` struct capable of holding any value along with expiration timestamp.
