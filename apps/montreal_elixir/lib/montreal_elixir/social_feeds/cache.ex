@@ -3,7 +3,7 @@ defmodule MontrealElixir.SocialFeeds.Cache do
   Simple map-based cache server with expiring keys.
   """
 
-  @default_expiry_in_sec 600
+  @default_expiry_in_msec 600_000
 
   use GenServer
 
@@ -33,7 +33,7 @@ defmodule MontrealElixir.SocialFeeds.Cache do
     end
 
     defp now do
-      :os.system_time(:second)
+      :os.system_time(:millisecond)
     end
   end
 
@@ -53,7 +53,7 @@ defmodule MontrealElixir.SocialFeeds.Cache do
   The default value is 600 seconds (5 minutes).
   """
   def fetch(key, default_value_function, opts) do
-    expires_in = opts[:cache_ttl_in_sec] || @default_expiry_in_sec
+    expires_in = opts[:cache_ttl_in_msec] || @default_expiry_in_msec
     case get(key) do
       :not_found -> set(key, default_value_function.(), expires_in)
       {:found, result} -> result
