@@ -4,7 +4,6 @@ defmodule MontrealElixir.SocialFeeds do
   """
 
   alias MontrealElixir.SocialFeeds.Cache
-  alias MontrealElixir.SocialFeeds.MeetupApiClient
 
   @doc """
   Returns the next (upcoming) meetup_event.
@@ -15,12 +14,12 @@ defmodule MontrealElixir.SocialFeeds do
   ## Examples
 
       iex> get_next_meetup_event()
-      %MeetupEvent{}
+      %MontrealElixir.SocialFeeds.Meetup.Event{}
 
   """
   def get_next_meetup_event do
     Cache.fetch(:next_meetup_event,
-                fn -> MeetupApiClient.get_next_event() end,
+                fn -> MontrealElixir.SocialFeeds.Meetup.ApiClient.get_next_event() end,
                 %{cache_ttl_in_msec: 600_000})
   end
 end

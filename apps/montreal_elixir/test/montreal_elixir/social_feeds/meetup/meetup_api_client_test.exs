@@ -1,14 +1,14 @@
-defmodule MontrealElixir.SocialFeeds.MeetupApiClientTest do
+defmodule MontrealElixir.SocialFeeds.Meetup.ApiClientTest do
   use MontrealElixir.DataCase
 
-  alias MontrealElixir.SocialFeeds.MeetupApiClient
-  alias MontrealElixir.SocialFeeds.MeetupEvent
+  alias MontrealElixir.SocialFeeds.Meetup.ApiClient
+  alias MontrealElixir.SocialFeeds.Meetup.Event
 
   describe "get_next_event/0" do
     @tag :capture_log
     test "returns the next meetup_event" do
       {:ok, expected_time, _offset} = DateTime.from_iso8601("2017-10-11 22:30:00Z")
-      event = %MeetupEvent{
+      event = %Event{
         name: "Montreal Elixir Meetup",
         utc_datetime: expected_time,
         venue_name: "Shopify Montreal",
@@ -16,21 +16,21 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClientTest do
         url: "https://www.meetup.com/montrealelixir/events/243582390/"
       }
 
-      assert MeetupApiClient.get_next_event() == event
+      assert ApiClient.get_next_event() == event
     end
   end
 
   describe "get_events/1" do
     @tag :capture_log
-    test "returns list of MeetupEvents" do
-      result = MeetupApiClient.get_events() |> Enum.map(&(&1.name))
+    test "returns list of Events" do
+      result = ApiClient.get_events() |> Enum.map(&(&1.name))
 
       assert result == ["Meetup 1", "Meetup 2"]
     end
 
     @tag :capture_log
     test "returns empty list on API error" do
-      assert MeetupApiClient.get_events(%{error: true}) == []
+      assert ApiClient.get_events(%{error: true}) == []
     end
   end
 end

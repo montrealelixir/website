@@ -1,13 +1,13 @@
 if Mix.env == :test || Mix.env == :travis do
-  Code.require_file("../../../test/montreal_elixir/social_feeds/api_clients/meetup_api_http_client.exs", __DIR__)
+  Code.require_file("../../../../test/montreal_elixir/social_feeds/api_clients/meetup_api_http_client.exs", __DIR__)
 end
 
-defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
+defmodule MontrealElixir.SocialFeeds.Meetup.ApiClient do
   @moduledoc """
   The client for meetup.com API.
   """
 
-  alias MontrealElixir.SocialFeeds.MeetupEvent
+  alias MontrealElixir.SocialFeeds.Meetup.Event
 
   require Logger
 
@@ -18,7 +18,7 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
   ## Examples
 
       iex> get_next_event()
-      %MeetupEvent{}
+      %Event{}
 
   """
   def get_next_event do
@@ -35,7 +35,7 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
   ## Examples
 
       iex> get_events(%{status: "past,upcoming"})
-      [%MeetupEvent{}, %MeetupEvent{}, ...]
+      [%Event{}, ...]
 
   """
   def get_events(opts \\ %{}) do
@@ -56,7 +56,7 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
   end
 
   defp to_meetup_event(event_map) do
-    %MeetupEvent{
+    %Event{
       name: event_map["name"],
       utc_datetime: event_map["time"] |> div(1000) |> DateTime.from_unix!(),
       venue_name: event_map["venue"]["name"],
