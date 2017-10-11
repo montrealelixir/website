@@ -1,4 +1,4 @@
-defmodule Twitter.Adapter.ExTwitter.DataTest do
+defmodule Twitter.Adapter.ExTwitter.StateTest do
   use ExUnit.Case, async: false
 
   alias Twitter.{Adapter, Tweet, TweetDeletion}
@@ -6,7 +6,7 @@ defmodule Twitter.Adapter.ExTwitter.DataTest do
   test "converts a ExTwitter.Model.Tweet to Tweet" do
     ex_twitter_tweet = %ExTwitter.Model.Tweet{id: ":id:", text: ":text:", created_at: ":time:"}
 
-    tweet = Adapter.ExTwitter.Data.convert(ex_twitter_tweet)
+    tweet = Adapter.ExTwitter.State.convert(ex_twitter_tweet)
 
     assert tweet == %Tweet{id: ":id:", text: ":text:", timestamp: ":time:"}
   end
@@ -14,7 +14,7 @@ defmodule Twitter.Adapter.ExTwitter.DataTest do
   test "converts a ExTwitter.Model.DeletedTweet to TweetDeletion" do
     ex_twitter_deleted_tweet = %ExTwitter.Model.DeletedTweet{status: %{id: ":id:"}}
 
-    tweet_deletion = Adapter.ExTwitter.Data.convert(ex_twitter_deleted_tweet)
+    tweet_deletion = Adapter.ExTwitter.State.convert(ex_twitter_deleted_tweet)
 
     assert tweet_deletion == %TweetDeletion{tweet_id: ":id:"}
   end
@@ -30,7 +30,7 @@ defmodule Twitter.Adapter.ExTwitter.DataTest do
     ]
     stream = Stream.cycle(unwanted_messages ++ wanted_message)
 
-    tweets_stream = Adapter.ExTwitter.Data.filter_stream(stream)
+    tweets_stream = Adapter.ExTwitter.State.filter_stream(stream)
 
     [first, second] = Enum.take(tweets_stream, 2)
     assert %Tweet{} = first

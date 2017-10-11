@@ -2,7 +2,7 @@ defmodule Twitter.Adapter.ExTwitter do
   @moduledoc false
   @behaviour Twitter.Adapter
 
-  defmodule Data do
+  defmodule State do
     @moduledoc false
 
     def convert(%ExTwitter.Model.Tweet{id: id, text: text, created_at: timestamp}) do
@@ -29,7 +29,7 @@ defmodule Twitter.Adapter.ExTwitter do
   @spec fetch_user_timeline() :: [Twitter.Tweet.t]
   def fetch_user_timeline do
     ExTwitter.user_timeline
-    |> Enum.map(&Data.convert/1)
+    |> Enum.map(&State.convert/1)
   end
 
   @spec get_user_stream() :: Stream.t
@@ -38,6 +38,6 @@ defmodule Twitter.Adapter.ExTwitter do
 
     options
     |> ExTwitter.stream_user
-    |> Data.filter_stream
+    |> State.filter_stream
   end
 end
