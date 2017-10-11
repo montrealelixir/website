@@ -45,9 +45,8 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
   end
 
   @http Application.get_env(:montreal_elixir, :meetup_api_client)[:http_client] || :httpc
-  @url "https://api.meetup.com/montrealelixir/events"
   defp fetch_meetups(opts) do
-    url = String.to_charlist(@url <> "?" <> URI.encode_query(opts))
+    url = String.to_charlist(meetup_events_url() <> "?" <> URI.encode_query(opts))
     Logger.info "Meetup API: requesting #{url}"
 
     case @http.request(url) do
@@ -65,4 +64,8 @@ defmodule MontrealElixir.SocialFeeds.MeetupApiClient do
       url: event_map["link"]
     }
   end
+
+  defp meetup_events_url, do: base_url() <> "/events"
+
+  def base_url, do: Application.get_env(:montreal_elixir, :meetup_api_client)[:meetup_url]
 end
