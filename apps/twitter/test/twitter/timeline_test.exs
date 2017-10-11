@@ -46,7 +46,7 @@ defmodule Twitter.TimelineTest do
     test "publishes a new tweet", %{adapter: adapter} do
       tweet = %Tweet{text: ":text:"}
       adapter.stream_tweet(tweet)
-      assert_receive {:new_tweet, ^tweet}, 100
+      assert_receive {:new_tweet, ^tweet}
     end
   end
 
