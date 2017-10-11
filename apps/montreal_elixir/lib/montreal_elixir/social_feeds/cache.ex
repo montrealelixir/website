@@ -52,7 +52,7 @@ defmodule MontrealElixir.SocialFeeds.Cache do
   def fetch(key, default_value_function, opts) do
     expires_in = opts[:expires_in] || 600
     case get(key) do
-      {:not_found} -> set(key, default_value_function.(), expires_in)
+      :not_found -> set(key, default_value_function.(), expires_in)
       {:found, result} -> result
     end
   end
@@ -75,9 +75,9 @@ defmodule MontrealElixir.SocialFeeds.Cache do
   """
   def handle_call({:get, key}, _from, state) do
     value = case Map.fetch(state, key) do
-      :error -> {:not_found}
+      :error -> :not_found
       {:ok, result} -> if Entry.expired?(result) do
-        {:not_found}
+        :not_found
       else
         {:found, result.value}
       end
