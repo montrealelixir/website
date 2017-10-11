@@ -15,9 +15,10 @@ use Mix.Config
 # which you typically run after static files are built.
 config :montreal_elixir_web, MontrealElixirWeb.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [scheme: "https", host: "www.montrealelixir.ca", port: 80],
+  url: [scheme: "https", host: "montreal-elixir-staging.herokuapp.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  secret_key_base: System.get_env("SECRET_KEY_BASE")
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
+  check_origin: ["https://*.herokuapp.com"]
 
 # ## SSL Support
 #
