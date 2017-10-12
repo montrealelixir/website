@@ -6,7 +6,7 @@
   "success_url": "/",
   "addons": ["heroku-postgresql:hobby-dev", "papertrail:choklad"],
   "env": {
-    "MIX_ENV": "prod",
+    "MIX_ENV": "staging",
     "SECRET_KEY_BASE": {
       "generator": "secret"
     },
@@ -17,6 +17,18 @@
     "SETUP_BY": {
       "description": "Who initiated this setup",
       "value": "Nicholas Henry"
+    },
+    "TWITTER_CONSUMER_KEY": {
+      "required": true
+    },
+    "TWITTER_CONSUMER_SECRET": {
+      "required": true
+    },
+    "TWITTER_ACCESS_TOKEN": {
+      "required": true
+    },
+    "TWITTER_ACCESS_TOKEN_SECRET": {
+      "required": true
     }
   },
   "scripts": {

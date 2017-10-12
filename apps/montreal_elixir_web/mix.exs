@@ -32,15 +32,18 @@ defmodule MontrealElixirWeb.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.3.0"},
-     {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.2"},
-     {:phoenix_html, "~> 2.10"},
-     {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:gettext, "~> 0.11"},
-     {:timex, "~> 3.1"},
-     {:montreal_elixir, in_umbrella: true},
-     {:cowboy, "~> 1.0"}]
+    [
+      {:phoenix, "~> 1.3.0"},
+      {:phoenix_pubsub, "~> 1.0"},
+      {:phoenix_ecto, "~> 3.2"},
+      {:phoenix_html, "~> 2.10"},
+      {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:gettext, "~> 0.11"},
+      {:timex, "~> 3.1"},
+      {:cowboy, "~> 1.0"},
+      {:montreal_elixir, in_umbrella: true},
+      {:twitter, in_umbrella: true}
+    ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
