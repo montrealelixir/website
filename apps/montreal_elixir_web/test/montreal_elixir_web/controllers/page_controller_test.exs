@@ -3,7 +3,7 @@ defmodule MontrealElixirWeb.PageControllerTest do
 
   describe "GET /" do
     setup do
-      SocialFeeds.Cache.clear
+      SocialFeeds.Cache.clear()
     end
 
     @tag :capture_log

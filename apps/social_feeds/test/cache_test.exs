@@ -7,7 +7,7 @@ defmodule SocialFeeds.CacheTest do
     test "clears keys from cache" do
       Cache.fetch(:cached_key, fn -> :cached_val end, %{cache_ttl_in_msec: 1_000_000})
 
-      Cache.clear
+      Cache.clear()
 
       assert Cache.fetch(:new_key, fn -> :new_val end, %{}) == :new_val
     end
@@ -15,7 +15,7 @@ defmodule SocialFeeds.CacheTest do
 
   describe "fetch/3" do
     setup do
-      Cache.clear
+      Cache.clear()
     end
 
     test "returns the result of the default function" do
