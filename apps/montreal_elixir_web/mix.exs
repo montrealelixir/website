@@ -42,7 +42,8 @@ defmodule MontrealElixirWeb.Mixfile do
       {:timex, "~> 3.1"},
       {:cowboy, "~> 1.0"},
       {:montreal_elixir, in_umbrella: true},
-      {:twitter, in_umbrella: true}
+      {:twitter, in_umbrella: true},
+      {:social_feeds, in_umbrella: true}
     ]
   end
 
