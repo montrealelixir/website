@@ -1,4 +1,4 @@
-defmodule MontrealElixir.SocialFeeds.Cache do
+defmodule SocialFeeds.Cache do
   @moduledoc """
   Simple map-based cache server with expiring keys.
   """

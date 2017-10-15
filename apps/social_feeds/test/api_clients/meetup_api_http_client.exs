@@ -1,8 +1,8 @@
-defmodule MontrealElixir.SocialFeeds.Test.MeetupApiHttpClient do
+defmodule SocialFeeds.Test.MeetupApiHttpClient do
   @moduledoc false
 
-  @upcoming_meetups_json File.read!("test/montreal_elixir/fixtures/meetup_get_upcoming_events.json")
-  @meetups_json File.read!("test/montreal_elixir/fixtures/meetup_get_events.json")
+  @upcoming_meetups_json File.read!("test/fixtures/meetup_get_upcoming_events.json")
+  @meetups_json File.read!("test/fixtures/meetup_get_events.json")
 
   def request(url) do
     url = to_string(url)

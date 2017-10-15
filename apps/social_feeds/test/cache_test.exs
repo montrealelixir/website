@@ -1,7 +1,7 @@
-defmodule MontrealElixir.SocialFeeds.CacheTest do
+defmodule SocialFeeds.CacheTest do
   use ExUnit.Case, async: true
 
-  alias MontrealElixir.SocialFeeds.Cache
+  alias SocialFeeds.Cache
 
   describe "fetch/3" do
     test "returns the result of the default function" do

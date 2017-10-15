@@ -1,8 +1,8 @@
-defmodule MontrealElixir.SocialFeeds.Meetup.ApiClientTest do
-  use MontrealElixir.DataCase
+defmodule SocialFeeds.Meetup.ApiClientTest do
+  use ExUnit.Case, async: true
 
-  alias MontrealElixir.SocialFeeds.Meetup.ApiClient
-  alias MontrealElixir.SocialFeeds.Meetup.Event
+  alias SocialFeeds.Meetup.ApiClient
+  alias SocialFeeds.Meetup.Event
 
   describe "get_next_event/0" do
     @tag :capture_log
