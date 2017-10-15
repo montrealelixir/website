@@ -3,7 +3,21 @@ defmodule SocialFeeds.CacheTest do
 
   alias SocialFeeds.Cache
 
+  describe "clear/0" do
+    test "clears keys from cache" do
+      Cache.fetch(:cached_key, fn -> :cached_val end, %{cache_ttl_in_msec: 1_000_000})
+
+      Cache.clear
+
+      assert Cache.fetch(:new_key, fn -> :new_val end, %{}) == :new_val
+    end
+  end
+
   describe "fetch/3" do
+    setup do
+      Cache.clear
+    end
+
     test "returns the result of the default function" do
       default_function = fn -> 1 end
 
