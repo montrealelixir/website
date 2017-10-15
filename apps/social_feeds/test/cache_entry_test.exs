@@ -1,7 +1,7 @@
-defmodule MontrealElixir.SocialFeeds.CacheEntryTest do
+defmodule SocialFeeds.CacheEntryTest do
   use ExUnit.Case, async: true
 
-  alias MontrealElixir.SocialFeeds.Cache.Entry
+  alias SocialFeeds.Cache.Entry
 
   describe "build/2" do
     test "returns Entry with value and expiry time" do

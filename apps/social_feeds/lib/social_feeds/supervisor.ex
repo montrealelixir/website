@@ -1,4 +1,4 @@
-defmodule MontrealElixir.SocialFeeds.Supervisor do
+defmodule SocialFeeds.Supervisor do
   @moduledoc false
 
   use Supervisor
@@ -9,7 +9,7 @@ defmodule MontrealElixir.SocialFeeds.Supervisor do
 
   def init(:ok) do
     children = [
-      worker(MontrealElixir.SocialFeeds.Cache, [[name: MontrealElixir.SocialFeeds.Cache]])
+      worker(SocialFeeds.Cache, [[name: SocialFeeds.Cache]])
     ]
 
     supervise(children, strategy: :one_for_one)
