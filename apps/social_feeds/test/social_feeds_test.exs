@@ -3,7 +3,7 @@ defmodule SocialFeedsTest do
 
   alias SocialFeeds.Cache
 
-  describe "get_next_meetup_event/0" do
+  describe "get_next_meetup_event/1" do
     setup do
       Cache.clear()
     end
@@ -22,8 +22,16 @@ defmodule SocialFeedsTest do
       assert SocialFeeds.get_next_meetup_event() == event
     end
 
+    @tag :capture_log
+    test "allows to specify custom caching period" do
+      SocialFeeds.get_next_meetup_event(%{cache_ttl_in_msec: 0})
+
+      result = Cache.fetch(:next_meetup_event, fn -> :new_value end, %{})
+      assert result == :new_value
+    end
+
     test "returns the next meetup_event from cache" do
-      Cache.fetch(:next_meetup_event, fn -> :cached_value end, %{})
+      Cache.fetch(:next_meetup_event, fn -> :cached_value end, %{cache_ttl_in_msec: 600_000})
 
       assert SocialFeeds.get_next_meetup_event() == :cached_value
     end
