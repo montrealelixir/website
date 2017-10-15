@@ -5,7 +5,7 @@ defmodule SocialFeedsTest do
 
   describe "get_next_meetup_event/0" do
     setup do
-      Cache.clear
+      Cache.clear()
     end
 
     @tag :capture_log
