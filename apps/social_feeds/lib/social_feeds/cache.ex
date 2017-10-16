@@ -1,4 +1,4 @@
-defmodule MontrealElixir.SocialFeeds.Cache do
+defmodule SocialFeeds.Cache do
   @moduledoc """
   Simple map-based cache server with expiring keys.
   """
@@ -44,6 +44,13 @@ defmodule MontrealElixir.SocialFeeds.Cache do
   end
 
   @doc """
+  Removes all data from cache.
+  """
+  def clear do
+    GenServer.cast(__MODULE__, :clear)
+  end
+
+  @doc """
   Returns given key's value from the cache if found.
   Evaluates default_value_function if not.
 
@@ -68,6 +75,13 @@ defmodule MontrealElixir.SocialFeeds.Cache do
   end
 
   ## Server Callbacks
+
+  @doc """
+  Responds to :clear.
+  """
+  def handle_cast(:clear, _state) do
+    {:noreply, %{}}
+  end
 
   @doc """
   Responds to :get.

@@ -1,4 +1,4 @@
-defmodule MontrealElixir.SocialFeeds.Meetup.Event do
+defmodule SocialFeeds.Meetup.Event do
   @moduledoc """
   Struct keeping meetup event attributes.
   """

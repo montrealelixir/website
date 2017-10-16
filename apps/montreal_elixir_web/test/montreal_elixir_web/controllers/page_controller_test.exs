@@ -2,6 +2,10 @@ defmodule MontrealElixirWeb.PageControllerTest do
   use MontrealElixirWeb.ConnCase
 
   describe "GET /" do
+    setup do
+      SocialFeeds.Cache.clear()
+    end
+
     @tag :capture_log
     test "shows About section", %{conn: conn} do
       conn = get conn, "/"

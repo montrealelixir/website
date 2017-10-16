@@ -8,6 +8,3 @@ config :montreal_elixir, MontrealElixir.Repo,
   database: "montreal_elixir_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
-
-config :montreal_elixir, :meetup_api_client,
-  http_client: MontrealElixir.SocialFeeds.Test.MeetupApiHttpClient
