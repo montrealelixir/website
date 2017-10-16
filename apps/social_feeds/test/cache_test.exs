@@ -1,5 +1,5 @@
 defmodule SocialFeeds.CacheTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case
 
   alias SocialFeeds.Cache
 
