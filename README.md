@@ -46,10 +46,32 @@ After you have cloned the repository:
 
 * Install dependencies with `mix deps.get`
 * Create and migrate your database with `mix do ecto.create, ecto.migrate`
+* [Configure external API access keys](#configure-external-api-access-keys)
 * Install Node.js dependencies with `cd apps/montreal_elixir_web/assets && npm install`
 * Start Phoenix endpoint with `cd ../../.. && mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+
+### Configure external API access keys
+
+#### Twitter
+
+Montreal Elixir website depends on twitter feed to deliver recent tweets from https://twitter.com/montrealelixir. To
+make it work in development, you will need to configure your own twitter account to work with the app.
+
+The following steps assume you already have a working twitter account that has email and mobile phone number confirmed
+(Twitter does not generate API keys if these prerequisites are not met).
+
+1. Go to https://apps.twitter.com/.
+2. Create New App.
+3. From the created app page, go to "Keys and Access Tokens" tab.
+4. Create Access Token.
+5. (Optionally) change app permissions to Read Only (montrealelixir app only reads tweets from user's timeline).
+6. Put generated keys in ```config/dev.secret.exs```.
+7. Start the server locally (```mix phx.server```).
+8. The [web page](http://localhost:4000/) should contain the latest tweets from the configured account.
+9. Tweet something new and it should appear on the web page.
+10. That's it! You are all set!
 
 ### Running the tests
 
