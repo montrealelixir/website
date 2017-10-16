@@ -17,7 +17,7 @@ changes to this document in a pull request.
   * [JavaScript Style Guide](#javascript-style-guide)
   * [Test Style Guide](#test-style-guide)
   * [Documentation Style Guide](#documentation-style-guide)
-4. [How to configure external apps for development?](#how-to-configure-external-apps-for-development)
+4. [How to configure external apps for development?](https://github.com/montrealelixir/website/blob/master/README.md#configure-external-api-access-keys)
 5. [Credits](#credits)
 
 ## What should I know before I get started?
@@ -115,27 +115,6 @@ functions in `View`s.
 
 [Typespecs](https://hexdocs.pm/elixir/typespecs.html) are not mandatory, but highly
 desirable. The rules outlined above for public functions apply to Typespecs as well.
-
-## How to configure external apps for development?
-
-### Twitter
-
-Montreal Elixir website depends on twitter feed to deliver recent tweets from https://twitter.com/montrealelixir. To
-make it work in development, you will need to configure your own twitter account to work with the app.
-
-The following steps assume you already have a working twitter account that has email and mobile phone number confirmed
-(Twitter does not generate API keys if these prerequisites are not met).
-
-1. Go to https://apps.twitter.com/.
-2. Create New App.
-3. From the created app page, go to "Keys and Access Tokens" tab.
-4. Create Access Token.
-5. (Optionally) change app permissions to Read Only (montrealelixir app only reads tweets from user's timeline).
-6. Put generated keys in ```config/dev.secret.exs```.
-7. Start the server locally (```mix phx.server```).
-8. The [web page](http://localhost:4000/) should contain the latest tweets from the configured account.
-9. Tweet something new and it should appear on the web page.
-10. That's it! You are all set!
 
 ## Credits
 
