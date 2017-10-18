@@ -17,7 +17,8 @@ changes to this document in a pull request.
   * [JavaScript Style Guide](#javascript-style-guide)
   * [Test Style Guide](#test-style-guide)
   * [Documentation Style Guide](#documentation-style-guide)
-4. [Credits](#credits)
+4. [How to configure external apps for development?](https://github.com/montrealelixir/website/blob/master/README.md#configure-external-api-access-keys)
+5. [Credits](#credits)
 
 ## What should I know before I get started?
 
@@ -35,7 +36,7 @@ Understand the purpose and direction of the website:
   * Review the [README.md](README.md) which describes the purpose of the website
   * Review the [static mockup](http://www.montrealelixir.ca/mockup) that helps visualize the website features that we consider a minimum viable product (MVP)
 
-## How Can I Contribute?  
+## How Can I Contribute?
 
 * Provide suggestions for the website in the form of [issues](https://github.com/montrealelixir/website/issues)
 * Improve the on-boarding experience via the [README.md](README.md) and [CONTRIBUTING.md](CONTRIBUTING.md) files
