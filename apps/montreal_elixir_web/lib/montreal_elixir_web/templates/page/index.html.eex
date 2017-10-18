@@ -1,7 +1,7 @@
 <%= if @next_meetup do %>
   <div class="row marketing">
     <div class="col-sm-12">
-      <h4>Next event / most recent event</h4>
+      <h4><%= next_or_most_recent_event(@next_meetup.utc_datetime) %></h4>
     </div>
 
     <div class="col-sm-6">
