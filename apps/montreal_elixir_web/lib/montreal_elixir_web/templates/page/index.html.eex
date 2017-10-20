@@ -17,7 +17,7 @@
     </div>
 
     <div class="col-sm-12">
-      <p>Learn more on <a href=<%= @next_meetup.url %>>Meetup.com</a></p>
+      <p>Learn more on <a target="_blank" href=<%= @next_meetup.url %>>Meetup.com</a></p>
     </div>
   </div>
 <% end %>
@@ -33,7 +33,7 @@
     <div id="tweets-container">
       <ul class="tweets"></ul>
     </div>
-    <p>View more on <a href="https://twitter.com/montrealelixir">Twitter</a></p>
+    <p>View more on <a target="_blank" href="https://twitter.com/montrealelixir">Twitter</a></p>
   </div>
 </div>
 
@@ -42,19 +42,19 @@
     <h4>Monthly Meetup</h4>
     <ul>
       <li>
-        <a href="https://www.meetup.com/montrealelixir/members">Become a member</a>
+        <a target="_blank" href="https://www.meetup.com/montrealelixir/members">Become a member</a>
       </li>
       <li>
-        <a href="https://www.meetup.com/montrealelixir">Come to a meetup</a>
+        <a target="_blank" href="https://www.meetup.com/montrealelixir">Come to a meetup</a>
       </li>
       <li>
-        <a href="https://github.com/montrealelixir/playbook/blob/master/guides/presentations.md">Prepare and present a talk</a>
+        <a target="_blank" href="https://github.com/montrealelixir/playbook/blob/master/guides/presentations.md">Prepare and present a talk</a>
       </li>
       <li>
-        <a href="https://www.youtube.com/channel/UCftyx5k7K_0a3wIGRtE2YQw">Watch our meetup presentations</a>
+        <a target="_blank" href="https://www.youtube.com/channel/UCftyx5k7K_0a3wIGRtE2YQw">Watch our meetup presentations</a>
       </li>
       <li>
-        <a href="https://github.com/montrealelixir/playbook/blob/master/guides/sponsorship.md">Sponsor an event</a>
+        <a target="_blank" href="https://github.com/montrealelixir/playbook/blob/master/guides/sponsorship.md">Sponsor an event</a>
       </li>
     </ul>
   </div>
@@ -63,16 +63,16 @@
     <h4>Resources</h4>
     <ul>
       <li>
-        <a href="https://github.com/montrealelixir/playbook/">View the community playbook</a>
+        <a target="_blank" href="https://github.com/montrealelixir/playbook/">View the community playbook</a>
       </li>
       <li>
-        <a href="https://twitter.com/montrealelixir">Follow us on Twitter</a>
+        <a target="_blank" href="https://twitter.com/montrealelixir">Follow us on Twitter</a>
       </li>
       <li>
-        <a href="https://github.com/montrealelixir/website">Contribute to this website</a>
+        <a target="_blank" href="https://github.com/montrealelixir/website">Contribute to this website</a>
       </li>
       <li>
-        <a href="https://elixir-slackin.herokuapp.com/">Get help from community members on Slack (#montrealelixir)</a>
+        <a target="_blank" href="https://elixir-slackin.herokuapp.com/">Get help from community members on Slack (#montrealelixir)</a>
       </li>
     </ul>
   </div>

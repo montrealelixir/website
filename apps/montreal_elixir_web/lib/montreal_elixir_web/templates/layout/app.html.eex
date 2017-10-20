@@ -27,8 +27,8 @@
       <footer class="footer">
         <h4>Sponsors</h4>
         <ul>
-          <li><a href="http://www.civilcode.io">CivilCode Inc.</a> (community sponsor)</li>
-          <li><a href="http://www.shopify.ca">Shopify</a> (event sponsor)</li>
+          <li><a target="_blank" href="http://www.civilcode.io">CivilCode Inc.</a> (community sponsor)</li>
+          <li><a target="_blank" href="http://www.shopify.ca">Shopify</a> (event sponsor)</li>
         </ul>
       </footer>
     </div> <!-- /container -->
