@@ -41,21 +41,13 @@
   <div class="col-sm-6">
     <h4>New Videos</h4>
     <ul>
+    <%= for video <- @new_videos do %>
       <li>
-        <img src="/images/mockup/youtube/thumbnail_1.png"><br/>
-        Learning Elixir by Contributing<br/>
-        <em>44 views - 1 week ago</em>
+        <img src="<%= video.img_url %>"><br/>
+        <%= video.title %><br/>
+        <em><%= video.views_count %> - <%= video.posted_ago %></em>
       </li>
-      <li>
-        <img src="/images/mockup/youtube/thumbnail_2.png"><br/>
-        Elixir and OTP for Node.js Developers<br/>
-        <em>61 views - 2 week ago</em>
-      </li>
-      <li>
-        <img src="/images/mockup/youtube/thumbnail_3.png"><br/>
-         May's Community Update<br/>
-        <em>24 views - 2 week ago</em>
-      </li>
+    <% end %>
     </ul>
     <p>View more on <a href="https://www.youtube.com/channel/UCftyx5k7K_0a3wIGRtE2YQw">YouTube</a></p>
   </div>

@@ -30,4 +30,12 @@ defmodule SocialFeeds do
                 fn -> SocialFeeds.Meetup.ApiClient.get_next_event() end,
                 opts)
   end
+
+  def get_new_yt_videos(_opts \\ %{}) do
+    [
+      %{title: "Learning Elixir by Contributing", img_url: "/images/mockup/youtube/thumbnail_1.png", views_count: "", posted_ago: ""},
+      %{title: "Elixir and OTP for Node.js Developers", img_url: "/images/mockup/youtube/thumbnail_2.png", views_count: "", posted_ago: ""},
+      %{title: "Mays Community Update", img_url: "/images/mockup/youtube/thumbnail_3.png", views_count: "", posted_ago: ""}
+    ]
+  end
 end
