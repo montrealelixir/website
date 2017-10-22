@@ -31,11 +31,28 @@ defmodule SocialFeeds do
                 opts)
   end
 
-  def get_new_yt_videos(_opts \\ %{}) do
-    [
-      %{title: "Learning Elixir by Contributing", img_url: "/images/mockup/youtube/thumbnail_1.png", views_count: "", posted_ago: ""},
-      %{title: "Elixir and OTP for Node.js Developers", img_url: "/images/mockup/youtube/thumbnail_2.png", views_count: "", posted_ago: ""},
-      %{title: "Mays Community Update", img_url: "/images/mockup/youtube/thumbnail_3.png", views_count: "", posted_ago: ""}
-    ]
+  @doc """
+  Returns the last 3 videos from the YT channel.
+
+  This function does not hit external API if there is an unexpired next_meetup_event in cache.
+  The default caching period is determined by Cache module, but it can be overriden in ```opts```.
+
+  The following options may be passed in ```opts```:
+
+  * cache_ttl_in_msec - time to cache the result (in milliseconds)
+
+  ## Examples
+
+      iex> get_new_yt_videos()
+      [%SocialFeeds.Youtube.Video{}, ...]
+
+      iex> get_new_yt_video(%{cache_ttl_in_msec: 600_000})
+      [%SocialFeeds.Youtube.Video{}, ...]
+
+  """
+  def get_new_yt_videos(opts \\ %{}) do
+    Cache.fetch(:new_videos,
+                fn -> SocialFeeds.Youtube.ApiClient.get_new_videos() end,
+                opts)
   end
 end
