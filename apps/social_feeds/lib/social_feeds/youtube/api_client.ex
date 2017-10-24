@@ -57,8 +57,7 @@ defmodule SocialFeeds.Youtube.ApiClient do
     %Video{
       title: video_map["snippet"]["title"],
       img_url: video_map["snippet"]["thumbnails"]["default"]["url"],
-      views_count: 0,
-      posted_ago: video_map["snippet"]["publishedAt"]
+      published_at: video_map["snippet"]["publishedAt"]
     }
   end
 

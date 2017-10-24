@@ -45,7 +45,7 @@
       <li>
         <img src="<%= video.img_url %>"><br/>
         <%= video.title %><br/>
-        <em><%= video.views_count %> - <%= video.posted_ago %></em>
+        <em><%= video.published_at %></em>
       </li>
     <% end %>
     </ul>

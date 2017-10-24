@@ -14,9 +14,8 @@ defmodule SocialFeeds.Youtube.ApiClientTest do
     test "returns the proper Video data struct" do
       video = %Video{
         title: "Phoenix 1.3 and Contexts",
-        posted_ago: "2017-09-19T12:23:32.000Z",
-        img_url: "https://i.ytimg.com/vi/y25Suot7vto/default.jpg",
-        views_count: 0
+        published_at: "2017-09-19T12:23:32.000Z",
+        img_url: "https://i.ytimg.com/vi/y25Suot7vto/default.jpg"
       }
       resp = ApiClient.get_new_videos()
 
