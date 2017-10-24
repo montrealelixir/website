@@ -1,0 +1,146 @@
+{
+ "kind": "youtube#activityListResponse",
+ "etag": "\"cbz3lIQ2N25AfwNr-BdxUVxJ_QY/wqqxZoPyMtbST_5YW_XQCAPaV1E\"",
+ "nextPageToken": "CAMQAA",
+ "pageInfo": {
+  "totalResults": 11,
+  "resultsPerPage": 3
+ },
+ "items": [
+  {
+   "kind": "youtube#activity",
+   "etag": "\"cbz3lIQ2N25AfwNr-BdxUVxJ_QY/Q0x_M3INjItqCemshqjDfJKo2aM\"",
+   "id": "VTE1MDU4MjM4MTI5NDI0ODAyODI5OTQwOA==",
+   "snippet": {
+    "publishedAt": "2017-09-19T12:23:32.000Z",
+    "channelId": "UCftyx5k7K_0a3wIGRtE2YQw",
+    "title": "Phoenix 1.3 and Contexts",
+    "description": "One of the key new features in Phoenix 1.3 is the addition of Contexts. I used this new feature in an application that should be going into production soon. In this presentation I discuss:\n\n- about my application\n- what are Contexts?\n- how are Contexts used in Phoenix?\n- why are Contexts good?\n- what next?\n\n\nPresenter: Cleaver Barnes (@cleaverbarnes)\nLevel: intermediate\n\nhttp://www.montrealelixir.ca",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/y25Suot7vto/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/y25Suot7vto/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/y25Suot7vto/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     },
+     "standard": {
+      "url": "https://i.ytimg.com/vi/y25Suot7vto/sddefault.jpg",
+      "width": 640,
+      "height": 480
+     },
+     "maxres": {
+      "url": "https://i.ytimg.com/vi/y25Suot7vto/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+     }
+    },
+    "channelTitle": "Montreal Elixir",
+    "type": "upload"
+   },
+   "contentDetails": {
+    "upload": {
+     "videoId": "y25Suot7vto"
+    }
+   }
+  },
+  {
+   "kind": "youtube#activity",
+   "etag": "\"cbz3lIQ2N25AfwNr-BdxUVxJ_QY/ytT0art7cB335isZfA2XVofFkxs\"",
+   "id": "VTE1MDU4MjM2NDE5NDI0ODAyODI5OTc5Mg==",
+   "snippet": {
+    "publishedAt": "2017-09-19T12:20:41.000Z",
+    "channelId": "UCftyx5k7K_0a3wIGRtE2YQw",
+    "title": "Why We Chose Elixir and How It Helped Tackle Concurrency and Scalability",
+    "description": "Presenter: Ahmad Ferdous Bin Alam (@ahmadferdous)\nLevel: advanced\n\nhttp://www.montrealelixir.ca",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/iWCCThD040A/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/iWCCThD040A/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/iWCCThD040A/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     },
+     "standard": {
+      "url": "https://i.ytimg.com/vi/iWCCThD040A/sddefault.jpg",
+      "width": 640,
+      "height": 480
+     },
+     "maxres": {
+      "url": "https://i.ytimg.com/vi/iWCCThD040A/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+     }
+    },
+    "channelTitle": "Montreal Elixir",
+    "type": "upload"
+   },
+   "contentDetails": {
+    "upload": {
+     "videoId": "iWCCThD040A"
+    }
+   }
+  },
+  {
+   "kind": "youtube#activity",
+   "etag": "\"cbz3lIQ2N25AfwNr-BdxUVxJ_QY/3Ly_XM7ceLkPwQL648gerPVjeoY\"",
+   "id": "VTE1MDU4MjM0Njk5NDI0ODAyODMwMTMyOA==",
+   "snippet": {
+    "publishedAt": "2017-09-19T12:17:49.000Z",
+    "channelId": "UCftyx5k7K_0a3wIGRtE2YQw",
+    "title": "Montreal Elixir: Community Update",
+    "description": "A review of points of interest in our local community and Elixir in general.\n\nPresenter: Nicholas Henry, @nicholasjhenry\n\nhttp://www.montrealelixir.ca",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/S362bHXS8UI/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/S362bHXS8UI/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/S362bHXS8UI/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     },
+     "standard": {
+      "url": "https://i.ytimg.com/vi/S362bHXS8UI/sddefault.jpg",
+      "width": 640,
+      "height": 480
+     },
+     "maxres": {
+      "url": "https://i.ytimg.com/vi/S362bHXS8UI/maxresdefault.jpg",
+      "width": 1280,
+      "height": 720
+     }
+    },
+    "channelTitle": "Montreal Elixir",
+    "type": "upload"
+   },
+   "contentDetails": {
+    "upload": {
+     "videoId": "S362bHXS8UI"
+    }
+   }
+  }
+ ]
+}

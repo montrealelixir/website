@@ -28,9 +28,9 @@ defmodule MontrealElixirWeb.PageControllerTest do
       resp = html_response(conn, 200)
 
       assert resp =~ "New Videos"
-      assert resp =~ "Learning Elixir by Contributing"
-      assert resp =~ "Elixir and OTP for Node.js Developers"
-      assert resp =~ "Mays Community Update"
+      assert resp =~ "Phoenix 1.3 and Contexts"
+      assert resp =~ "Why We Chose Elixir and How It Helped Tackle Concurrency and Scalability"
+      assert resp =~ "Montreal Elixir: Community Update"
     end
   end
 end
