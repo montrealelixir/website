@@ -4,4 +4,3 @@ defmodule SocialFeeds.Youtube.Video do
   """
   defstruct [:title, :img_url, :published_at]
 end
-
