@@ -40,7 +40,7 @@
 
   <div class="col-sm-6">
     <h4>New Videos</h4>
-    <ul>
+    <ul class="list-unstyled">
     <%= for video <- @new_videos do %>
       <li>
         <img src="<%= video.img_url %>"><br/>
