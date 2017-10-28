@@ -18,6 +18,9 @@
       "description": "Who initiated this setup",
       "value": "Nicholas Henry"
     },
+    "YOUTUBE_API_KEY": {
+      "required": true
+    },
     "TWITTER_CONSUMER_KEY": {
       "required": true
     },
