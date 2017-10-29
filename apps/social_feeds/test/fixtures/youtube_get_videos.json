@@ -1,0 +1,46 @@
+{
+ "kind": "youtube#videoListResponse",
+ "etag": "\"cbz3lIQ2N25AfwNr-BdxUVxJ_QY/KFYmJM7Do0UAGXOf_029OzvfJ8A\"",
+ "pageInfo": {
+  "totalResults": 3,
+  "resultsPerPage": 3
+ },
+ "items": [
+  {
+   "kind": "youtube#video",
+   "etag": "\"cbz3lIQ2N25AfwNr-BdxUVxJ_QY/jp96B2cucsXLuAzx-9d_vc09zFM\"",
+   "id": "y25Suot7vto",
+   "statistics": {
+    "viewCount": "188",
+    "likeCount": "4",
+    "dislikeCount": "0",
+    "favoriteCount": "0",
+    "commentCount": "0"
+   }
+  },
+  {
+   "kind": "youtube#video",
+   "etag": "\"cbz3lIQ2N25AfwNr-BdxUVxJ_QY/iZjr6ap5xkT-qxFvIY3zjbMEYmI\"",
+   "id": "iWCCThD040A",
+   "statistics": {
+    "viewCount": "81",
+    "likeCount": "0",
+    "dislikeCount": "0",
+    "favoriteCount": "0",
+    "commentCount": "0"
+   }
+  },
+  {
+   "kind": "youtube#video",
+   "etag": "\"cbz3lIQ2N25AfwNr-BdxUVxJ_QY/17EPjyR-zyLxKjJAdojsNV3lo0M\"",
+   "id": "S362bHXS8UI",
+   "statistics": {
+    "viewCount": "24",
+    "likeCount": "0",
+    "dislikeCount": "0",
+    "favoriteCount": "0",
+    "commentCount": "0"
+   }
+  }
+ ]
+}

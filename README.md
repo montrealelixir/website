@@ -73,6 +73,16 @@ The following steps assume you already have a working twitter account that has e
 9. Tweet something new and it should appear on the web page.
 10. That's it! You are all set!
 
+#### YouTube
+
+1. Go to the [Credentials page](https://console.developers.google.com/apis/credentials?project=_).
+2. Hit "Create" and Proceed with creating new project.
+3. Hit "Create credentials" > API key.
+4. Put the generated key in ```config/dev.secret.exs```.
+5. From project's dashboard hit "Enable APIs and Services", search for YouTube Data API and enable it.
+6. Start the server locally (```mix phx.server```).
+7. The [web page](http://localhost:4000/) should contain 3 latest videos from ElixirMontreal YT channel.
+
 ### Running the tests
 
 * Ensure you have the test database created `MIX_ENV=test mix ecto.create`

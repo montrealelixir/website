@@ -9,3 +9,6 @@ config :extwitter, :oauth, [
    access_token: System.get_env("TWITTER_ACCESS_TOKEN"),
    access_token_secret: System.get_env("TWITTER_ACCESS_TOKEN_SECRET")
 ]
+
+config :social_feeds, :youtube_api_client,
+  api_key: System.get_env("YOUTUBE_API_KEY")

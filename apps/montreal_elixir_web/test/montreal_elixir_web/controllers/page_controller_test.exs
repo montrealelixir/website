@@ -21,5 +21,16 @@ defmodule MontrealElixirWeb.PageControllerTest do
       assert resp =~ "Wed October 11 at 6:30 PM"
       assert resp =~ "490 rue de la Gauchetiere Ouest"
     end
+
+    @tag :capture_log
+    test "shows new videos from YT channel", %{conn: conn} do
+      conn = get conn, "/"
+      resp = html_response(conn, 200)
+
+      assert resp =~ "New Videos"
+      assert resp =~ "Phoenix 1.3 and Contexts"
+      assert resp =~ "Why We Chose Elixir and How It Helped Tackle Concurrency and Scalability"
+      assert resp =~ "Montreal Elixir: Community Update"
+    end
   end
 end
