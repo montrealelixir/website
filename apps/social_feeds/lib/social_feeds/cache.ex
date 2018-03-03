@@ -77,6 +77,11 @@ defmodule SocialFeeds.Cache do
   ## Server Callbacks
 
   @doc """
+  Callback for starting the cache.
+  """
+  def init(state), do: {:ok, state}
+
+  @doc """
   Responds to :clear.
   """
   def handle_cast(:clear, _state) do
