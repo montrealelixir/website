@@ -43,7 +43,9 @@
     <ul class="list-unstyled">
     <%= for video <- @new_videos do %>
       <li>
-        <img src="<%= video.img_url %>"><br/>
+        <a href="<%= video.url %>" target="_blank">
+          <img src="<%= video.img_url %>"><br/>
+        </a>
         <%= video.title %><br/>
         <em><%= video.published_at %></em>
       </li>

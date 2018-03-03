@@ -15,6 +15,7 @@ defmodule SocialFeeds.Youtube.ApiClientTest do
       video = %Video{
         title: "Phoenix 1.3 and Contexts",
         published_at: "2017-09-19T12:23:32.000Z",
+        url: "https://youtube.com/watch?v=y25Suot7vto",
         img_url: "https://i.ytimg.com/vi/y25Suot7vto/default.jpg"
       }
       resp = ApiClient.get_new_videos()
