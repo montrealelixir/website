@@ -56,14 +56,17 @@ defmodule SocialFeeds.Youtube.ApiClient do
   defp to_video(video_map) do
     %Video{
       title: video_map["snippet"]["title"],
+      url: youtube_watch_url() <> "?v=" <> video_map["contentDetails"]["upload"]["videoId"],
       img_url: video_map["snippet"]["thumbnails"]["default"]["url"],
       published_at: video_map["snippet"]["publishedAt"]
     }
   end
 
   defp youtube_activities_url, do: base_url() <> "/activities"
+  defp youtube_watch_url, do: public_url() <> "/watch"
 
-  defp base_url, do: Application.get_env(:social_feeds, :youtube_api_client)[:youtube_url]
+  defp base_url, do: Application.get_env(:social_feeds, :youtube_api_client)[:youtube_api_url]
+  defp public_url, do: Application.get_env(:social_feeds, :youtube_api_client)[:youtube_url]
   defp channel_id, do: Application.get_env(:social_feeds, :youtube_api_client)[:channel_id]
   defp api_key, do: Application.get_env(:social_feeds, :youtube_api_client)[:api_key]
 
