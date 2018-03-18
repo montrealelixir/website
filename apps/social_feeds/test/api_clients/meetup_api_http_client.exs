@@ -7,7 +7,7 @@ defmodule SocialFeeds.Test.MeetupApiHttpClient do
   def request(url) do
     url = to_string(url)
     cond do
-      String.contains?(url, "scroll=future_or_past") -> {:ok, {[], [], @upcoming_meetups_json}}
+      String.contains?(url, "scroll=next_upcoming") -> {:ok, {[], [], @upcoming_meetups_json}}
       String.contains?(url, "error=true") -> {:error, {}}
       true -> {:ok, {[], [], @meetups_json}}
     end
