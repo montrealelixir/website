@@ -24,9 +24,8 @@ defmodule SocialFeeds.Meetup.ApiClient do
   def get_next_event do
     # Note: due to a bug in Meetup API, we need to get the full list.
     # Specifying a page size of 1 does not return the most recent or upcoming meetup.
-    %{scroll: "future_or_past", page: 200}
+    %{scroll: "next_upcoming", page: 1, desc: "true"}
     |> get_events()
-    |> Enum.reverse
     |> List.first()
   end
 
