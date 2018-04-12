@@ -1,5 +1,6 @@
 use Mix.Config
 
+# Configure SocialFeeds with mocked HTTP clients
 config :social_feeds, :meetup_api_client,
   http_client: SocialFeeds.Test.MeetupApiHttpClient
 
