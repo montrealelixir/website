@@ -10,3 +10,5 @@ config :extwitter, :oauth,
 # Configure the Twitter adapter @behaviour
 config :twitter, adapter: Twitter.Adapter.ExTwitter
 
+# Import environment specific config.
+import_config "#{Mix.env()}.exs"
