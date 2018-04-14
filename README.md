@@ -41,43 +41,57 @@ We assume you have the following installed:
 
 #### PostgreSQL
 
-You may install PostgreSQL directly on your development computer or use a `docker` container
-using the [docker-compose](./docker-compose.yml) setup with a simple command:
+_Recommended_
+
+Setup PostgreSQL using a [Docker](https://www.docker.com/) container with [docker-compose](./docker-compose.yml):
 
 ```shell
 > docker-compose up -d
 ```
 
-The `DATABASE_URL` configuration shown below assume you are using the `docker` container.
+_Optional_
 
-### Installing
+Install PostgreSQL directly on your development machine using your operating system’s package manager.
+
+### Configuration
+
+The app’s configuration are following the [Twelve Factor](https://12factor.net/config)
+methodology, which means they are stored in the _environment_.
+
+Copy the [`.env.sample`](./.env.sample) file to the appropriate format for the tool of your choice. You may use `source`, [`direnv`](https://direnv.net), [`nv`](https://github.com/jcouture/nv) or a custom script of your own.
+
+### Run the website
 
 After you have cloned the repository:
 
-* Install dependencies with `mix deps.get`
-* Create and migrate your database with `mix do ecto.create, ecto.migrate`
-* [Configure external API access keys](#configure-external-api-access-keys)
-* Install Node.js dependencies with `cd apps/montreal_elixir_web/assets && npm install`
-* Start Phoenix endpoint with `cd ../../.. && mix phx.server`
+1. Install dependencies.
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+  ```shell
+  > mix deps.get
+  ```
 
-#### Configuration
+1. Create and migrate your database.
 
-The app’s configuration are following the [Twelve Factor](https://12factor.net/config)
-methodology, which means they are stored in the `environment`. You may use `source`,
-[`direnv`](https://direnv.net), [`nv`](https://github.com/jcouture/nv) or a custom script of your own.
+  ```shell
+  > mix do ecto.create, ecto.migrate
+  ```
 
-```properties
-DATABASE_URL="postgres://postgres:development@localhost/montreal_elixir_dev"
+1. To get the Twitter and YouTube content, [configure external API access keys](#configure-external-api-access-keys).
 
-TWITTER_CONSUMER_KEY=
-TWITTER_CONSUMER_SECRET=
-TWITTER_ACCESS_TOKEN=
-TWITTER_ACCESS_TOKEN_SECRET=
+1. Install Node.js dependencies.
 
-YOUTUBE_API_KEY=
-```
+  ```shell
+  > cd apps/montreal_elixir_web/assets
+  > npm install
+  ```
+
+1. Start Phoenix endpoint.
+  ```shell
+  > cd ../../..
+  > mix phx.server
+  ```
+
+Now you can visit [`http://localhost:4000`](http://localhost:4000) from your favourite browser.
 
 ### External API access keys
 

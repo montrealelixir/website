@@ -1,6 +1,5 @@
 use Mix.Config
 
-# Configure SocialFeeds
 config :social_feeds, :youtube_api_client, [
   api_key: System.get_env("YOUTUBE_API_KEY"),
   youtube_api_url: "https://www.googleapis.com/youtube/v3",

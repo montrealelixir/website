@@ -3,7 +3,7 @@ services:
   postgres:
     container_name: montreal_elixir-postgres
     environment:
-      - POSTGRES_DB=omerlo_dev
+      - POSTGRES_DB=montreal_elixir_dev
       - POSTGRES_PASSWORD=development
     image: postgres:10.3
     ports:
