@@ -48,8 +48,8 @@ defmodule SocialFeeds.Youtube.ApiClient do
     Logger.info "YouTube API: requesting #{redact_sensitive_data(url)}"
 
     case @http.request(String.to_charlist(url)) do
-      {:ok, {_, _, body}} -> Poison.decode!(body)["items"]
-      {:error, _} -> []
+      {:ok, {{"HTTP/1.1", 200, "OK"}, _, body}} -> Poison.decode!(body)["items"]
+      _ -> []
     end
   end
 

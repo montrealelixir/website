@@ -15,17 +15,14 @@ config :montreal_elixir_web, MontrealElixirWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "CLjhBsp77HnQqpmfCSJrl22oWm1z6gg7LYabDTlENifC9zeO0XaIdBeVwxcoMKSe",
   render_errors: [view: MontrealElixirWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: MontrealElixirWeb.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: MontrealElixirWeb.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :montreal_elixir_web, :generators,
-  context_app: :montreal_elixir
+config :montreal_elixir_web, :generators, context_app: :montreal_elixir
 
-# Import environment specific config. This must remain at the bottom
-# of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+# Import environment specific config.
+import_config "#{Mix.env()}.exs"

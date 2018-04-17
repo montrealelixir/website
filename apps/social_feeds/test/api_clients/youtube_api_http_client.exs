@@ -8,7 +8,7 @@ defmodule SocialFeeds.Test.YoutubeApiHttpClient do
     if String.contains?(url, "error=true") do
       {:error, {}}
     else
-      {:ok, {[], [], @activities_json}}
+      {:ok, {{"HTTP/1.1", 200, "OK"}, [], @activities_json}}
     end
   end
 end
