@@ -9,7 +9,7 @@ defmodule MontrealElixirWeb.TwitterTimelineChannel do
   end
 
   def handle_info({:after_join, _msg}, socket) do
-    latest_tweets = Twitter.Timeline.tweets
+    latest_tweets = Twitter.Timeline.tweets()
     push(socket, "updated_list", %{tweets: latest_tweets})
 
     {:noreply, socket}

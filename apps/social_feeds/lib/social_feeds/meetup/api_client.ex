@@ -1,4 +1,4 @@
-if Mix.env == :test || Mix.env == :travis do
+if Mix.env() == :test || Mix.env() == :travis do
   Code.require_file("../../../test/api_clients/meetup_api_http_client.exs", __DIR__)
 end
 
@@ -49,7 +49,7 @@ defmodule SocialFeeds.Meetup.ApiClient do
   @http Application.get_env(:social_feeds, :meetup_api_client)[:http_client] || :httpc
   defp fetch_meetups(opts) do
     url = String.to_charlist(meetup_events_url() <> "?" <> URI.encode_query(opts))
-    Logger.info "Meetup API: requesting #{url}"
+    Logger.info("Meetup API: requesting #{url}")
 
     case @http.request(url) do
       {:ok, {_, _, body}} -> Poison.decode!(body)

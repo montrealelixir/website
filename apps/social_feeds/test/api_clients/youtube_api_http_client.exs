@@ -5,6 +5,7 @@ defmodule SocialFeeds.Test.YoutubeApiHttpClient do
 
   def request(url) do
     url = to_string(url)
+
     if String.contains?(url, "error=true") do
       {:error, {}}
     else

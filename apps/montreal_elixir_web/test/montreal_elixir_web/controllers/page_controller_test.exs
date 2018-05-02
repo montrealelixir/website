@@ -8,13 +8,13 @@ defmodule MontrealElixirWeb.PageControllerTest do
 
     @tag :capture_log
     test "shows About section", %{conn: conn} do
-      conn = get conn, "/"
+      conn = get(conn, "/")
       assert html_response(conn, 200) =~ "About Montreal Elixir"
     end
 
     @tag :capture_log
     test "shows the next meetup from Meetup.com", %{conn: conn} do
-      conn = get conn, "/"
+      conn = get(conn, "/")
       resp = html_response(conn, 200)
 
       assert resp =~ "Next event" || resp =~ "Most recent event"
@@ -24,7 +24,7 @@ defmodule MontrealElixirWeb.PageControllerTest do
 
     @tag :capture_log
     test "shows new videos from YT channel", %{conn: conn} do
-      conn = get conn, "/"
+      conn = get(conn, "/")
       resp = html_response(conn, 200)
 
       assert resp =~ "New Videos"

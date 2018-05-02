@@ -6,5 +6,4 @@ config :montreal_elixir, MontrealElixir.Repo,
   database: "montreal_elixir_test",
   pool: Ecto.Adapters.SQL.Sandbox
 
-config :montreal_elixir, :meetup_api_client,
-  http_client: MontrealElixir.SocialFeeds.Test.MeetupApiHttpClient
+config :montreal_elixir, :meetup_api_client, http_client: MontrealElixir.SocialFeeds.Test.MeetupApiHttpClient

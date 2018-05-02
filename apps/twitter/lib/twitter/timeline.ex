@@ -28,7 +28,7 @@ defmodule Twitter.Timeline do
   @doc """
   Returns the tweets, the first one being the most recent one.
   """
-  @spec tweets :: [Tweet.t]
+  @spec tweets :: [Tweet.t()]
   def tweets do
     GenServer.call(__MODULE__, :list)
   end
@@ -78,8 +78,9 @@ defmodule Twitter.Timeline do
 
   defp determine_call(%Tweet{} = tweet), do: {:push, tweet}
   defp determine_call(%TweetDeletion{tweet_id: tweet_id}), do: {:remove, tweet_id}
+
   defp determine_call(message) do
-    Logger.debug fn -> "Unhandled message #{inspect(message)}" end
+    Logger.debug(fn -> "Unhandled message #{inspect(message)}" end)
     :noop
   end
 end

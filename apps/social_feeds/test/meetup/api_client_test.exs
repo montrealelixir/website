@@ -8,6 +8,7 @@ defmodule SocialFeeds.Meetup.ApiClientTest do
     @tag :capture_log
     test "returns the next meetup_event" do
       {:ok, expected_time, _offset} = DateTime.from_iso8601("2017-10-11 22:30:00Z")
+
       event = %Event{
         name: "Montreal Elixir Meetup",
         utc_datetime: expected_time,
@@ -23,7 +24,7 @@ defmodule SocialFeeds.Meetup.ApiClientTest do
   describe "get_events/1" do
     @tag :capture_log
     test "returns list of Events" do
-      result = ApiClient.get_events() |> Enum.map(&(&1.name))
+      result = ApiClient.get_events() |> Enum.map(& &1.name)
 
       assert result == ["Meetup 1", "Meetup 2"]
     end

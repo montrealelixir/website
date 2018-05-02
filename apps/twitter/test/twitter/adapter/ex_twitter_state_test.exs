@@ -24,10 +24,12 @@ defmodule Twitter.Adapter.ExTwitter.StateTest do
       %ExTwitter.Model.User{},
       {:friends, %{friends: [343, 22, 344]}}
     ]
+
     wanted_message = [
       %ExTwitter.Model.Tweet{},
-      %ExTwitter.Model.DeletedTweet{status: %{id: ":id:"}},
+      %ExTwitter.Model.DeletedTweet{status: %{id: ":id:"}}
     ]
+
     stream = Stream.cycle(unwanted_messages ++ wanted_message)
 
     tweets_stream = Adapter.ExTwitter.State.filter_stream(stream)

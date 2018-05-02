@@ -9,7 +9,7 @@ defmodule Twitter.Application do
     PubSub.start_link()
 
     # List all child processes to be supervised
-    children = workers(Mix.env)
+    children = workers(Mix.env())
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
@@ -18,6 +18,7 @@ defmodule Twitter.Application do
   end
 
   defp workers(:test), do: []
+
   defp workers(_env) do
     [
       {Twitter.Timeline, []}
