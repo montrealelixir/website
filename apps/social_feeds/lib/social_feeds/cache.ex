@@ -60,6 +60,7 @@ defmodule SocialFeeds.Cache do
   """
   def fetch(key, default_value_function, opts) do
     expires_in = opts[:cache_ttl_in_msec] || @default_expiry_in_msec
+
     case get(key) do
       :not_found -> set(key, default_value_function.(), expires_in)
       {:found, result} -> result
@@ -95,14 +96,19 @@ defmodule SocialFeeds.Cache do
   Returns {:found, value} if the key is stored and still valid.
   """
   def handle_call({:get, key}, _from, state) do
-    value = case Map.fetch(state, key) do
-      :error -> :not_found
-      {:ok, result} -> if Entry.expired?(result) do
-        :not_found
-      else
-        {:found, result.value}
+    value =
+      case Map.fetch(state, key) do
+        :error ->
+          :not_found
+
+        {:ok, result} ->
+          if Entry.expired?(result) do
+            :not_found
+          else
+            {:found, result.value}
+          end
       end
-    end
+
     {:reply, value, state}
   end
 

@@ -11,6 +11,7 @@ defmodule SocialFeedsTest do
     @tag :capture_log
     test "returns the next meetup_event" do
       {:ok, expected_time, _offset} = DateTime.from_iso8601("2017-10-11 22:30:00Z")
+
       event = %SocialFeeds.Meetup.Event{
         name: "Montreal Elixir Meetup",
         utc_datetime: expected_time,

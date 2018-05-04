@@ -5,7 +5,7 @@ defmodule Twitter.Adapter.Fake do
   # Public interface
 
   def start_link(_opts \\ []) do
-    GenServer.start_link(__MODULE__, :ok, [name: __MODULE__])
+    GenServer.start_link(__MODULE__, :ok, name: __MODULE__)
   end
 
   def init(:ok) do
@@ -15,12 +15,12 @@ defmodule Twitter.Adapter.Fake do
     {:ok, %{queue: queue, tweets: []}}
   end
 
-  @spec fetch_user_timeline() :: [Twitter.Tweet.t]
+  @spec fetch_user_timeline() :: [Twitter.Tweet.t()]
   def fetch_user_timeline do
     GenServer.call(__MODULE__, :tweets)
   end
 
-  @spec get_user_stream() :: Stream.t
+  @spec get_user_stream() :: Stream.t()
   def get_user_stream do
     GenServer.call(__MODULE__, :get_stream)
   end

@@ -18,6 +18,7 @@ defmodule SocialFeeds.Youtube.ApiClientTest do
         url: "https://youtube.com/watch?v=y25Suot7vto",
         img_url: "https://i.ytimg.com/vi/y25Suot7vto/default.jpg"
       }
+
       resp = ApiClient.get_new_videos()
 
       assert List.first(resp) == video
@@ -33,7 +34,7 @@ defmodule SocialFeeds.Youtube.ApiClientTest do
         "Montreal Elixir: Community Update"
       ]
 
-      result = ApiClient.get_videos() |> Enum.map(&(&1.title))
+      result = ApiClient.get_videos() |> Enum.map(& &1.title)
 
       assert result == titles
     end

@@ -26,9 +26,7 @@ defmodule SocialFeeds do
 
   """
   def get_next_meetup_event(opts \\ %{}) do
-    Cache.fetch(:next_meetup_event,
-                fn -> SocialFeeds.Meetup.ApiClient.get_next_event() end,
-                opts)
+    Cache.fetch(:next_meetup_event, fn -> SocialFeeds.Meetup.ApiClient.get_next_event() end, opts)
   end
 
   @doc """
@@ -51,8 +49,6 @@ defmodule SocialFeeds do
 
   """
   def get_new_yt_videos(opts \\ %{}) do
-    Cache.fetch(:new_videos,
-                fn -> SocialFeeds.Youtube.ApiClient.get_new_videos() end,
-                opts)
+    Cache.fetch(:new_videos, fn -> SocialFeeds.Youtube.ApiClient.get_new_videos() end, opts)
   end
 end

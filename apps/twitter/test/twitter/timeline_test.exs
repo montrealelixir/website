@@ -7,7 +7,7 @@ defmodule Twitter.TimelineTest do
     adapter = Twitter.Adapter.Fake
     {:ok, pid} = adapter.start_link()
 
-    on_exit fn -> assert_down(pid) end
+    on_exit(fn -> assert_down(pid) end)
 
     [adapter: adapter]
   end
@@ -21,13 +21,13 @@ defmodule Twitter.TimelineTest do
 
       {:ok, timeline} = Timeline.start_link(adapter: adapter)
 
-      tweets = Timeline.tweets
+      tweets = Timeline.tweets()
 
       assert length(tweets) == 2
       first_tweet = List.first(tweets)
       assert %Tweet{text: ":tweet-2:"} = first_tweet
 
-      on_exit fn -> assert_down(timeline) end
+      on_exit(fn -> assert_down(timeline) end)
     end
   end
 
@@ -38,7 +38,7 @@ defmodule Twitter.TimelineTest do
       PubSub.subscribe(self(), topic)
 
       {:ok, timeline} = Timeline.start_link(adapter: adapter, topic: topic)
-      on_exit fn -> assert_down(timeline) end
+      on_exit(fn -> assert_down(timeline) end)
 
       :ok
     end

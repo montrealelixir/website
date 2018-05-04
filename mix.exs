@@ -4,7 +4,7 @@ defmodule MontrealElixir.Umbrella.Mixfile do
   def project do
     [
       apps_path: "apps",
-      start_permanent: Mix.env == :prod,
+      start_permanent: Mix.env() == :prod,
       deps: deps(),
       aliases: aliases(),
       preferred_cli_env: [
@@ -16,6 +16,7 @@ defmodule MontrealElixir.Umbrella.Mixfile do
   def aliases do
     [
       "project.check": [
+        "format --dry-run --check-formatted",
         "compile --force --warnings-as-errors",
         "test",
         "credo --strict"

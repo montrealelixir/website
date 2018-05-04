@@ -1,4 +1,4 @@
-if Mix.env == :test do
+if Mix.env() == :test do
   Code.require_file("../../../test/api_clients/youtube_api_http_client.exs", __DIR__)
 end
 
@@ -44,8 +44,8 @@ defmodule SocialFeeds.Youtube.ApiClient do
   @http Application.get_env(:social_feeds, :youtube_api_client)[:http_client] || :httpc
   defp fetch_videos(opts) do
     opts = Map.merge(opts, %{channelId: channel_id(), key: api_key()})
-    url  = youtube_activities_url() <> "?" <> URI.encode_query(opts)
-    Logger.info "YouTube API: requesting #{redact_sensitive_data(url)}"
+    url = youtube_activities_url() <> "?" <> URI.encode_query(opts)
+    Logger.info("YouTube API: requesting #{redact_sensitive_data(url)}")
 
     case @http.request(String.to_charlist(url)) do
       {:ok, {{_http_version, 200, _reason}, _headers, body}} -> Poison.decode!(body)["items"]

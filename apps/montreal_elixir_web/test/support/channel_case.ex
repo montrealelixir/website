@@ -27,9 +27,11 @@ defmodule MontrealElixirWeb.ChannelCase do
 
   setup tags do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(MontrealElixir.Repo)
+
     unless tags[:async] do
       Ecto.Adapters.SQL.Sandbox.mode(MontrealElixir.Repo, {:shared, self()})
     end
+
     :ok
   end
 end
