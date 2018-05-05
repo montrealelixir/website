@@ -17,6 +17,7 @@ changes to this document in a pull request.
   * [JavaScript Style Guide](#javascript-style-guide)
   * [Test Style Guide](#test-style-guide)
   * [Documentation Style Guide](#documentation-style-guide)
+  * [Naming](#naming)
 4. [How to configure external apps for development?](https://github.com/montrealelixir/website/blob/master/README.md#configure-external-api-access-keys)
 5. [Credits](#credits)
 
@@ -116,6 +117,21 @@ functions in `View`s.
 [Typespecs](https://hexdocs.pm/elixir/typespecs.html) are not mandatory, but highly
 desirable. The rules outlined above for public functions apply to Typespecs as well.
 
+### Naming
+
+* Avoid abbreviations.
+* Avoid types in names (`user_list`, `email_function`, `ReportModule`).
+* Prefer naming classes after domain concepts rather than patterns they
+  implement (e.g. `Guest` vs `CachedRequest` vs `RequestDecorator`).
+* Name the enumeration parameter the singular of the collection.
+* Name variables created by a factory after the factory (`user_factory`
+  creates `user`).
+* Name variables, functions, and modules to reveal intent.
+* Treat acronyms as words in names (`XmlHttpRequest` not `XMLHTTPRequest`),
+  even if the acronym is the entire name (`class Html` not `class HTML`).
+
 ## Credits
 
-This document uses content from [Atom CONTRIBUTING.md](https://github.com/atom/atom/blob/master/CONTRIBUTING.md).
+This document uses content from:
+- [Atom CONTRIBUTING.md](https://github.com/atom/atom/blob/master/CONTRIBUTING.md)
+- [Thoughtbot Guides](https://github.com/thoughtbot/guides/tree/master/style)
