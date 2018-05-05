@@ -27,19 +27,22 @@ The website has three main purposes:
 ## Getting started
 
 These instructions will get you a copy of the application up and running on your local machine for
-development and testing purposes. See Hosting and Deployment for notes on how to deploy the
-application on a live system.
+development and testing purposes. The instructions below provide a *recommended* path for setting
+up the application, however an *alternative* suggestion is offered for those more experienced.
+
+See Hosting and Deployment for notes on how to deploy the application on a live system.
 
 ### Prerequisites
 
 We assume you have the following installed:
 
-  * Git
-  * Erlang
-  * Elixir
-  * Node
+  * [Git](https://git-scm.com)
+  * [Elixir](https://elixir-lang.org/install.html)
+  * [NodeJS](https://nodejs.org/en/download/)
 
 #### PostgreSQL
+
+You also need to install [PostgreSQL](https://www.postgresql.org).
 
 _Recommended_
 
@@ -49,13 +52,13 @@ Setup PostgreSQL using a [Docker](https://www.docker.com/) container with [docke
 > docker-compose up -d
 ```
 
-_Optional_
+_Alterative_
 
 Install PostgreSQL directly on your development machine using your operating system’s package manager.
 
 ### Configuration
 
-The app’s configuration are following the [Twelve Factor](https://12factor.net/config)
+The application's configuration follows the [Twelve Factor](https://12factor.net/config)
 methodology, which means they are stored in the _environment_.
 
 Copy the [`.env.sample`](./.env.sample) file to the appropriate format for the tool of your choice. You may use `source`, [`direnv`](https://direnv.net), [`nv`](https://github.com/jcouture/nv) or a custom script of your own.
@@ -170,8 +173,7 @@ The application is built by our community members like you. If you wish to contr
 our CONTRIBUTING.md to help you get started. If you have never contributed to open source before,
 [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/) is good resource to
 read first. If you need some extra help to get started, please reach our to the [community
-organizers and members](https://www.meetup.com/montrealelixir/members/?sort=join_date&desc=0). We
-are here to help.
+organizers and members](https://www.meetup.com/montrealelixir/members/?sort=join_date&desc=0). We are here to help.
 
 ## Hosting and Deployment
 
