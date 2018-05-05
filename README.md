@@ -26,36 +26,39 @@ The website has three main purposes:
 
 ## Getting started
 
-These instructions will get you a copy of the project up and running on your local machine
-for development and testing purposes. See Hosting and Deployment for notes on how to deploy
-the project on a live system.
+These instructions will get you a copy of the application up and running on your local machine for
+development and testing purposes. The instructions below provide a *recommended* path for setting
+up the application, however an *alternative* suggestion is offered for those more experienced.
+
+See Hosting and Deployment for notes on how to deploy the application on a live system.
 
 ### Prerequisites
 
 We assume you have the following installed:
 
-  * Git
-  * Erlang
-  * Elixir
-  * Node
+  * [Git](https://git-scm.com)
+  * [Elixir](https://elixir-lang.org/install.html)
+  * [NodeJS](https://nodejs.org/en/download/)
 
 #### PostgreSQL
+
+You also need to install [PostgreSQL](https://www.postgresql.org).
 
 _Recommended_
 
 Setup PostgreSQL using a [Docker](https://www.docker.com/) container with [docker-compose](./docker-compose.yml):
 
-```shell
-> docker-compose up -d
+```sh-session
+$ docker-compose up -d
 ```
 
-_Optional_
+_Alterative_
 
 Install PostgreSQL directly on your development machine using your operating system’s package manager.
 
 ### Configuration
 
-The app’s configuration are following the [Twelve Factor](https://12factor.net/config)
+The application's configuration follows the [Twelve Factor](https://12factor.net/config)
 methodology, which means they are stored in the _environment_.
 
 Copy the [`.env.sample`](./.env.sample) file to the appropriate format for the tool of your choice. You may use `source`, [`direnv`](https://direnv.net), [`nv`](https://github.com/jcouture/nv) or a custom script of your own.
@@ -66,29 +69,29 @@ After you have cloned the repository:
 
 1. Install dependencies.
 
-  ```shell
-  > mix deps.get
+  ```sh-session
+  $ mix deps.get
   ```
 
 1. Create and migrate your database.
 
-  ```shell
-  > mix do ecto.create, ecto.migrate
+  ```sh-session
+  $ mix do ecto.create, ecto.migrate
   ```
 
 1. To get the Twitter and YouTube content, [configure external API access keys](#configure-external-api-access-keys).
 
 1. Install Node.js dependencies.
 
-  ```shell
-  > cd apps/montreal_elixir_web/assets
-  > npm install
+  ```sh-session
+  $ cd apps/montreal_elixir_web/assets
+  $ npm install
   ```
 
 1. Start Phoenix endpoint.
-  ```shell
-  > cd ../../..
-  > mix phx.server
+  ```sh-session
+  $ cd ../../..
+  $ mix phx.server
   ```
 
 Now you can visit [`http://localhost:4000`](http://localhost:4000) from your favourite browser.
@@ -112,8 +115,8 @@ phone number confirmed (_Twitter does not generate API keys if these prerequisit
 6. Put the generated keys in your `env` file.
 7. Start the server locally:
 
-```shell
-> mix phx.server
+```sh-session
+$ mix phx.server
 ```
 
 The [landing page](http://localhost:4000/) should contain the latest tweets from the
@@ -128,8 +131,8 @@ configured account. If you tweet something new and it should appear on the web p
 5. From project's dashboard hit "Enable APIs and Services", search for YouTube Data API and enable it.
 6. Start the server locally:
 
-```shell
-> mix phx.server
+```sh-session
+$ mix phx.server
 ```
 
 The [landing page](http://localhost:4000/) should contain the 3 latest videos from the
@@ -139,21 +142,21 @@ The [landing page](http://localhost:4000/) should contain the 3 latest videos fr
 
 Ensure the test database was created:
 
-```shell
-> MIX_ENV=test mix ecto.create
+```sh-session
+$ MIX_ENV=test mix ecto.create
 ```
 
 * Run the tests
 
-```shell
-> mix test
+```sh-session
+$ mix test
 ```
 
 You can also use the [`mix_test_watch`](https://github.com/lpil/mix-test.watch) package to
 automatically run the tests after you save a file:
 
-```shell
-> mix test.watch
+```sh-session
+$ mix test.watch
 ```
 
 ### Learn more about Phoenix Framework
@@ -170,8 +173,7 @@ The application is built by our community members like you. If you wish to contr
 our CONTRIBUTING.md to help you get started. If you have never contributed to open source before,
 [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/) is good resource to
 read first. If you need some extra help to get started, please reach our to the [community
-organizers and members](https://www.meetup.com/montrealelixir/members/?sort=join_date&desc=0). We
-are here to help.
+organizers and members](https://www.meetup.com/montrealelixir/members/?sort=join_date&desc=0). We are here to help.
 
 ## Hosting and Deployment
 
@@ -183,4 +185,4 @@ below.
 
 ## License
 
-This project is licensed under the MIT License - see the MIT-LICENSE.md file for details.
+This application is licensed under the MIT License - see the MIT-LICENSE.md file for details.
