@@ -26,9 +26,9 @@ The website has three main purposes:
 
 ## Getting started
 
-These instructions will get you a copy of the project up and running on your local machine
-for development and testing purposes. See Hosting and Deployment for notes on how to deploy
-the project on a live system.
+These instructions will get you a copy of the application up and running on your local machine for
+development and testing purposes. See Hosting and Deployment for notes on how to deploy the
+application on a live system.
 
 ### Prerequisites
 
@@ -183,4 +183,4 @@ below.
 
 ## License
 
-This project is licensed under the MIT License - see the MIT-LICENSE.md file for details.
+This application is licensed under the MIT License - see the MIT-LICENSE.md file for details.
