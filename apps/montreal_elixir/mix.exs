@@ -4,12 +4,12 @@ defmodule MontrealElixir.Mixfile do
   def project do
     [
       app: :montreal_elixir,
-      version: "0.0.1",
+      version: "0.0.3",
       build_path: "../../_build",
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
       lockfile: "../../mix.lock",
-      elixir: "~> 1.6.4",
+      elixir: "~> 1.7.4",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -21,7 +21,10 @@ defmodule MontrealElixir.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {MontrealElixir.Application, []}, extra_applications: [:logger, :runtime_tools]]
+    [
+      mod: {MontrealElixir.Application, []},
+      extra_applications: [:logger, :runtime_tools]
+    ]
   end
 
   # Specifies which paths to compile per environment.
@@ -32,7 +35,11 @@ defmodule MontrealElixir.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:postgrex, ">= 0.0.0"}, {:ecto, "~> 2.1"}]
+    [
+      {:ecto, "~> 3.0"},
+      {:ecto_sql, "~> 3.0"},
+      {:postgrex, "~> 0.14"}
+    ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

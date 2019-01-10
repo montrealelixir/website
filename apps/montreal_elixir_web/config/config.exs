@@ -5,17 +5,28 @@
 # is restricted to this project.
 use Mix.Config
 
+# Use Jason for JSON parsing in Phoenix
+config :phoenix, :json_library, Jason
+
 # General application configuration
 config :montreal_elixir_web,
   namespace: MontrealElixirWeb,
   ecto_repos: [MontrealElixir.Repo]
 
 # Configures the endpoint
+force_ssl = System.get_env("FORCE_SSL") == "true"
+port = String.to_integer(System.get_env("PORT") || "4000")
+
 config :montreal_elixir_web, MontrealElixirWeb.Endpoint,
-  url: [host: "localhost"],
-  secret_key_base: "CLjhBsp77HnQqpmfCSJrl22oWm1z6gg7LYabDTlENifC9zeO0XaIdBeVwxcoMKSe",
+  http: [port: port],
+  url: [
+    scheme: if(force_ssl, do: "https", else: "http"),
+    host: System.get_env("HOSTNAME"),
+    port: port
+  ],
+  pubsub: [name: MontrealElixirWeb.PubSub, adapter: Phoenix.PubSub.PG2],
   render_errors: [view: MontrealElixirWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: MontrealElixirWeb.PubSub, adapter: Phoenix.PubSub.PG2]
+  secret_key_base: System.get_env("SECRET_KEY_BASE")
 
 # Configures Elixir's Logger
 config :logger, :console,

@@ -1,0 +1,14 @@
+.git
+_build
+deps
+
+apps/montreal_elixir_web/assets/node_modules
+
+.*
+docker-compose.yml
+Dockerfile
+Makefile
+
+CONTRIBUTING.md
+PULL_REQUEST_TEMPLATE.md
+README.md

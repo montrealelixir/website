@@ -4,12 +4,12 @@ defmodule MontrealElixirWeb.Mixfile do
   def project do
     [
       app: :montreal_elixir_web,
-      version: "0.0.1",
+      version: "0.0.3",
       build_path: "../../_build",
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
       lockfile: "../../mix.lock",
-      elixir: "~> 1.6.4",
+      elixir: "~> 1.7.4",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -22,7 +22,10 @@ defmodule MontrealElixirWeb.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {MontrealElixirWeb.Application, []}, extra_applications: [:logger, :runtime_tools]]
+    [
+      mod: {MontrealElixirWeb.Application, []},
+      extra_applications: [:logger, :runtime_tools]
+    ]
   end
 
   # Specifies which paths to compile per environment.
@@ -34,14 +37,14 @@ defmodule MontrealElixirWeb.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.3.0"},
-      {:phoenix_pubsub, "~> 1.0"},
-      {:phoenix_ecto, "~> 3.2"},
+      {:plug_cowboy, "~> 2.0"},
+      {:phoenix, "~> 1.4.0"},
+      {:phoenix_ecto, "~> 4.0"},
       {:phoenix_html, "~> 2.10"},
-      {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:jason, "~> 1.0"},
       {:gettext, "~> 0.11"},
       {:timex, "~> 3.1"},
-      {:cowboy, "~> 1.0"},
       {:montreal_elixir, in_umbrella: true},
       {:twitter, in_umbrella: true},
       {:social_feeds, in_umbrella: true}

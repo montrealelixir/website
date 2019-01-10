@@ -3,13 +3,13 @@ defmodule MontrealElixir.Umbrella.Mixfile do
 
   def project do
     [
+      app: :website,
+      version: "0.0.3",
       apps_path: "apps",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       aliases: aliases(),
-      preferred_cli_env: [
-        "project.check": :test
-      ]
+      preferred_cli_env: ["project.check": :test]
     ]
   end
 
@@ -38,8 +38,11 @@ defmodule MontrealElixir.Umbrella.Mixfile do
   # and cannot be accessed from applications inside the apps folder
   defp deps do
     [
-      {:credo, "~> 0.8.1", only: [:dev, :test], runtime: false},
-      {:mix_test_watch, "~> 0.3", only: :dev, runtime: false}
+      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
+      {:mix_test_watch, "~> 0.3", only: :dev, runtime: false},
+
+      # OTP Release
+      {:distillery, "~> 2.0"}
     ]
   end
 end
