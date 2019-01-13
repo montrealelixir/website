@@ -52,7 +52,7 @@ Setup PostgreSQL using a [Docker](https://www.docker.com/) container with [docke
 $ docker-compose up -d
 ```
 
-_Alterative_
+_Alternative_
 
 Install PostgreSQL directly on your development machine using your operating system’s package manager.
 
