@@ -1,7 +1,7 @@
 #
 # Step 1 - build the OTP binary
 #
-FROM elixir:1.7.4-alpine AS builder
+FROM elixir:1.8.1-alpine AS builder
 
 ARG APP_NAME
 ARG APP_VERSION
@@ -16,7 +16,7 @@ WORKDIR /montreal-elixir
 # This step installs all the build tools we'll need
 RUN apk update && \
     apk upgrade --no-cache && \
-    apk add --no-cache nodejs npm
+    apk add --no-cache openssl-dev nodejs npm
 
 RUN mix local.rebar --force && \
     mix local.hex --force
@@ -39,7 +39,7 @@ RUN cd /opt/build && \
 #
 # Step 2 - build a lean runtime container
 #
-FROM alpine:3.8
+FROM alpine:3.9
 
 ARG APP_NAME
 ENV APP_NAME=${APP_NAME}
