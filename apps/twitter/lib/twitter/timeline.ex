@@ -13,8 +13,8 @@ defmodule Twitter.Timeline do
 
   def start_link(opts \\ []) do
     adapter = Application.get_env(:twitter, :adapter, opts[:adapter])
-
     topic = Keyword.get(opts, :topic, "twitter:timeline")
+
     GenServer.start_link(__MODULE__, [adapter, topic], name: __MODULE__)
   end
 
