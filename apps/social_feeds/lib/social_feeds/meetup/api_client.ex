@@ -69,5 +69,5 @@ defmodule SocialFeeds.Meetup.ApiClient do
 
   defp meetup_events_url, do: base_url() <> "/events"
 
-  def base_url, do: Application.get_env(:montreal_elixir, :meetup_api_client)[:meetup_url]
+  def base_url, do: Application.get_env(:social_feeds, :meetup_api_client)[:meetup_url]
 end

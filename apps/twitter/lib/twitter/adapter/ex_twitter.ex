@@ -26,13 +26,13 @@ defmodule Twitter.Adapter.ExTwitter do
     defp valid_message(_message), do: false
   end
 
-  @spec fetch_user_timeline() :: [Twitter.Tweet.t()]
+  @impl Twitter.Adapter
   def fetch_user_timeline do
     ExTwitter.user_timeline()
     |> Enum.map(&State.convert/1)
   end
 
-  @spec get_user_stream() :: Stream.t()
+  @impl Twitter.Adapter
   def get_user_stream do
     options = [with: :user, receive_messages: true, timeout: :infinity]
 

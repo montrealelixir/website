@@ -1,8 +1,24 @@
+# App artifacts
 /_build
-/cover
+/db
 /deps
+/*.ez
+/cover
+
+# Generated on crash by the VM
 erl_crash.dump
-*.ez
-*~
+
+# Generated on crash by NPM
+npm-debug.log
+
+# Static artifacts
+/assets/node_modules
+
+# Since we are building assets from assets/,
+# we ignore priv/static. You may want to comment
+# this depending on your deployment strategy.
+/priv/static/
+
+# Local environment variable files
 .env
 .envrc

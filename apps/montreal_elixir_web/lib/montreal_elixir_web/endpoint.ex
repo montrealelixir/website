@@ -1,7 +1,7 @@
 defmodule MontrealElixirWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :montreal_elixir_web
 
-  socket("/socket", MontrealElixirWeb.UserSocket)
+  socket("/socket", MontrealElixirWeb.UserSocket, websocket: true)
 
   # Serve at "/" the static files from "priv/static" directory.
   #

@@ -1,15 +1,19 @@
 language: elixir
 
 elixir:
-  - 1.6.4
+  - 1.8.1
 otp_release:
-  - 20.2
+  - 21.2.6
+
 env:
   - MIX_ENV=test
+
 services:
   - postgresql
+
 before_script:
   - cp apps/montreal_elixir/config/travis.exs apps/montreal_elixir/config/test.exs
   - mix do ecto.create, ecto.migrate
+
 script:
   - mix project.check

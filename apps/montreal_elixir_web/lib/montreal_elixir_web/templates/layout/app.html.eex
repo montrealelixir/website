@@ -8,7 +8,7 @@
     <meta name="author" content="">
 
     <title>Montreal Elixir</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   </head>
 
   <body>
@@ -17,8 +17,7 @@
         <h1>Montreal Elixir</h1>
       </header>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <%= show_flash(@conn) %>
 
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
