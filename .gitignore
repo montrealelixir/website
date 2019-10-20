@@ -19,6 +19,11 @@ npm-debug.log
 # this depending on your deployment strategy.
 /priv/static/
 
+# Secrets
+config/dev.secret.exs
+config/test.secret.exs
+
 # Local environment variable files
 .env
 .envrc
+.docker-sync

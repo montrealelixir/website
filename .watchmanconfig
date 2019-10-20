@@ -1,0 +1,4 @@
+{
+  "ignore_dirs": ["_build", ".circleci", ".git", "bin", "deps", "doc", "guides"],
+  "settle": 100
+}
