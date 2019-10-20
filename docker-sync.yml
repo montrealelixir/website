@@ -1,0 +1,11 @@
+version: "2"
+
+options:
+  verbose: false
+syncs:
+  montreal_elixir_source:
+    src: '.'
+    sync_excludes: ['.git', '_build', 'deps', 'apps/montreal_elixir_web/assets/node_modules', 'apps/montreal_elixir_web/priv/static']
+    monit_enable: true
+    monit_interval: 5
+    monit_high_cpu_cycles: 2

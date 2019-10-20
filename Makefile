@@ -1,80 +1,75 @@
 # Configuration
-# -------------
 
-APP_NAME ?= `grep 'app:' mix.exs | sed -e 's/\[//g' -e 's/ //g' -e 's/app://' -e 's/[:,]//g'`
-APP_VERSION ?= `grep 'version:' mix.exs | cut -d '"' -f2`
-DOCKER_IMAGE_TAG ?= latest
-GIT_REVISION ?= `git rev-parse HEAD`
+WEB_APP := montreal_elixir_web
 
-# Introspection targets
-# ---------------------
+# Targets
 
-.PHONY: help
-help: header targets
+build: docker.stop docker.port.review docker.down docker.build docker.start app.setup
+start: docker.start
+stop: docker.stop
 
-.PHONY: header
-header:
-	@echo "\033[34mEnvironment\033[0m"
-	@echo "\033[34m---------------------------------------------------------------\033[0m"
-	@printf "\033[33m%-23s\033[0m" "APP_NAME"
-	@printf "\033[35m%s\033[0m" $(APP_NAME)
-	@echo ""
-	@printf "\033[33m%-23s\033[0m" "APP_VERSION"
-	@printf "\033[35m%s\033[0m" $(APP_VERSION)
-	@echo ""
-	@printf "\033[33m%-23s\033[0m" "GIT_REVISION"
-	@printf "\033[35m%s\033[0m" $(GIT_REVISION)
-	@echo ""
-	@printf "\033[33m%-23s\033[0m" "DOCKER_IMAGE_TAG"
-	@printf "\033[35m%s\033[0m" $(DOCKER_IMAGE_TAG)
-	@echo "\n"
+app.setup:
+	docker-compose exec application mix deps.get
+	docker-compose exec application sh -c 'cd /app/apps/$(WEB_APP)/assets/ && npm install'
+	# TEST
+	docker-compose exec -e MIX_ENV=test application mix ecto.create
+	docker-compose exec -e MIX_ENV=test application mix event_store.init
+	docker-compose exec -e MIX_ENV=test application mix ecto.migrate
+	# DEV
+	docker-compose exec application mix ecto.create
+	docker-compose exec application mix event_store.init
+	docker-compose exec application mix ecto.migrate
+	docker-compose exec application mix project.setup
 
-.PHONY: targets
-targets:
-	@echo "\033[34mTargets\033[0m"
-	@echo "\033[34m---------------------------------------------------------------\033[0m"
-	@perl -nle'print $& if m{^[a-zA-Z_-]+:.*?## .*$$}' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-22s\033[0m %s\n", $$1, $$2}'
+app.docs:
+	docker-compose exec application mix docs
+	docker-compose exec application cp GLOSSARY.md apps/$(WEB_APP)/priv/static/
+	docker-compose exec application cp -R doc apps/$(WEB_APP)/priv/static/
 
-# Build targets
-# -------------
+app.observe:
+	open -a xquartz
+	docker-compose exec -e DISPLAY=host.docker.internal:0 erlang erl -sname observer -hidden -setcookie secret -run observer
 
-.PHONY: dependencies
-dependencies: dependencies-mix dependencies-npm ## Install dependencies required by the application
+app.config:
+	cp config/dev.secret.exs.sample config/dev.secret.exs
+	cp config/test.secret.exs.sample config/test.secret.exs
+	cp env.sample .env
 
-.PHONY: dependencies-mix
-dependencies-mix:
-	mix deps.get --force
+	echo "Please configure the 'secret' configuration files in ./config directory."
 
-.PHONY: dependencies-npm
-dependencies-npm:
-	npm install --prefix assets
+app.console:
+	docker-compose exec application iex --name vm@application --cookie secret -S mix phx.server
 
-.PHONY: build
-build: ## Build the Docker image
-	docker build --build-arg APP_NAME=$(APP_NAME) --build-arg APP_VERSION=$(APP_VERSION) --tag $(APP_NAME):$(DOCKER_IMAGE_TAG) .
+app.run:
+	docker-compose exec application mix phx.server
 
-# CI targets
-# ----------
+docker.build:
+	docker-compose build --force-rm --no-cache
 
-.PHONY: lint
-lint: lint-compile lint-format lint-credo ## Run linting tools
+docker.reset: docker.stop docker.clean docker.start app.setup
 
-.PHONY: lint-compile
-lint-compile:
-	mix compile --warnings-as-errors --force
+docker.down:
+	docker-compose down --volumes
 
-.PHONY: lint-format
-lint-format:
-	mix format --dry-run --check-formatted
+docker.clean:
+	docker-compose rm -v -f
+	docker-compose down --volumes
+	docker-sync clean
 
-.PHONY: lint-credo
-lint-credo:
-	mix credo --strict
+docker.start:
+	docker-sync start
+	docker-compose up --detach
 
-.PHONY: test
-test: ## Run the test suite
-	mix test
+docker.stop:
+	docker-compose stop
+	docker-sync stop
 
-.PHONY: format
-format: ## Run the code formatter
-	mix format
+docker.restart: stop start
+
+docker.port.review:
+	echo "Please ensure no Docker containers are running with the same ports as this docker-compose.yml file:"
+	docker ps
+	read -p "Press any key to continue..."
+
+docker.bash:
+	docker-compose exec application bash
