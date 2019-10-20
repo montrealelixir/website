@@ -1,6 +1,8 @@
 use Mix.Config
 
-# Configure the Ecto repository
+###############################################################################
+# MontrealElixir
+###############################################################################
 
 config :montreal_elixir, MontrealElixir.Repo,
   database: "montreal_elixir_test",
