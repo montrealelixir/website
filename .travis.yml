@@ -12,7 +12,7 @@ services:
   - postgresql
 
 before_script:
-  - cp apps/montreal_elixir/config/travis.exs apps/montreal_elixir/config/test.exs
+  - cp config/travis.exs config/test.secret.exs
   - mix do ecto.create, ecto.migrate
 
 script:
