@@ -3,7 +3,8 @@ use Mix.Config
 # Configure the Ecto repository
 config :montreal_elixir, MontrealElixir.Repo,
   url: System.get_env("DATABASE_URL"),
-  pool_size: String.to_integer(System.get_env("DATABASE_POOL_SIZE"))
+  pool_size: String.to_integer(System.get_env("DATABASE_POOL_SIZE")),
+  ssl: true
 
 # Configure the Phoenix endpoint
 force_ssl = System.get_env("FORCE_SSL") == "true"
@@ -14,14 +15,15 @@ config :montreal_elixir_web, MontrealElixirWeb.Endpoint,
   server: true,
   http: [port: port],
   url: [
-    scheme: (if force_ssl, do: "https", else: "http"), 
-    host: System.get_env("HOSTNAME"), 
-    port: port],
-  secret_key_base: System.get_env("SECRET_KEY_BASE")
+    scheme: if(force_ssl, do: "https", else: "http"),
+    host: "localhost",
+    port: port
+  ],
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
+  check_origin: ["//*.herokuapp.com", "//localhost:#{port}"]
 
 # Configure Youtube client
-config :social_feeds, :youtube_api_client,
-  api_key: System.get_env("YOUTUBE_API_KEY")
+config :social_feeds, :youtube_api_client, api_key: System.get_env("YOUTUBE_API_KEY")
 
 # Conigure ExTwitter
 config :extwitter, :oauth,

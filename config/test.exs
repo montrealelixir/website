@@ -22,6 +22,6 @@ config :montreal_elixir_web, MontrealElixirWeb.Endpoint,
   server: false
 
 # Handle TravisCI when the file hasn't been copied over yet in the build process
-if File.exists?("test.secret.exs") do
+if File.exists?("config/test.secret.exs") do
   import_config "test.secret.exs"
 end
