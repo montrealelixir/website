@@ -1,68 +1,69 @@
-#
-# Step 1 - build the OTP binary
-#
-FROM elixir:1.8.1-alpine AS builder
+### BUILD STAGE
+FROM bitwalker/alpine-elixir-phoenix:1.8.1 as builder
+RUN mkdir /app
 
-ARG APP_NAME
-ARG APP_VERSION
-ARG MIX_ENV=prod
+WORKDIR /app
 
-ENV APP_NAME=${APP_NAME} \
-    APP_VERSION=${APP_VERSION} \
-    MIX_ENV=${MIX_ENV}
+RUN mix local.hex --force
+RUN mix local.rebar --force
 
-WORKDIR /montreal-elixir
+# Provide a default for the MIX_ENV, see heroku.yml for more information
+ARG MIX_ENV=staging
+ENV MIX_ENV ${MIX_ENV}
+RUN echo $MIX_ENV
 
-# This step installs all the build tools we'll need
-RUN apk update && \
-    apk upgrade --no-cache && \
-    apk add --no-cache openssl-dev nodejs npm
+# Provide the release tag
+ARG RELEASE_TAG
+ENV RELEASE_TAG ${RELEASE_TAG}
+RUN echo $RELEASE_TAG
 
-RUN mix local.rebar --force && \
-    mix local.hex --force
+# Umbrella
+COPY mix.exs mix.lock ./
+COPY config config
 
-COPY . .
-RUN mix deps.get --only ${MIX_ENV}
-RUN mix compile
+# Apps
+COPY apps apps
+RUN mix do deps.get, deps.compile
 
-RUN npm ci --prefix apps/montreal_elixir_web/assets
+# Build assets in production mode:
+WORKDIR /app/apps/montreal_elixir_web/assets
+
+RUN npm install && ./node_modules/webpack/bin/webpack.js --mode production
+
+WORKDIR /app/apps/montreal_elixir_web
 RUN mix phx.digest
 
-RUN mkdir -p /opt/build && \
-    mix release --verbose && \
-    cp _build/${MIX_ENV}/rel/${APP_NAME}/releases/${APP_VERSION}/${APP_NAME}.tar.gz /opt/build
+WORKDIR /app
+COPY rel rel
+RUN mix release --env=$MIX_ENV --verbose --name=montreal_elixir_platform_$MIX_ENV
 
-RUN cd /opt/build && \
-    tar -xzf ${APP_NAME}.tar.gz && \
-    rm ${APP_NAME}.tar.gz
-
-#
-# Step 2 - build a lean runtime container
-#
+### RELEASE STAGE
 FROM alpine:3.9
 
-ARG APP_NAME
-ENV APP_NAME=${APP_NAME}
+# we need bash and openssl for Phoenix, and curl for heroku
+RUN apk update && \
+    apk upgrade --no-cache && \
+    apk add --no-cache bash openssl curl
 
-# Update kernel and install runtime dependencies
-RUN apk --no-cache update && \
-    apk --no-cache upgrade && \
-    apk --no-cache add bash openssl
+# EXPOSE is not used by Heroku, it uses the PORT env var and expose the same value
+EXPOSE 4000
 
-WORKDIR /opt/montreal_elixir
+# Provide a default for the MIX_ENV, see heroku.yml for more information
+ARG MIX_ENV=staging
+ENV PORT=4000 \
+    SHELL=/bin/bash
 
-# Copy the OTP binary from the build step
-COPY --from=builder /opt/build .
+RUN mkdir /app
+WORKDIR /app
 
-# Copy the entrypoint script
-COPY priv/scripts/docker-entrypoint.sh /usr/local/bin
-RUN chmod a+x /usr/local/bin/docker-entrypoint.sh
+COPY --from=builder /app/_build/$MIX_ENV/rel/montreal_elixir_platform_$MIX_ENV/releases/0.0.0/montreal_elixir_platform_$MIX_ENV.tar.gz .
 
-# Create a non-root user
-RUN adduser -D montreal_elixir && \
-    chown -R montreal_elixir: /opt/montreal_elixir
+RUN tar xzf montreal_elixir_platform_$MIX_ENV.tar.gz && rm montreal_elixir_platform_$MIX_ENV.tar.gz
+RUN ln -s /app/bin/montreal_elixir_platform_$MIX_ENV /app/bin/montreal_elixir_platform
 
-USER montreal_elixir
+RUN chown -R root ./releases
+RUN ls /app/bin
 
-ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["foreground"]
+USER root
+
+CMD ["/app/bin/montreal_elixir_platform", "foreground"]

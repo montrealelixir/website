@@ -3,8 +3,8 @@ defmodule MontrealElixir.Umbrella.Mixfile do
 
   def project do
     [
-      app: :website,
-      version: "0.0.3",
+      app: :montreal_elixir_platform,
+      version: "0.0.0",
       elixir: "1.8.1",
       apps_path: "apps",
       start_permanent: Mix.env() == :prod,
