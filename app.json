@@ -1,0 +1,39 @@
+{
+  "name": "Montreal Elixir",
+  "description": "Montreal Elixir community website",
+  "repository": "https://github.com/montrealelixir/website",
+  "success_url": "/",
+  "addons": [
+    "heroku-postgresql:hobby-dev",
+    "papertrail:choklad"
+  ],
+  "env": {
+    "DATABASE_POOL_SIZE": {
+      "description": "Database pool size",
+      "value": "5"
+    },
+    "MIX_ENV": "staging",
+    "SECRET_KEY_BASE": {
+      "generator": "secret"
+    },
+    "SETUP_BY": {
+      "description": "Who initiated this setup",
+      "value": "CivilCode Inc"
+    },
+    "TWITTER_ACCESS_TOKEN": {
+      "required": true
+    },
+    "TWITTER_ACCESS_TOKEN_SECRET": {
+      "required": true
+    },
+    "TWITTER_CONSUMER_KEY": {
+      "required": true
+    },
+    "TWITTER_CONSUMER_SECRET": {
+      "required": true
+    },
+    "YOUTUBE_API_KEY": {
+      "required": true
+    }
+  }
+}

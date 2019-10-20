@@ -2,7 +2,7 @@ defmodule MontrealElixir.ReleaseTasks do
   @moduledoc false
   @start_apps ~w(crypto ssl postgrex ecto_sql)a
 
-  def migrate do
+  def db_migrate do
     start_services()
     run_migrations()
     stop_services()
