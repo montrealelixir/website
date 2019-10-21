@@ -3,7 +3,7 @@ use Mix.Config
 # Configure the Ecto repository
 config :montreal_elixir, MontrealElixir.Repo,
   url: System.get_env("DATABASE_URL"),
-  pool_size: String.to_integer(System.get_env("DATABASE_POOL_SIZE")),
+  pool_size: String.to_integer(System.get_env("DATABASE_POOL_SIZE") || "5"),
   ssl: true
 
 # Configure the Phoenix endpoint

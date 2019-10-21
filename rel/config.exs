@@ -69,7 +69,7 @@ release :montreal_elixir_platform_staging do
 
   set(
     commands: [
-      migrate: "rel/commands/migrate.sh"
+      db_migrate: "rel/commands/db_migrate.sh"
     ]
   )
 

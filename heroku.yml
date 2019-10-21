@@ -1,0 +1,29 @@
+# This build manifest is present to provide the build time configuration (i.e. `MIX_ENV`) of a
+# Docker image when built for a review app. The build manifest is not currently used for anything
+# else as it is not used in the provisioning of Review Apps, visit:
+#
+#   https://devcenter.heroku.com/articles/heroku-yml-build-manifest#review-apps-and-app-json
+#
+# It is important to note that the build manifest is not used when building a Docker image locally
+# with `bin/heroku.docker.build`.
+#
+# For information about the build manifest, visit:
+#
+#   https://devcenter.heroku.com/articles/heroku-yml-build-manifest
+#
+# For more information about review apps, visit:
+#
+#   https://devcenter.heroku.com/articles/github-integration-review-apps
+#
+build:
+  config:
+    MIX_ENV: staging
+    RELEASE_TAG: staging
+  docker:
+    web: Dockerfile
+release:
+  image: web
+  command:
+    - /app/bin/montreal_elixir_platform db_migrate
+run:
+  web: /app/bin/montreal_elixir_platform foreground
