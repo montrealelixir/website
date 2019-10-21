@@ -2,8 +2,7 @@
 
 [![Build Status](https://travis-ci.org/montrealelixir/website.svg?branch=master)](https://travis-ci.org/montrealelixir/website)
 
-You've found the source code for our community website: http://www.montrealelixir.ca. The
-website is a single-page application aggregating several of our online properties:
+You've found the source code for our community website: http://www.montrealelixir.ca. You lucky devil! The website is a single-page application aggregating several of our online properties:
 
   * [Meetup.com](https://www.meetup.com/montrealelixir)
   * [Twitter](https://twitter.com/montrealelixir)
@@ -22,77 +21,60 @@ The website has three main purposes:
   * Promote the Elixir community in Montreal
   * Inform the community members about events and new content
   * Provide an opportunity to learn about Elixir and Phoenix by contributing to an
-    open source project
+    open source project (do it!)
 
 ## Getting started
 
 These instructions will get you a copy of the application up and running on your local machine for
-development and testing purposes. The instructions below provide a *recommended* path for setting
-up the application, however an *alternative* suggestion is offered for those more experienced.
+development and testing purposes.
 
 See Hosting and Deployment for notes on how to deploy the application on a live system.
 
-### Prerequisites
+## Development Setup
 
-We assume you have the following installed:
+Before following the instructions below, ensure your development environment meets the prerequisites
+outlined here:
 
-  * [Git](https://git-scm.com)
-  * [Elixir](https://elixir-lang.org/install.html)
-  * [NodeJS](https://nodejs.org/en/download/)
+    https://github.com/civilcode/playbook/blob/master/guides/ops/developer_setup.md
 
-#### PostgreSQL
+For a Docker-based development environment, follow these steps:
 
-You also need to install [PostgreSQL](https://www.postgresql.org).
+    git clone https://github.com/montrealelixir/website
+    cd website
+    make app.config
+    make
 
-_Recommended_
+To start Docker containers (On first run, may take several minutes. Ensure there are no extra build/asset directories in your repo folder):
 
-Setup PostgreSQL using a [Docker](https://www.docker.com/) container with [docker-compose](./docker-compose.yml):
+    make docker.start
 
-```sh-session
-$ docker-compose up -d
-```
+To stop:
 
-_Alternative_
+    make docker.stop
 
-Install PostgreSQL directly on your development machine using your operating system’s package manager.
+To stop and remove all volumes (including sync volume):
 
-### Configuration
+    make docker.clean
 
-The application's configuration follows the [Twelve Factor](https://12factor.net/config)
-methodology, which means they are stored in the _environment_.
+To run the server:
 
-Copy the [`.env.sample`](./.env.sample) file to the appropriate format for the tool of your choice. You may use `source`, [`direnv`](https://direnv.net), [`nv`](https://github.com/jcouture/nv) or a custom script of your own.
+    make app.console
+
+To view the application with your browser visit:
+
+    http://localhost:4000
 
 ### Run the website
 
 After you have cloned the repository:
 
-1. Install dependencies.
-
-  ```sh-session
-  $ mix deps.get
-  ```
+    mix deps.get
 
 1. Create and migrate your database.
 
-  ```sh-session
-  $ mix do ecto.create, ecto.migrate
-  ```
+    mix do ecto.create, ecto.migrate
 
 1. To get the Twitter and YouTube content, [configure external API access keys](#configure-external-api-access-keys).
-
-1. Install Node.js dependencies.
-
-  ```sh-session
-  $ cd apps/montreal_elixir_web/assets
-  $ npm install
-  ```
-
-1. Start Phoenix endpoint.
-  ```sh-session
-  $ cd ../../..
-  $ mix phx.server
-  ```
 
 Now you can visit [`http://localhost:4000`](http://localhost:4000) from your favourite browser.
 
@@ -115,9 +97,7 @@ phone number confirmed (_Twitter does not generate API keys if these prerequisit
 6. Put the generated keys in your `env` file.
 7. Start the server locally:
 
-```sh-session
-$ mix phx.server
-```
+    make app.console
 
 The [landing page](http://localhost:4000/) should contain the latest tweets from the
 configured account. If you tweet something new and it should appear on the web page.
@@ -131,9 +111,7 @@ configured account. If you tweet something new and it should appear on the web p
 5. From project's dashboard hit "Enable APIs and Services", search for YouTube Data API and enable it.
 6. Start the server locally:
 
-```sh-session
-$ mix phx.server
-```
+    make app.console
 
 The [landing page](http://localhost:4000/) should contain the 3 latest videos from the
 [ElixirMontreal channel](https://youtube.com/channel/UCftyx5k7K_0a3wIGRtE2YQw).
@@ -142,22 +120,7 @@ The [landing page](http://localhost:4000/) should contain the 3 latest videos fr
 
 Ensure the test database was created:
 
-```sh-session
-$ MIX_ENV=test mix ecto.create
-```
-
-* Run the tests
-
-```sh-session
-$ mix test
-```
-
-You can also use the [`mix_test_watch`](https://github.com/lpil/mix-test.watch) package to
-automatically run the tests after you save a file:
-
-```sh-session
-$ mix test.watch
-```
+    make app.test
 
 ### Learn more about Phoenix Framework
 
