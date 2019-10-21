@@ -20,7 +20,7 @@ config :montreal_elixir_web, MontrealElixirWeb.Endpoint,
     port: port
   ],
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
-  check_origin: ["//*.herokuapp.com", "//localhost:#{port}"]
+  check_origin: ["//*.herokuapp.com", "//localhost:#{port}", "//*.montrealelixir.ca"]
 
 # Configure Youtube client
 config :social_feeds, :youtube_api_client, api_key: System.get_env("YOUTUBE_API_KEY")
