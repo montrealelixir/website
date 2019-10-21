@@ -43,6 +43,9 @@ app.console:
 app.run:
 	docker-compose exec application mix phx.server
 
+app.test:
+	docker-compose exec application mix test
+
 docker.build:
 	docker-compose build --force-rm --no-cache
 
