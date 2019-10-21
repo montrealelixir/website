@@ -9,7 +9,6 @@ BINARY := montreal_elixir_platform
 deploy: push release reset
 
 push:
-	git fetch --all --tags
 	heroku container:login
 	heroku container:push web -r staging
 
