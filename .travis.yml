@@ -1,9 +1,9 @@
 language: elixir
 
 elixir:
-  - 1.8.1
+  - 1.9.2
 otp_release:
-  - 21.2.6
+  - 22.1.4
 
 env:
   - MIX_ENV=test

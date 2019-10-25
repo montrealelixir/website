@@ -1,5 +1,5 @@
 ### BUILD STAGE
-FROM bitwalker/alpine-elixir-phoenix:1.8.1 as builder
+FROM bitwalker/alpine-elixir-phoenix:1.9.2 as builder
 RUN mkdir /app
 
 WORKDIR /app
@@ -12,38 +12,35 @@ ARG MIX_ENV=staging
 ENV MIX_ENV ${MIX_ENV}
 RUN echo $MIX_ENV
 
-# Provide the release tag
-ARG RELEASE_TAG
-ENV RELEASE_TAG ${RELEASE_TAG}
-RUN echo $RELEASE_TAG
-
-# Umbrella
+# Copy relevant files
 COPY mix.exs mix.lock ./
 COPY config config
-
-# Apps
 COPY apps apps
+
 RUN mix do deps.get, deps.compile
 
 # Build assets in production mode:
 WORKDIR /app/apps/montreal_elixir_web/assets
 
+# Remove any existing node modules that exist from the host platform. This will cause problems
+# if we have modules from the host with OS specific extensions.
+RUN rm -rf ./node_modules/*
 RUN npm install && ./node_modules/webpack/bin/webpack.js --mode production
 
 WORKDIR /app/apps/montreal_elixir_web
 RUN mix phx.digest
 
 WORKDIR /app
-COPY rel rel
-RUN mix release --env=$MIX_ENV --verbose --name=montreal_elixir_platform_$MIX_ENV
+RUN mix release montreal_elixir_platform_$MIX_ENV
 
 ### RELEASE STAGE
 FROM alpine:3.9
 
-# we need bash and openssl for Phoenix, and curl for heroku
-RUN apk update && \
+# we need bash and openssl for Phoenix
+# and Heroku needs curl to perform deployments
+RUN apk update \
     apk upgrade --no-cache && \
-    apk add --no-cache bash openssl curl
+    apk add --no-cache bash openssl openssh curl python
 
 # EXPOSE is not used by Heroku, it uses the PORT env var and expose the same value
 EXPOSE 4000
@@ -56,14 +53,15 @@ ENV PORT=4000 \
 RUN mkdir /app
 WORKDIR /app
 
-COPY --from=builder /app/_build/$MIX_ENV/rel/montreal_elixir_platform_$MIX_ENV/releases/0.0.0/montreal_elixir_platform_$MIX_ENV.tar.gz .
+COPY --from=builder /app/_build/$MIX_ENV/rel/montreal_elixir_platform_$MIX_ENV/ .
 
-RUN tar xzf montreal_elixir_platform_$MIX_ENV.tar.gz && rm montreal_elixir_platform_$MIX_ENV.tar.gz
+# Copy shell scripts
+COPY bin/db_migrate /app/bin/db_migrate
+
 RUN ln -s /app/bin/montreal_elixir_platform_$MIX_ENV /app/bin/montreal_elixir_platform
 
 RUN chown -R root ./releases
-RUN ls /app/bin
 
 USER root
 
-CMD ["/app/bin/montreal_elixir_platform", "foreground"]
+CMD ["/app/bin/montreal_elixir_platform", "start"]

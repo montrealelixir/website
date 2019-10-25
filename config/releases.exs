@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # Configure the Ecto repository
 config :montreal_elixir, MontrealElixir.Repo,
