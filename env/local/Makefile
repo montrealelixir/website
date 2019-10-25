@@ -33,7 +33,7 @@ run:
 		-e TWITTER_ACCESS_TOKEN_SECRET=$(TWITTER_ACCESS_TOKEN_SECRET) \
 		-e YOUTUBE_API_KEY=$(YOUTUBE_API_KEY) \
 		-e FORCE_SSL=false \
-		$(IMAGE_NAME) /app/bin/$(BINARY) foreground
+		$(IMAGE_NAME) /app/bin/$(BINARY) start
 
 stop:
 	docker stop $(IMAGE_NAME)

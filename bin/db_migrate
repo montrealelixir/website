@@ -1,0 +1,2 @@
+#!/bin/sh
+/app/bin/montreal_elixir_platform eval "Elixir.MontrealElixir.ReleaseTasks.db_migrate()"

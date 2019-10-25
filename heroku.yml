@@ -24,6 +24,6 @@ build:
 release:
   image: web
   command:
-    - /app/bin/montreal_elixir_platform db_migrate
+    - /app/bin/db_migrate
 run:
-  web: /app/bin/montreal_elixir_platform foreground
+  web: /app/bin/montreal_elixir_platform start
