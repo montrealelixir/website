@@ -3,6 +3,7 @@
   "description": "Montreal Elixir community website",
   "repository": "https://github.com/montrealelixir/website",
   "success_url": "/",
+  "stack": "container",
   "addons": [
     "heroku-postgresql:hobby-dev",
     "papertrail:choklad"

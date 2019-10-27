@@ -14,7 +14,7 @@ services:
   application:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     volumes:
       # Allow docker-sync to handle syncing source code
       # The external name `montreal_elixir_source` should be unique for each client platform

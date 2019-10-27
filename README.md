@@ -32,37 +32,45 @@ See Hosting and Deployment for notes on how to deploy the application on a live 
 
 ## Development Setup
 
-Before following the instructions below, ensure your development environment meets the prerequisites
-outlined here:
+You have two options for your development setup:
 
-    https://github.com/civilcode/playbook/blob/master/guides/ops/developer_setup.md
+  1. Docker-based: Setup in a Docker container
+  2. Bare-metal: Setup directly on the OS (to be documented)
 
-For a Docker-based development environment, follow these steps:
+### Docker-based Development Setup
+
+Prerequisites:
+
+  * [Docker](https://www.docker.com)
+  * [docker-Sync](http://docker-sync.io)
+
+Steps:
 
     git clone https://github.com/montrealelixir/website
     cd website
     make app.config
+    # Configure the access keys, see: "External API Access Keys" below
     make
 
-To start Docker containers (On first run, may take several minutes. Ensure there are no extra build/asset directories in your repo folder):
+To run the tests:
 
-    make docker.start
-
-To stop:
-
-    make docker.stop
-
-To stop and remove all volumes (including sync volume):
-
-    make docker.clean
-
-To run the server:
-
-    make app.console
+    make app.test
 
 To view the application with your browser visit:
 
+    make app.console
     http://localhost:4000
+
+Other helpful commands:
+
+    # Execute any command against the application container, change CMD
+    make app.do CMD='mix test'
+    # Start the docker container
+    make docker.start
+    # Stop the docker container
+    make docker.stop
+    # To stop and remove all volumes (including sync volume)
+    make docker.clean
 
 ### Run the website
 
@@ -78,7 +86,7 @@ After you have cloned the repository:
 
 Now you can visit [`http://localhost:4000`](http://localhost:4000) from your favourite browser.
 
-### External API access keys
+### External API Access Keys
 
 #### Twitter
 
@@ -115,12 +123,6 @@ configured account. If you tweet something new and it should appear on the web p
 
 The [landing page](http://localhost:4000/) should contain the 3 latest videos from the
 [ElixirMontreal channel](https://youtube.com/channel/UCftyx5k7K_0a3wIGRtE2YQw).
-
-### Running the tests
-
-Ensure the test database was created:
-
-    make app.test
 
 ### Learn more about Phoenix Framework
 

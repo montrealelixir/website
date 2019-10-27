@@ -23,7 +23,7 @@ defmodule MontrealElixir.Mixfile do
   def application do
     [
       mod: {MontrealElixir.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :ssl]
     ]
   end
 
@@ -36,8 +36,7 @@ defmodule MontrealElixir.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:ecto, "~> 3.0"},
-      {:ecto_sql, "~> 3.0"},
+      {:ecto_sql, "~> 3.2"},
       {:postgrex, "~> 0.14"}
     ]
   end

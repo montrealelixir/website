@@ -1,6 +1,7 @@
 # Configuration
 
 WEB_APP := montreal_elixir_web
+DOCKER_COMPOSE := docker-compose -f env/dev/docker-compose.yml
 
 # Targets
 
@@ -9,24 +10,18 @@ start: docker.start
 stop: docker.stop
 
 app.setup:
-	docker-compose exec application mix deps.get
-	docker-compose exec application sh -c 'cd /app/apps/$(WEB_APP)/assets/ && npm install'
-	# TEST
-	docker-compose exec -e MIX_ENV=test application mix ecto.create
-	docker-compose exec -e MIX_ENV=test application mix ecto.migrate
-	# DEV
-	docker-compose exec application mix ecto.create
-	docker-compose exec application mix ecto.migrate
-	docker-compose exec application mix project.setup
-
-app.docs:
-	docker-compose exec application mix docs
-	docker-compose exec application cp GLOSSARY.md apps/$(WEB_APP)/priv/static/
-	docker-compose exec application cp -R doc apps/$(WEB_APP)/priv/static/
+	$(DOCKER_COMPOSE) exec application mix deps.get
+	$(DOCKER_COMPOSE) exec application sh -c 'cd /app/apps/$(WEB_APP)/assets/ && npm install'
+	# Setup test DB
+	$(DOCKER_COMPOSE) exec -e MIX_ENV=test application mix ecto.create
+	$(DOCKER_COMPOSE) exec -e MIX_ENV=test application mix ecto.migrate
+	# Setup dev DB
+	$(DOCKER_COMPOSE) exec application mix ecto.create
+	$(DOCKER_COMPOSE) exec application mix ecto.migrate
 
 app.observe:
 	open -a xquartz
-	docker-compose exec -e DISPLAY=host.docker.internal:0 erlang erl -sname observer -hidden -setcookie secret -run observer
+	$(DOCKER_COMPOSE) exec -e DISPLAY=host.docker.internal:0 erlang erl -sname observer -hidden -setcookie secret -run observer
 
 app.config:
 	cp config/dev.secret.exs.sample config/dev.secret.exs
@@ -36,34 +31,37 @@ app.config:
 	echo "Please configure the 'secret' configuration files in ./config directory."
 
 app.console:
-	docker-compose exec application iex --name vm@application --cookie secret -S mix phx.server
+	$(DOCKER_COMPOSE) exec application iex --name vm@application --cookie secret -S mix phx.server
 
 app.run:
-	docker-compose exec application mix phx.server
+	$(DOCKER_COMPOSE) exec application mix phx.server
 
 app.test:
-	docker-compose exec application mix test
+	$(DOCKER_COMPOSE) exec application mix test
+
+app.do:
+	$(DOCKER_COMPOSE) exec application $(CMD)
 
 docker.build:
-	docker-compose build --force-rm --no-cache
+	$(DOCKER_COMPOSE) build --force-rm --no-cache
 
 docker.reset: docker.stop docker.clean docker.start app.setup
 
 docker.down:
-	docker-compose down --volumes
+	$(DOCKER_COMPOSE) down --volumes
 
 docker.clean:
-	docker-compose rm -v -f
-	docker-compose down --volumes
-	docker-sync clean
+	$(DOCKER_COMPOSE) rm -v -f
+	 down --volumes
+	docker-sync clean -c env/dev/docker-sync.yml
 
 docker.start:
-	docker-sync start
-	docker-compose up --detach
+	docker-sync start -c env/dev/docker-sync.yml
+	$(DOCKER_COMPOSE) up --detach
 
 docker.stop:
-	docker-compose stop
-	docker-sync stop
+	$(DOCKER_COMPOSE) stop
+	docker-sync stop -c env/dev/docker-sync.yml
 
 docker.restart: stop start
 
@@ -73,4 +71,4 @@ docker.port.review:
 	read -p "Press any key to continue..."
 
 docker.bash:
-	docker-compose exec application bash
+	$(DOCKER_COMPOSE) application bash
