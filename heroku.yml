@@ -19,7 +19,7 @@ build:
   config:
     MIX_ENV: staging
   docker:
-    web: env/prod/Dockerfile
+    web: Dockerfile
 release:
   image: web
   command:
