@@ -10,7 +10,7 @@ deploy: push release
 
 push:
 	heroku container:login
-	heroku container:push web -r production
+	heroku container:push web -r production --arg MIX_ENV=prod
 
 release:
 	heroku container:release web -r production

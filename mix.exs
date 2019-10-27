@@ -22,6 +22,18 @@ defmodule MontrealElixir.Umbrella.Mixfile do
             twitter: :permanent,
             montreal_elixir_web: :permanent
           ]
+        ],
+        montreal_elixir_platform_prod: [
+          include_executables_for: [:unix],
+          include_erts: true,
+          version: "0.0.0",
+          applications: [
+            runtime_tools: :permanent,
+            montreal_elixir: :permanent,
+            social_feeds: :permanent,
+            twitter: :permanent,
+            montreal_elixir_web: :permanent
+          ]
         ]
       ]
     ]

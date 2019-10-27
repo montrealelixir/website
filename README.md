@@ -72,20 +72,6 @@ Other helpful commands:
     # To stop and remove all volumes (including sync volume)
     make docker.clean
 
-### Run the website
-
-After you have cloned the repository:
-
-    mix deps.get
-
-1. Create and migrate your database.
-
-    mix do ecto.create, ecto.migrate
-
-1. To get the Twitter and YouTube content, [configure external API access keys](#configure-external-api-access-keys).
-
-Now you can visit [`http://localhost:4000`](http://localhost:4000) from your favourite browser.
-
 ### External API Access Keys
 
 #### Twitter
@@ -123,6 +109,24 @@ configured account. If you tweet something new and it should appear on the web p
 
 The [landing page](http://localhost:4000/) should contain the 3 latest videos from the
 [ElixirMontreal channel](https://youtube.com/channel/UCftyx5k7K_0a3wIGRtE2YQw).
+
+## Deployment
+
+### Staging
+
+`https://montreal-elixir-staging.herokuapp.com` is setup to be automatically deployed when a PR
+is merged into `master` and the CI passes, see Heroku's [Pipelines](https://blog.heroku.com/heroku_flow_pipelines_review_apps_and_github_sync#introducing-pipelines) documentation.
+
+`montreal-elixir-staging` can be manually deployed:
+
+    make -f env/staging/Makefile deploy
+
+### Production
+
+`http://www.montrealelixir.ca` (`montreal-elixir-production`) can only be manually deployed (i.e
+the "Promote to Production" in the Heroku Pipeline cannot be used for container stacks):
+
+    make -f env/prod/Makefile deploy
 
 ### Learn more about Phoenix Framework
 
