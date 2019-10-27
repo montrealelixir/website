@@ -18,9 +18,8 @@
 build:
   config:
     MIX_ENV: staging
-    RELEASE_TAG: staging
   docker:
-    web: Dockerfile
+    web: env/prod/Dockerfile
 release:
   image: web
   command:
