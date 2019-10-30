@@ -19,7 +19,7 @@ YOUTUBE_API_KEY := $(shell heroku config:get YOUTUBE_API_KEY -r staging)
 deploy: build run
 
 build:
-	docker build --no-cache --build-arg MIX_ENV=staging -t $(IMAGE_NAME) -f env/prod/Dockerfile .
+	docker build --no-cache --build-arg MIX_ENV=staging -t $(IMAGE_NAME) -f Dockerfile .
 
 run:
 	docker run -i --name $(IMAGE_NAME) -t --rm -p 4000:4000 \
