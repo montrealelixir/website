@@ -60,8 +60,9 @@ COPY bin/db_migrate /app/bin/db_migrate
 
 RUN ln -s /app/bin/montreal_elixir_platform_$MIX_ENV /app/bin/montreal_elixir_platform
 
-RUN chown -R root ./releases
+# Create a non-root user
+RUN adduser -D montreal_elixir && chown -R montreal_elixir: /app
 
-USER root
+USER montreal_elixir
 
 CMD ["/app/bin/montreal_elixir_platform", "start"]
