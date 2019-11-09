@@ -12,7 +12,7 @@ defmodule MontrealElixirWeb.Endpoint do
     at: "/",
     from: :montreal_elixir_web,
     gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    only: ~w(css fonts images img js favicon.ico robots.txt)
   )
 
   # Code reloading can be explicitly enabled under the

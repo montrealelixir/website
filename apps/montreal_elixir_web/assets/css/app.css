@@ -12,6 +12,12 @@
   padding: 0;
   margin: 0;
 }
+@import "../vendor/theme/css/bootstrap.min.css";
+@import "../vendor/theme/css/flexslider.min.css";
+@import "../vendor/theme/css/elegant-icons.min.css";
+@import "../vendor/theme/css/pe-icon-7-stroke.min.css";
+@import "../vendor/theme/css/lightbox.min.css";
+@import "../vendor/theme/css/theme-debbie.css";
 
 #tweets-container ul li {
   border-bottom: 1px solid #ddd;

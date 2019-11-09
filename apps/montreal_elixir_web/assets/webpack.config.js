@@ -31,11 +31,21 @@ module.exports = (env, options) => ({
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
+      // Files for the theme (`fonts`, `img`)
+      {
+        test: /\.(ttf|eot|svg|otf|woff|gif|png)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader',
+        options: {
+          outputPath: '../css',
+        }
       }
     ]
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: '../css/app.css' }),
-    new CopyWebpackPlugin([{ from: 'static/', to: '../' }])
+    new CopyWebpackPlugin([{ from: 'static/', to: '../' }]),
+    // Copy `img` files for the theme to the `static` directory
+    new CopyWebpackPlugin([{ from: 'vendor/theme/img/', to: '../img' }])
   ]
 });
