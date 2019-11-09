@@ -1,97 +1,127 @@
-<%= if @next_meetup do %>
-  <div class="row marketing">
-    <div class="col-sm-12">
-      <h4><%= next_or_most_recent_event(@next_meetup.utc_datetime) %></h4>
-    </div>
+<div class="main-container"><section class="hero-slider">
+    <ul class="slides">
+      <li class="video-header">
+        <div class="background-image-holder parallax-background">
+          <img class="background-image" alt="Background Image" src="images/hero.jpg">
+        </div>
 
-    <div class="col-sm-6">
-      <p class="lead"><%= @next_meetup.name %></p>
-    </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 text-center">
+              <img alt="Montreal Elixir" class="logo" src="images/logo.png">
+              <h1 class="small-h4 text-white">Montreal's community for Elixir, a dynamic, functional language designed for building scalable and maintainable applications.</h1>
+              <%= if @next_meetup do %>
+                <p class="large-h4 uppercase text-white"><%= next_or_most_recent_event(@next_meetup.utc_datetime) %></p>
+                <h2 class="uppercase text-white">
+                  <%= @next_meetup.name %>
+                </h2>
+                <p class="uppercase text-white">
+                  <%= format_montreal_time(@next_meetup.utc_datetime) %><br/>
+                  <%= @next_meetup.venue_name %><br/>
+                  <%= @next_meetup.venue_address %>
+                </p>
+                <a href="<%= @next_meetup.url %>" class="btn">Register Now</a>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
 
-    <div class="col-sm-6">
-      <p><%= format_montreal_time(@next_meetup.utc_datetime) %></p>
-      <p>
-        <%= @next_meetup.venue_name %><br/>
-        <%= @next_meetup.venue_address %>
-      </p>
-    </div>
+  <section class="color-blocks">
+    <div class="color-block block-left col-md-6 col-sm-12"></div>
+    <div class="color-block block-right col-md-6 col-sm-12"></div>
 
-    <div class="col-sm-12">
-      <p>Learn more on <a target="_blank" href=<%= @next_meetup.url %>>Meetup.com</a></p>
-    </div>
-  </div>
-<% end %>
-
-<div class="row marketing">
-  <div class="col-lg-12">
-    <h4>About Montreal Elixir</h4>
-    <p>Montreal's community for Elixir, a dynamic, functional language designed for building scalable and maintainable applications.</p>
-  </div>
-</div>
-
-<div class="row marketing">
-  <div class="col-sm-6">
-    <h4>Recent updates (via Twitter)</h4>
-    <div id="tweets-container">
-      <ul class="tweets"></ul>
-    </div>
-    <p>View more on <a target="_blank" href="https://twitter.com/montrealelixir">Twitter</a></p>
-  </div>
-
-  <div class="col-sm-6">
-    <h4>New Videos</h4>
-    <ul class="list-unstyled">
-    <%= for video <- @new_videos do %>
-      <li>
-        <a href="<%= video.url %>" target="_blank">
-          <img src="<%= video.img_url %>"><br/>
+    <div class="container">
+      <div class="row">
+        <a href="#" class="block-content">
+          <div class="col-md-2 col-sm-4 text-center">
+            <i class="icon social_twitter icon-large"></i>
+          </div>
         </a>
-        <%= video.title %><br/>
-        <em><%= video.published_at %></em>
-      </li>
-    <% end %>
-    </ul>
-    <p>View more on <a href="https://www.youtube.com/channel/UCftyx5k7K_0a3wIGRtE2YQw">YouTube</a></p>
-  </div>
-</div>
+          <div class="col-md-4 col-sm-8">
+            <h1>Recent Tweets</h1>
+              <div id="tweets-container">
+                <ul class="tweets"></ul>
+              </div>
+            <p class="uppercase">View more on <a target="_blank" href="https://twitter.com/montrealelixir">Twitter</a></p>
+          </div>
+        </a>
 
-<div class="row marketing">
-  <div class="col-sm-6">
-    <h4>Monthly Meetup</h4>
-    <ul>
-      <li>
-        <a target="_blank" href="https://www.meetup.com/montrealelixir/members">Become a member</a>
-      </li>
-      <li>
-        <a target="_blank" href="https://www.meetup.com/montrealelixir">Come to a meetup</a>
-      </li>
-      <li>
-        <a target="_blank" href="https://github.com/montrealelixir/playbook/blob/master/guides/presentations.md">Prepare and present a talk</a>
-      </li>
-      <li>
-        <a target="_blank" href="https://www.youtube.com/channel/UCftyx5k7K_0a3wIGRtE2YQw">Watch our meetup presentations</a>
-      </li>
-      <li>
-        <a target="_blank" href="https://github.com/montrealelixir/playbook/blob/master/guides/sponsorship.md">Sponsor an event</a>
-      </li>
-    </ul>
-  </div>
+        <a href="#" class="block-content">
+          <div class="col-md-2 col-sm-4 text-center">
+            <i class="icon social_youtube icon-large"></i>
+          </div>
 
-  <div class="col-sm-6">
-    <h4>Resources</h4>
-    <ul>
-      <li>
-        <a target="_blank" href="https://github.com/montrealelixir/playbook/">View the community playbook</a>
-      </li>
-      <li>
-        <a target="_blank" href="https://twitter.com/montrealelixir">Follow us on Twitter</a>
-      </li>
-      <li>
-        <a target="_blank" href="https://github.com/montrealelixir/website">Contribute to this website</a>
-      </li>
-      <li>
-        <a target="_blank" href="https://elixir-slackin.herokuapp.com/">Get help from community members on Slack (#montrealelixir)</a>
-      </li>
-    </ul>
-  </div>
+          <div class="col-md-4 col-sm-8">
+            <h1>New Videos</h1>
+            <%= for video <- @new_videos do %>
+              <p>
+                <a href="<%= video.url %>" target="_blank">
+                  <img src="<%= video.img_url %>">
+                </a>
+              </p>
+              <p>
+                <%= video.title %><br/>
+                <em><%= video.published_at %></em>
+              </p>
+            <% end %>
+            <p class="uppercase">View more on <a href="https://www.youtube.com/channel/UCftyx5k7K_0a3wIGRtE2YQw">YouTube</a></p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="topics duplicatable-content">
+
+    <div class="container">
+
+
+      <div class="row">
+        <div class="col-md-4 col-sm-6">
+          <div class="topic">
+            <i class="pe-7s-users icon-large"></i>
+            <h3>Community</h3>
+
+            <ul class="ruled-list">
+              <li><a target="_blank" href="https://www.meetup.com/montrealelixir/members">Become a member</a></li>
+              <li><a target="_blank" href="https://www.meetup.com/montrealelixir">Come to a meetup</a></li>
+              <li><a target="_blank" href="https://github.com/montrealelixir/playbook/blob/master/guides/presentations.md">Prepare and present a talk</a></li>
+              <li><a target="_blank" href="https://www.youtube.com/channel/UCftyx5k7K_0a3wIGRtE2YQw">Watch our meetup presentations</a></li>
+              <li><a target="_blank" href="https://github.com/montrealelixir/playbook/blob/master/guides/sponsorship.md">Sponsor an event</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6">
+          <div class="topic">
+            <i class="pe-7s-loop"></i>
+            <h3>Resources</h3>
+            <ul class="ruled-list">
+              <li><a target="_blank" href="https://github.com/montrealelixir/playbook/">View the community playbook</a></li>
+              <li><a target="_blank" href="https://twitter.com/montrealelixir">Follow us on Twitter</a></li>
+              <li><a target="_blank" href="https://github.com/montrealelixir/website">Contribute to this website</a></li>
+              <li><a target="_blank" href="https://elixir-slackin.herokuapp.com/">Get help from community members on Slack (#montrealelixir)</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+          <div class="topic">
+            <i class="pe-7s-box2 icon-large"></i>
+            <h3>Sponsors</h3>
+
+            <ul class="ruled-list">
+              <li><a target="_blank" href="http://www.civilcode.io">CivilCode Inc.</a> (community sponsor)</li>
+              <li><a target="_blank" href="https://www.mirego.com">Mirego</a> (event sponsor)</li>
+              <li><a target="_blank" href="https://sweetiq.com">SweetIQ</a> (past event sponsor)</li>
+              <li><a target="_blank" href="http://www.shopify.ca">Shopify</a> (past event sponsor)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
