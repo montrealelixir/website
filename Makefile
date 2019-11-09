@@ -1,7 +1,7 @@
 # Configuration
 
 WEB_APP := montreal_elixir_web
-DOCKER_COMPOSE := docker-compose -f env/dev/docker-compose.yml
+DOCKER_COMPOSE := docker-compose
 
 # Targets
 
