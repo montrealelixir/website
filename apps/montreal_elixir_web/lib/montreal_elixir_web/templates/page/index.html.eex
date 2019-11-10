@@ -64,7 +64,7 @@
               </p>
               <p>
                 <%= video.title %><br/>
-                <em><%= video.published_at %></em>
+                <em><%= human_date(video.published_at) %></em>
               </p>
             <% end %>
             <p class="uppercase">View more on <a href="https://www.youtube.com/channel/UCftyx5k7K_0a3wIGRtE2YQw">YouTube</a></p>
