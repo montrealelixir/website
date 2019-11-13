@@ -16,6 +16,7 @@ RUN echo $MIX_ENV
 COPY mix.exs mix.lock ./
 COPY config config
 COPY apps apps
+COPY rel rel
 
 RUN mix do deps.get, deps.compile
 
@@ -54,6 +55,13 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY --from=builder /app/_build/$MIX_ENV/rel/montreal_elixir_platform_$MIX_ENV/ .
+
+ADD env/staging/heroku-exec.sh /app/.profile.d/heroku-exec.sh
+RUN chmod a+x /app/.profile.d/heroku-exec.sh
+
+ADD env/staging/sh-wrapper.sh /bin/sh-wrapper.sh
+RUN chmod a+x /bin/sh-wrapper.sh
+RUN rm /bin/sh && ln -s /bin/sh-wrapper.sh /bin/sh
 
 # Copy shell scripts
 COPY bin/db_migrate /app/bin/db_migrate
