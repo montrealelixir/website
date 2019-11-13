@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Montreal Elixir</title>
+        <title>Montreal Elixir: Montreal's community for the Elixir Programming Language</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>"/>
         <link href="//fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel='stylesheet' type='text/css'>
