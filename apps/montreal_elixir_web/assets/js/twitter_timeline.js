@@ -25,7 +25,7 @@ let TwitterTimeline = {
     this.tweets.empty()
     for(var tweet of tweetsList.slice(0,3)) {
       var text = tweet.text.autoLink({target: "_blank"})
-      this.tweets.append(`<li>${text}<br><i>${tweet.timestamp}</i></li>`)
+      this.tweets.append(`<li>${text}</li>`)
     }
     this.container.scrollTop(this.container[0].scrollHeight)
   },

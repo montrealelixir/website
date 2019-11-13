@@ -12,7 +12,7 @@ defmodule MontrealElixirWeb.PageViewTest do
         new_videos: []
       )
 
-    assert String.contains?(content, "About Montreal Elixir")
+    assert String.contains?(content, "Montreal Elixir")
     refute String.contains?(content, "Next event")
   end
 end

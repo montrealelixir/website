@@ -54,11 +54,13 @@ defmodule SocialFeeds.Youtube.ApiClient do
   end
 
   defp to_video(video_map) do
+    {:ok, published_at, _} = DateTime.from_iso8601(video_map["snippet"]["publishedAt"])
+
     %Video{
       title: video_map["snippet"]["title"],
       url: youtube_watch_url() <> "?v=" <> video_map["contentDetails"]["upload"]["videoId"],
       img_url: video_map["snippet"]["thumbnails"]["default"]["url"],
-      published_at: video_map["snippet"]["publishedAt"]
+      published_at: published_at
     }
   end
 

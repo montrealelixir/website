@@ -12,16 +12,14 @@ defmodule SocialFeeds.Youtube.ApiClientTest do
 
     @tag :capture_log
     test "returns the proper Video data struct" do
-      video = %Video{
-        title: "Phoenix 1.3 and Contexts",
-        published_at: "2017-09-19T12:23:32.000Z",
-        url: "https://youtube.com/watch?v=y25Suot7vto",
-        img_url: "https://i.ytimg.com/vi/y25Suot7vto/default.jpg"
-      }
-
       resp = ApiClient.get_new_videos()
 
-      assert List.first(resp) == video
+      returned_video = List.first(resp)
+      assert match?(%Video{}, returned_video)
+      assert returned_video.title == "Phoenix 1.3 and Contexts"
+      assert returned_video.url == "https://youtube.com/watch?v=y25Suot7vto"
+      assert returned_video.img_url == "https://i.ytimg.com/vi/y25Suot7vto/default.jpg"
+      assert Date.compare(returned_video.published_at, ~U[2017-09-19 12:23:32.000Z]) == :eq
     end
   end
 

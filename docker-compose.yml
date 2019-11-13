@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:11.4
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      PGDATA: /pgdata
+    volumes:
+      - pgdata:/pgdata
+
+  application:
+    build:
+      context: .
+      dockerfile: env/dev/Dockerfile
+    volumes:
+      # Allow docker-sync to handle syncing source code
+      # The external name `montreal_elixir_source` should be unique for each client platform
+      # since it is used for the syncing container name. This name is also
+      # used in the docker-sync.yml.
+      - montreal_elixir_source:/app:nocopy
+      # Let Docker persist dependencies and builds:
+      # * if we blow away Docker this can be easily recreated
+      # * it keeps all build concerns separate from the host operating system
+      # * for compiled dependencies, stop conflicts with different host OS
+      # * maps to a subset of directories in .gitignore
+      - build:/app/_build
+      - deps:/app/deps
+      - node_modules:/app/apps/montreal_elixir_web/assets/node_modules
+      - static:/app/apps/montreal_elixir_web/priv/static
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    tty: true
+
+  erlang:
+    # For using observer through X11 (xquartz on Mac)
+    image: erlang:latest
+    command: sleep infinity
+
+# volumes defined for use in above configuration
+volumes:
+  build:
+  deps:
+  node_modules:
+  pgdata:
+  static:
+  montreal_elixir_source:
+    external: true

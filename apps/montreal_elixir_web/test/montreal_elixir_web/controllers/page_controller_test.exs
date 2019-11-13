@@ -9,7 +9,7 @@ defmodule MontrealElixirWeb.PageControllerTest do
     @tag :capture_log
     test "shows About section", %{conn: conn} do
       conn = get(conn, "/")
-      assert html_response(conn, 200) =~ "About Montreal Elixir"
+      assert html_response(conn, 200) =~ "Montreal Elixir"
     end
 
     @tag :capture_log
