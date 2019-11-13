@@ -19,3 +19,15 @@ section.color-blocks p a {
 section.color-blocks p a:hover {
   text-decoration: underline;
 }
+
+#about-website ul {
+  list-style: disc;
+  margin-left: 20px;
+
+}
+
+#about-website a {
+  color: #428bca !important;
+  border: none !important;
+  font-weight: normal;
+}

@@ -27,7 +27,7 @@
         <footer class="classic">
           <div class="container">
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <ul class="menu">
                   <li><a href="https://elixir-lang.org">Elixir Lang</a></li>
                   <li><a href="https://phoenixframework.org">Phoenix Framework</a></li>
@@ -36,15 +36,33 @@
                 </ul>
               </div>
 
-              <div class="col-sm-5">
-                <span class="lead color-heading">About Montreal Elixir</span>
-                <p>Montreal's community for Elixir, a dynamic, functional language designed for building scalable and maintainable applications.</p>
-              </div>
-
-              <div class="col-sm-4">
-                <ul class="contact-methods">
-                  <li><a href="https://www.google.com/maps/place/Montreal,+QC/@45.5581968,-73.8703863,11z/data=!3m1!4b1!4m5!3m4!1s0x4cc91a541c64b70d:0x654e3138211fefef!8m2!3d45.5016889!4d-73.567256"><i class="icon pe-7s-map-marker"></i></a><span>Montreal, QC</span></li>
+              <div id="about-website" class="col-sm-8">
+                <span class="lead color-heading">About this Website</span>
+                <p>This application is built using:</p>
+                  <ul>
+                    <li><a href="https://elixir-lang.org/">Elixir</a>: a dynamic, functional language designed for
+                        building scalable and maintainable applications</li>
+                    <li> <a href="http://www.phoenixframework.org/">Phoenix Framework</a>: a productive web framework
+                        that does not compromise speed and maintainability.</li>
+                  </ul>
+                <br/>
+                <p>The application has three main goals:</p>
+                <ul>
+                  <li>promote the Elixir community in Montreal,</li>
+                  <li>inform the community members about events and new content, and</li>
+                  <li>provide an opportunity to learn about Elixir and Phoenix by contributing to an <a href="https://github.com/montrealelixir/website">open source project</a>.</li>
                 </ul>
+                <br/>
+                <p>It aggregates information from three sources,
+                  <a href="https://www.meetup.com/montrealelixir">Meetup.com</a>,
+                  <a href="https://twitter.com/montrealelixir">Twitter</a> and
+                  <a href="https://www.youtube.com/channel/UCftyx5k7K_0a3wIGRtE2YQw">YouTube</a>.
+                </p>
+                <p>Meetup.com and YouTube data is source via a standard HTTP feed, while the Twitter implementation is driven
+                   using Twitter's streaming feed with real-time updates using <a href="https://hexdocs.pm/phoenix/channels.html">Phoenix's excellent websocket support</a>.
+                 You can learn more about this implementation in the presentation <a href="https://www.youtube.com/watch?v=b8odsV69Yso">"Adding a Twitter Timeline to montrealelixir.ca, the Elixir way".</a></p>
+                <p>The application is deployed on <a href="https://www.heroku.com">Heroku</a> using <a href="https://www.docker.com">Docker</a>.
+                  The source code is hosted on <a href="https://github.com/montrealelixir/website">GitHub</a>.</p>
               </div>
             </div>
 
@@ -53,6 +71,7 @@
                 <ul class="social-profiles">
                   <li><a href="https://twitter.com/montrealelixir"><i class="icon social_twitter"></i></a></li>
                   <li><a href="https://www.youtube.com/channel/UCftyx5k7K_0a3wIGRtE2YQw"><i class="icon social_youtube icon-large"></i></a></li>
+                  <li><a href="https://www.meetup.com/montrealelixir"><i class="icon pe-7s-users icon-large"></i></a></li>
                 </ul>
               </div>
             </div>
