@@ -13,6 +13,9 @@
       "description": "Database pool size",
       "value": "5"
     },
+    "ERLANG_COOKIE": {
+      "required": true
+    },
     "MIX_ENV": "staging",
     "SECRET_KEY_BASE": {
       "generator": "secret"
