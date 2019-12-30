@@ -11,20 +11,26 @@ config :montreal_elixir, MontrealElixir.Repo,
 
 # Configure the Phoenix endpoint
 force_ssl? = System.get_env("FORCE_SSL") == "true"
-port = String.to_integer(System.get_env("PORT", "4000"))
+
+endpoint = %{
+  force_ssl: if(force_ssl?, do: [rewrite_on: [:x_forwarded_proto]], else: []),
+  scheme: if(force_ssl?, do: "https", else: "http"),
+  port: String.to_integer(System.get_env("PORT", "4000"))
+}
 
 config :montreal_elixir_web, MontrealElixirWeb.Endpoint,
   root: ".",
   server: true,
-  http: [port: port],
+  http: [port: endpoint.port],
+  force_ssl: endpoint.force_ssl,
   url: [
-    scheme: if(force_ssl?, do: "https", else: "http"),
+    scheme: endpoint.scheme,
     host: "localhost",
-    port: port
+    port: endpoint.port
   ],
   cache_static_manifest: "priv/static/cache_manifest.json",
   secret_key_base: System.fetch_env!("SECRET_KEY_BASE"),
-  check_origin: ["//*.herokuapp.com", "//localhost:#{port}", "//*.montrealelixir.ca"]
+  check_origin: ["//*.herokuapp.com", "//localhost:#{endpoint.port}", "//*.montrealelixir.ca"]
 
 # Configure Youtube client
 config :social_feeds, :youtube_api_client, api_key: System.get_env("YOUTUBE_API_KEY")
