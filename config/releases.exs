@@ -10,7 +10,7 @@ config :montreal_elixir, MontrealElixir.Repo,
   ssl: true
 
 # Configure the Phoenix endpoint
-force_ssl = System.get_env("FORCE_SSL") == "true"
+force_ssl? = System.get_env("FORCE_SSL") == "true"
 port = String.to_integer(System.get_env("PORT", "4000"))
 
 config :montreal_elixir_web, MontrealElixirWeb.Endpoint,
@@ -18,7 +18,7 @@ config :montreal_elixir_web, MontrealElixirWeb.Endpoint,
   server: true,
   http: [port: port],
   url: [
-    scheme: if(force_ssl, do: "https", else: "http"),
+    scheme: if(force_ssl?, do: "https", else: "http"),
     host: "localhost",
     port: port
   ],
