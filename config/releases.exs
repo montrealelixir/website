@@ -6,25 +6,31 @@ config :logger, level: :info
 # Configure the Ecto repository
 config :montreal_elixir, MontrealElixir.Repo,
   url: System.get_env("DATABASE_URL"),
-  pool_size: String.to_integer(System.get_env("DATABASE_POOL_SIZE") || "5"),
+  pool_size: String.to_integer(System.get_env("DATABASE_POOL_SIZE", "5")),
   ssl: true
 
 # Configure the Phoenix endpoint
-force_ssl = System.get_env("FORCE_SSL") == "true"
-port = String.to_integer(System.get_env("PORT") || "4000")
+force_ssl? = System.get_env("FORCE_SSL") == "true"
+
+endpoint = %{
+  force_ssl: if(force_ssl?, do: [rewrite_on: [:x_forwarded_proto]], else: []),
+  scheme: if(force_ssl?, do: "https", else: "http"),
+  port: String.to_integer(System.get_env("PORT", "4000"))
+}
 
 config :montreal_elixir_web, MontrealElixirWeb.Endpoint,
   root: ".",
   server: true,
-  http: [port: port],
+  http: [port: endpoint.port],
+  force_ssl: endpoint.force_ssl,
   url: [
-    scheme: if(force_ssl, do: "https", else: "http"),
+    scheme: endpoint.scheme,
     host: "localhost",
-    port: port
+    port: endpoint.port
   ],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  secret_key_base: System.get_env("SECRET_KEY_BASE"),
-  check_origin: ["//*.herokuapp.com", "//localhost:#{port}", "//*.montrealelixir.ca"]
+  secret_key_base: System.fetch_env!("SECRET_KEY_BASE"),
+  check_origin: ["//*.herokuapp.com", "//localhost:#{endpoint.port}", "//*.montrealelixir.ca"]
 
 # Configure Youtube client
 config :social_feeds, :youtube_api_client, api_key: System.get_env("YOUTUBE_API_KEY")
