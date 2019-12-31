@@ -13,7 +13,7 @@ config :montreal_elixir, MontrealElixir.Repo,
 force_ssl? = System.get_env("FORCE_SSL") == "true"
 
 endpoint = %{
-  force_ssl: if(force_ssl?, do: [rewrite_on: [:x_forwarded_proto]], else: []),
+  force_ssl: if(force_ssl?, do: [hsts: true, rewrite_on: [:x_forwarded_proto]], else: []),
   url_scheme: if(force_ssl?, do: "https", else: "http"),
   url_port: if(force_ssl?, do: 433, else: 80),
   http_port: String.to_integer(System.get_env("PORT", "4000"))
