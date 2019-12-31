@@ -26,7 +26,7 @@ config :montreal_elixir_web, MontrealElixirWeb.Endpoint,
   force_ssl: endpoint.force_ssl,
   url: [
     scheme: endpoint.url_scheme,
-    host: "localhost",
+    host: "montrealelixir.ca",
     port: endpoint.url_port
   ],
   cache_static_manifest: "priv/static/cache_manifest.json",
