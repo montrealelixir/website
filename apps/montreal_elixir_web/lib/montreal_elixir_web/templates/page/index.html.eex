@@ -111,17 +111,17 @@
         <div class="col-sm-6 col-md-3">
           <div class="topic">
             <i class="pe-7s-box2 icon-large"></i>
-            <h3>Current Sponsors</h3>
+            <h3>Current Sponsor</h3>
 
             <ul class="ruled-list">
               <li><a target="_blank" href="https://www.civilcode.io">CivilCode Inc. - Custom Software Development</a></li>
-              <li><a target="_blank" href="https://www.mirego.com">Mirego</a></li>
             </ul>
 
             <br/>
             <h3>Past Event Sponsors</h3>
 
             <ul class="ruled-list">
+              <li><a target="_blank" href="https://www.mirego.com">Mirego</a></li>
               <li><a target="_blank" href="https://sweetiq.com">SweetIQ</a></li>
               <li><a target="_blank" href="http://www.shopify.ca">Shopify</a></li>
             </ul>
