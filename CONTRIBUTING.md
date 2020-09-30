@@ -1,4 +1,4 @@
-# How to contribute to the community website
+# How to contribute to the community websites??
 
 First off, thank you for taking the time to contribute! The Elixir Community Website provides you
 an opportunity to learn and contribute to an Elixir project in production.
@@ -7,19 +7,7 @@ The following is a set of guidelines for contributing to the Elixir community We
 These are mostly guidelines, not rules. Use your best judgment, and feel free to propose
 changes to this document in a pull request.
 
-## Table Of Contents
 
-1. [What should I know before I get started?](#what-should-i-know-before-i-get-started)
-2. [How Can I Contribute?](#how-can-i-contribute)
-3. [Style Guides](#style-guides)
-  * [Git Commit Messages](#git-commit-messages)
-  * [Elixir Style Guide](#elixir-style-guide)  
-  * [JavaScript Style Guide](#javascript-style-guide)
-  * [Test Style Guide](#test-style-guide)
-  * [Documentation Style Guide](#documentation-style-guide)
-  * [Naming](#naming)
-4. [How to configure external apps for development?](https://github.com/montrealelixir/website/blob/master/README.md#configure-external-api-access-keys)
-5. [Credits](#credits)
 
 ## What should I know before I get started?
 
