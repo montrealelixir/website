@@ -1,4 +1,4 @@
-# Welcome to the Montreal Elixir Community website
+# WELCOME TO THE MONTREAL ELIXIR COMMUNITY WEBSITE
 
 [![Build Status](https://travis-ci.org/montrealelixir/website.svg?branch=master)](https://travis-ci.org/montrealelixir/website)
 
