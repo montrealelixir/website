@@ -64,10 +64,10 @@ ENV PORT=4000 \
 COPY --from=releaser /app/_build/$MIX_ENV/rel/montreal_elixir_platform_$MIX_ENV .
 RUN ln -s /app/bin/montreal_elixir_platform_$MIX_ENV /app/bin/montreal_elixir_platform
 
-ADD env/staging/heroku-exec.sh /app/.profile.d/heroku-exec.sh
+ADD ops/heroku/heroku-exec.sh /app/.profile.d/heroku-exec.sh
 RUN chmod a+x /app/.profile.d/heroku-exec.sh
 
-ADD env/staging/sh-wrapper.sh /bin/sh-wrapper.sh
+ADD ops/heroku/sh-wrapper.sh /bin/sh-wrapper.sh
 RUN chmod a+x /bin/sh-wrapper.sh
 RUN rm /bin/sh && ln -s /bin/sh-wrapper.sh /bin/sh
 
