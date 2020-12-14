@@ -4,7 +4,7 @@ defmodule MontrealElixir.Umbrella.Mixfile do
   def project do
     [
       version: "0.0.0",
-      elixir: "1.9.2",
+      elixir: "~> 1.11.0",
       apps_path: "apps",
       start_permanent: Mix.env() == :prod,
       deps: deps(),

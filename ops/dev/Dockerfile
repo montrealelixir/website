@@ -1,4 +1,4 @@
-FROM civilcode/elixir-dev:1.9.2a
+FROM civilcode/elixir-dev:1.11.2a
 
 WORKDIR /app
 
