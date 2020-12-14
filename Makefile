@@ -53,15 +53,15 @@ docker.down:
 docker.clean:
 	$(DOCKER_COMPOSE) rm -v -f
 	 down --volumes
-	docker-sync clean -c env/dev/docker-sync.yml
+	docker-sync clean -c ops/dev/docker-sync.yml
 
 docker.start:
-	docker-sync start -c env/dev/docker-sync.yml
+	docker-sync start -c ops/dev/docker-sync.yml
 	$(DOCKER_COMPOSE) up --detach
 
 docker.stop:
 	$(DOCKER_COMPOSE) stop
-	docker-sync stop -c env/dev/docker-sync.yml
+	docker-sync stop -c ops/dev/docker-sync.yml
 
 docker.restart: stop start
 
