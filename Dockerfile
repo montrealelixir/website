@@ -1,60 +1,68 @@
-### BUILD STAGE
-FROM bitwalker/alpine-elixir-phoenix:1.9.2 as builder
-RUN mkdir /app
+## BUILDER
 
+FROM elixir:1.9.2-alpine as builder
+RUN apk add --no-cache \
+    gcc \
+    git \
+    make \
+    musl-dev
+RUN mix local.rebar --force && \
+    mix local.hex --force
+
+## DEPS
+
+FROM builder as deps
 WORKDIR /app
 
-RUN mix local.hex --force
-RUN mix local.rebar --force
+COPY mix.* /app/
+COPY apps/montreal_elixir/mix.* /app/apps/montreal_elixir/
+COPY apps/montreal_elixir_web/mix.* /app/apps/montreal_elixir_web/
+COPY apps/social_feeds/mix.* /app/apps/social_feeds/
+COPY apps/twitter/mix.* /app/apps/twitter/
 
-# Provide a default for the MIX_ENV, see heroku.yml for more information
-ARG MIX_ENV=staging
-ENV MIX_ENV ${MIX_ENV}
-RUN echo $MIX_ENV
+RUN mix do deps.get --only prod, deps.compile
 
-# Copy relevant files
-COPY mix.exs mix.lock ./
+## FRONT-END
+
+FROM node:14.4.0-alpine3.12 as frontend
+WORKDIR /app
+COPY apps/montreal_elixir_web/assets/package*.json /app/
+COPY --from=deps /app/deps/phoenix /deps/phoenix
+COPY --from=deps /app/deps/phoenix_html /deps/phoenix_html
+RUN npm ci
+COPY apps/montreal_elixir_web/assets /app
+RUN npm run deploy
+
+## RELEASER
+
+FROM deps as releaser
+WORKDIR /app
 COPY config config
 COPY apps apps
 COPY rel rel
+COPY --from=frontend /priv/static apps/montreal_elixir_web/priv/static
 
-RUN mix do deps.get, deps.compile
+ARG MIX_ENV=staging
+ENV MIX_ENV ${MIX_ENV}
+RUN echo $MIX_ENV
+RUN MIX_ENV=$MIX_ENV mix do phx.digest, release montreal_elixir_platform_$MIX_ENV
 
-# Build assets in production mode:
-WORKDIR /app/apps/montreal_elixir_web/assets
+## RUNNER
 
-# Remove any existing node modules that exist from the host platform. This will cause problems
-# if we have modules from the host with OS specific extensions.
-RUN rm -rf ./node_modules/*
-RUN npm install && ./node_modules/webpack/bin/webpack.js --mode production
-
-WORKDIR /app/apps/montreal_elixir_web
-RUN mix phx.digest
+FROM alpine:3.11 as runner
+# bash and openssl for Phoenix
+# and curl to perform deployments on Heroku
+RUN apk add --no-cache -U bash libssl1.1 openssl openssh curl python
 
 WORKDIR /app
-RUN mix release montreal_elixir_platform_$MIX_ENV
-
-### RELEASE STAGE
-FROM alpine:3.9
-
-# we need bash and openssl for Phoenix
-# and Heroku needs curl to perform deployments
-RUN apk update \
-    apk upgrade --no-cache && \
-    apk add --no-cache bash openssl openssh curl python
-
-# EXPOSE is not used by Heroku, it uses the PORT env var and expose the same value
-EXPOSE 4000
 
 # Provide a default for the MIX_ENV, see heroku.yml for more information
 ARG MIX_ENV=staging
 ENV PORT=4000 \
     SHELL=/bin/bash
 
-RUN mkdir /app
-WORKDIR /app
-
-COPY --from=builder /app/_build/$MIX_ENV/rel/montreal_elixir_platform_$MIX_ENV/ .
+COPY --from=releaser /app/_build/$MIX_ENV/rel/montreal_elixir_platform_$MIX_ENV .
+RUN ln -s /app/bin/montreal_elixir_platform_$MIX_ENV /app/bin/montreal_elixir_platform
 
 ADD env/staging/heroku-exec.sh /app/.profile.d/heroku-exec.sh
 RUN chmod a+x /app/.profile.d/heroku-exec.sh
@@ -66,11 +74,11 @@ RUN rm /bin/sh && ln -s /bin/sh-wrapper.sh /bin/sh
 # Copy shell scripts
 COPY bin/db_migrate /app/bin/db_migrate
 
-RUN ln -s /app/bin/montreal_elixir_platform_$MIX_ENV /app/bin/montreal_elixir_platform
+RUN \
+  adduser -s /bin/sh -u 1001 -G root -h /app -S -D default && \
+  chown -R 1001:0 /app
+USER default
 
-# Create a non-root user
-RUN adduser -D montreal_elixir && chown -R montreal_elixir: /app
-
-USER montreal_elixir
-
+# EXPOSE is not used by Heroku, it uses the PORT env var and expose the same value
+EXPOSE 4000
 CMD ["/app/bin/montreal_elixir_platform", "start"]
