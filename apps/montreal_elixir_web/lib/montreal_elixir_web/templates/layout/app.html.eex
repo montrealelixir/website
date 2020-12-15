@@ -21,7 +21,7 @@
       <div class="nav-container">
       </div>
 
-      <%= render @view_module, @view_template, assigns %>
+       <%= @inner_content %>
 
       <div class="footer-container">
         <footer class="classic">

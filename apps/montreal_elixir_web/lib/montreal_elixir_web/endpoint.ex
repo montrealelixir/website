@@ -1,6 +1,12 @@
 defmodule MontrealElixirWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :montreal_elixir_web
 
+  @session_options [
+    store: :cookie,
+    key: "_montreal_elixir_web_key",
+    signing_salt: "e9FWV39l"
+  ]
+
   socket "/socket", MontrealElixirWeb.UserSocket,
     websocket: true,
     websocket: [timeout: 45_000],
@@ -22,6 +28,7 @@ defmodule MontrealElixirWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :montreal_elixir
   end
 
   plug Plug.RequestId
@@ -34,12 +41,7 @@ defmodule MontrealElixirWeb.Endpoint do
 
   plug Plug.MethodOverride
   plug Plug.Head
-
-  # The session will be stored in the cookie and signed,
-  # this means its contents can be read but not tampered with.
-  # Set :encryption_salt if you would also like to encrypt it.
-  plug Plug.Session, store: :cookie, key: "_montreal_elixir_web_key", signing_salt: "e9FWV39l"
-
+  plug Plug.Session, @session_options
   plug MontrealElixirWeb.Router
 
   @doc """

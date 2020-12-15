@@ -43,9 +43,7 @@ defmodule MontrealElixir.Umbrella.Mixfile do
     [
       "project.check": [
         "format --dry-run --check-formatted",
-        # TODO: Re-enable after phoenix upgrade
-        # --warnings-as-errors
-        "compile --force",
+        "compile --force --warnings-as-errors",
         "test",
         "credo --strict"
       ]
@@ -54,8 +52,8 @@ defmodule MontrealElixir.Umbrella.Mixfile do
 
   defp deps do
     [
-      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
-      {:mix_test_watch, "~> 0.3", only: :dev, runtime: false}
+      {:credo, "~> 1.5.0", only: [:dev, :test], runtime: false},
+      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false}
     ]
   end
 end
