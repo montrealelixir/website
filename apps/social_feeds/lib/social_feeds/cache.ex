@@ -77,24 +77,18 @@ defmodule SocialFeeds.Cache do
 
   ## Server Callbacks
 
-  @doc """
-  Callback for starting the cache.
-  """
+  # Callback for starting the cache.
   def init(state), do: {:ok, state}
 
-  @doc """
-  Responds to :clear.
-  """
+  # Responds to :clear.
   def handle_cast(:clear, _state) do
     {:noreply, %{}}
   end
 
-  @doc """
-  Responds to :get.
+  # Responds to :get.
 
-  Returns :not_found if the key is not stored or if its value expired.
-  Returns {:found, value} if the key is stored and still valid.
-  """
+  # Returns :not_found if the key is not stored or if its value expired.
+  # Returns {:found, value} if the key is stored and still valid.
   def handle_call({:get, key}, _from, state) do
     value =
       case Map.fetch(state, key) do
@@ -112,11 +106,8 @@ defmodule SocialFeeds.Cache do
     {:reply, value, state}
   end
 
-  @doc """
-  Responds to :set.
-
-  Puts the key + value in the state map along with it's expiration timestamp.
-  """
+  # Responds to :set.
+  # Puts the key + value in the state map along with it's expiration timestamp.
   def handle_call({:set, key, value, expires_in}, _from, state) do
     entry = Entry.build(value, expires_in)
     state = Map.put(state, key, entry)
