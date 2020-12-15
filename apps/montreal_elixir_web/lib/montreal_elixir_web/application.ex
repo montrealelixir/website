@@ -6,6 +6,7 @@ defmodule MontrealElixirWeb.Application do
   def start(_type, _args) do
     # Define workers and child supervisors to be supervised
     children = [
+      MontrealElixirWeb.Telemetry,
       MontrealElixirWeb.Endpoint,
       MontrealElixirWeb.TwitterTimelineListener
     ]

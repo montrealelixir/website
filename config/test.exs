@@ -1,5 +1,9 @@
 import Config
 
+###############################################################################
+# ElixirConfig
+###############################################################################
+
 # Print only warnings and errors during test
 config :logger, level: :warn
 
