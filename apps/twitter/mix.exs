@@ -9,7 +9,7 @@ defmodule Twitter.Mixfile do
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
       lockfile: "../../mix.lock",
-      elixir: "~> 1.9.2",
+      elixir: "~> 1.11.0",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -29,6 +29,7 @@ defmodule Twitter.Mixfile do
       {:blocking_queue, "~> 1.0"},
       {:oauther, "~> 1.1"},
       {:extwitter, "~> 0.8"},
+      {:jason, "~> 1.0"},
       {:pubsub, "~> 1.0"},
       {:mix_test_watch, "~> 0.3", only: :dev, runtime: false}
     ]

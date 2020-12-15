@@ -1,6 +1,6 @@
 ## BUILDER
 
-FROM elixir:1.9.2-alpine as builder
+FROM elixir:1.11.2-alpine as builder
 RUN apk add --no-cache \
     gcc \
     git \
