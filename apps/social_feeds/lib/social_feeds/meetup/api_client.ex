@@ -46,7 +46,7 @@ defmodule SocialFeeds.Meetup.ApiClient do
     |> Enum.map(&to_meetup_event/1)
   end
 
-  @http Application.get_env(:social_feeds, :meetup_api_client)[:http_client] || :httpc
+  @http Application.compile_env(:social_feeds, :meetup_api_client)[:http_client] || :httpc
   defp fetch_meetups(opts) do
     url = String.to_charlist(meetup_events_url() <> "?" <> URI.encode_query(opts))
     Logger.info("Meetup API: requesting #{url}")

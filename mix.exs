@@ -54,7 +54,7 @@ defmodule MontrealElixir.Umbrella.Mixfile do
 
   defp deps do
     [
-      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.5.0", only: [:dev, :test], runtime: false},
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false}
     ]
   end

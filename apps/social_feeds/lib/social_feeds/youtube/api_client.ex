@@ -41,7 +41,7 @@ defmodule SocialFeeds.Youtube.ApiClient do
     |> Enum.map(&to_video/1)
   end
 
-  @http Application.get_env(:social_feeds, :youtube_api_client)[:http_client] || :httpc
+  @http Application.compile_env(:social_feeds, :youtube_api_client)[:http_client] || :httpc
   defp fetch_videos(opts) do
     opts = Map.merge(opts, %{channelId: channel_id(), key: api_key()})
     url = youtube_activities_url() <> "?" <> URI.encode_query(opts)
