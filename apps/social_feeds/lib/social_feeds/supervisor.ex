@@ -9,9 +9,9 @@ defmodule SocialFeeds.Supervisor do
 
   def init(:ok) do
     children = [
-      worker(SocialFeeds.Cache, [[name: SocialFeeds.Cache]])
+      {SocialFeeds.Cache, [name: SocialFeeds.Cache]}
     ]
 
-    supervise(children, strategy: :one_for_one)
+    Supervisor.init(children, strategy: :one_for_one)
   end
 end
