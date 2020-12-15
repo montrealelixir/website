@@ -34,10 +34,17 @@ defmodule MontrealElixirWeb.DateTimeHelpers do
       "Next event"
   """
   def next_or_most_recent_event(utc_datetime) do
-    if Timex.before?(utc_datetime, Timex.now()) do
-      "Most recent event"
-    else
+    if future?(utc_datetime) do
       "Next event"
+    else
+      "Most recent event"
     end
+  end
+
+  @doc """
+  Determines if the time provided is in the future.
+  """
+  def future?(utc_datetime) do
+    Timex.before?(Timex.now(), utc_datetime)
   end
 end
