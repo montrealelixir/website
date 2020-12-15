@@ -1,6 +1,6 @@
 # Welcome to the Montreal Elixir Community website
 
-[![Build Status](https://travis-ci.org/montrealelixir/website.svg?branch=master)](https://travis-ci.org/montrealelixir/website)
+[![<Montreal Elixir>](https://circleci.com/gh/montrealelixir/website.svg?style=shield)](https://circleci.com/gh/montrealelixir/website)
 
 You've found the source code for our community website: http://www.montrealelixir.ca. You lucky devil! The website is a single-page application aggregating several of our online properties:
 
