@@ -10,8 +10,13 @@ defmodule MontrealElixir.Application do
   use Application
 
   def start(_type, _args) do
+    children = [
+      {Phoenix.PubSub, [name: MontrealElixirWeb.PubSub]},
+      MontrealElixir.Repo
+    ]
+
     Supervisor.start_link(
-      [MontrealElixir.Repo],
+      children,
       strategy: :one_for_one,
       name: MontrealElixir.Supervisor
     )

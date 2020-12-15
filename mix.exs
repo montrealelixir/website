@@ -43,9 +43,7 @@ defmodule MontrealElixir.Umbrella.Mixfile do
     [
       "project.check": [
         "format --dry-run --check-formatted",
-        # TODO: Re-enable after phoenix upgrade
-        # --warnings-as-errors
-        "compile --force",
+        "compile --force --warnings-as-errors",
         "test",
         "credo --strict"
       ]
