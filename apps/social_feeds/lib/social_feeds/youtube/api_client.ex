@@ -41,13 +41,12 @@ defmodule SocialFeeds.Youtube.ApiClient do
     |> Enum.map(&to_video/1)
   end
 
-  @http Application.compile_env(:social_feeds, :youtube_api_client)[:http_client] || :httpc
   defp fetch_videos(opts) do
     opts = Map.merge(opts, %{channelId: channel_id(), key: api_key()})
     url = youtube_activities_url() <> "?" <> URI.encode_query(opts)
     Logger.info("YouTube API: requesting #{redact_sensitive_data(url)}")
 
-    case @http.request(String.to_charlist(url)) do
+    case http().request(String.to_charlist(url)) do
       {:ok, {{_http_version, 200, _reason}, _headers, body}} -> Poison.decode!(body)["items"]
       _ -> []
     end
@@ -71,6 +70,7 @@ defmodule SocialFeeds.Youtube.ApiClient do
   defp public_url, do: Application.get_env(:social_feeds, :youtube_api_client)[:youtube_url]
   defp channel_id, do: Application.get_env(:social_feeds, :youtube_api_client)[:channel_id]
   defp api_key, do: Application.get_env(:social_feeds, :youtube_api_client)[:api_key]
+  defp http, do: Application.get_env(:social_feeds, :youtube_api_client)[:http_client] || :httpc
 
   defp redact_sensitive_data(str), do: String.replace(str, ~r/key=([^&\s]+)/, "key=[REDACTED]")
 end

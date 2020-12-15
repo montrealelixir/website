@@ -11,7 +11,7 @@ defmodule MontrealElixir.Application do
 
   def start(_type, _args) do
     children = [
-      {Phoenix.PubSub, [name: MontrealElixirWeb.PubSub]},
+      {Phoenix.PubSub, [name: MontrealElixir.PubSub]},
       MontrealElixir.Repo
     ]
 

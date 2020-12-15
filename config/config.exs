@@ -26,7 +26,7 @@ port = String.to_integer(System.get_env("PORT") || "4000")
 
 config :montreal_elixir_web, MontrealElixirWeb.Endpoint,
   http: [port: port],
-  pubsub_server: MontrealElixirWeb.PubSub,
+  pubsub_server: MontrealElixir.PubSub,
   url: [
     scheme: if(force_ssl, do: "https", else: "http"),
     host: System.get_env("HOSTNAME") || "localhost",
