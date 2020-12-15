@@ -1,5 +1,9 @@
 import Config
 
+###############################################################################
+# Elixir Config
+###############################################################################
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
@@ -9,16 +13,16 @@ config :logger, :console,
 # MontrealElixir
 ###############################################################################
 
-config :montreal_elixir, ecto_repos: [MontrealElixir.Repo]
+config :montreal_elixir,
+  ecto_repos: [MontrealElixir.Repo]
 
 ###############################################################################
 # MontrealElixirWeb
 ###############################################################################
 
-config :phoenix, :json_library, Jason
-
-# General application configuration
-config :montreal_elixir_web, namespace: MontrealElixirWeb
+config :montreal_elixir_web,
+  ecto_repos: [MontrealElixir.Repo],
+  generators: [context_app: :montreal_elixir]
 
 # Configures the endpoint
 force_ssl = System.get_env("FORCE_SSL") == "true"
@@ -26,21 +30,17 @@ port = String.to_integer(System.get_env("PORT") || "4000")
 
 config :montreal_elixir_web, MontrealElixirWeb.Endpoint,
   http: [port: port],
-  pubsub_server: MontrealElixir.PubSub,
   url: [
     scheme: if(force_ssl, do: "https", else: "http"),
     host: System.get_env("HOSTNAME") || "localhost",
     port: port
   ],
+  secret_key_base: "n2eg1/o55Ds+BDU6xjaRWH8Ky6BZRZP7vuCHWlVq5kV3SAiyrnt37sgAV5N8CiOi",
   render_errors: [view: MontrealElixirWeb.ErrorView, accepts: ~w(html json)],
-  secret_key_base: System.get_env("SECRET_KEY_BASE")
+  pubsub_server: MontrealElixir.PubSub,
+  live_view: [signing_salt: "fyUa89p9"]
 
-# Configures Elixir's Logger
-config :logger, :console,
-  format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
-
-config :montreal_elixir_web, :generators, context_app: :montreal_elixir
+config :phoenix, :json_library, Jason
 
 ###############################################################################
 # SocialFeeds

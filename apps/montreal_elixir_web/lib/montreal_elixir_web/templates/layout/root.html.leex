@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <%= csrf_meta_tag() %>
+      <%= live_title_tag assigns[:page_title] || "Montreal Elixir", suffix: " · Montreal's community for the Elixir Programming Language" %>
+      <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+      <link phx-track-static href="//fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel='stylesheet' type='text/css'>
+      <script defer phx-track-static type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+  </head>
+  <body>
+    <div class="loader">
+      <div class="strip-holder">
+      <div class="strip-1"></div>
+      <div class="strip-2"></div>
+      <div class="strip-3"></div>
+      </div>
+    </div>
+
+    <a id="top"></a>
+
+    <div class="nav-container">
+    </div>
+
+      <%= @inner_content %>
+
+    <div class="footer-container">
+      <footer class="classic">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4">
+              <ul class="menu">
+                <li><a href="https://elixir-lang.org">Elixir Lang</a></li>
+                <li><a href="https://phoenixframework.org">Phoenix Framework</a></li>
+                <li><a href="https://nerves-project.org">Nerves Project</a></li>
+                <li><a class="inner-link back-to-top" href="#top">Back To Top</a></li>
+              </ul>
+            </div>
+
+            <div id="about-website" class="col-sm-8">
+              <span class="lead color-heading">About this Website</span>
+              <p>This application is built using:</p>
+                <ul>
+                  <li><a href="https://elixir-lang.org/">Elixir</a>: a dynamic, functional language designed for
+                      building scalable and maintainable applications</li>
+                  <li> <a href="http://www.phoenixframework.org/">Phoenix Framework</a>: a productive web framework
+                      that does not compromise speed and maintainability.</li>
+                </ul>
+              <br/>
+              <p>The application has three main goals:</p>
+              <ul>
+                <li>promote the Elixir community in Montreal,</li>
+                <li>inform the community members about events and new content, and</li>
+                <li>provide an opportunity to learn about Elixir and Phoenix by contributing to an <a href="https://github.com/montrealelixir/website">open source project</a>.</li>
+              </ul>
+              <br/>
+              <p>It aggregates information from three sources,
+                <a href="https://www.meetup.com/montrealelixir">Meetup.com</a>,
+                <a href="https://twitter.com/montrealelixir">Twitter</a> and
+                <a href="https://www.youtube.com/channel/UCftyx5k7K_0a3wIGRtE2YQw">YouTube</a>.
+              </p>
+              <p>Meetup.com and YouTube data is source via a standard HTTP feed, while the Twitter implementation is driven
+                  using Twitter's streaming feed with real-time updates using <a href="https://hexdocs.pm/phoenix/channels.html">Phoenix's excellent websocket support</a>.
+                You can learn more about this implementation in the presentation <a href="https://www.youtube.com/watch?v=b8odsV69Yso">"Adding a Twitter Timeline to montrealelixir.ca, the Elixir way".</a></p>
+              <p>The application is deployed on <a href="https://www.heroku.com">Heroku</a> using <a href="https://www.docker.com">Docker</a>.
+                The source code is hosted on <a href="https://github.com/montrealelixir/website">GitHub</a>.</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <ul class="social-profiles">
+                <li><a href="https://twitter.com/montrealelixir"><i class="icon social_twitter"></i></a></li>
+                <li><a href="https://www.youtube.com/channel/UCftyx5k7K_0a3wIGRtE2YQw"><i class="icon social_youtube icon-large"></i></a></li>
+                <li><a href="https://www.meetup.com/montrealelixir"><i class="icon pe-7s-users icon-large"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
