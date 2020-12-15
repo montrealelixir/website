@@ -20,7 +20,9 @@
                   <%= @next_meetup.venue_name %><br/>
                   <%= @next_meetup.venue_address %>
                 </p>
-                <a href="<%= @next_meetup.url %>" class="btn">Register Now</a>
+                <%= if future?(@next_meetup.utc_datetime) do %>
+                  <a href="<%= @next_meetup.url %>" class="btn">Register Now</a>
+                <% end %>
               <% end %>
             </div>
           </div>
