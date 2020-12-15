@@ -19,7 +19,7 @@ defmodule SocialFeeds.Mixfile do
   def application do
     [
       mod: {SocialFeeds.Application, []},
-      extra_applications: [:logger]
+      extra_applications: [:logger, :inets]
     ]
   end
 
