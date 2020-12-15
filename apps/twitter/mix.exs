@@ -30,8 +30,7 @@ defmodule Twitter.Mixfile do
       {:oauther, "~> 1.1"},
       {:extwitter, "~> 0.8"},
       {:jason, "~> 1.0"},
-      {:pubsub, "~> 1.0"},
-      {:mix_test_watch, "~> 0.3", only: :dev, runtime: false}
+      {:pubsub, "~> 1.0"}
     ]
   end
 end
