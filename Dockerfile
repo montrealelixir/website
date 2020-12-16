@@ -14,13 +14,16 @@ RUN mix local.rebar --force && \
 FROM builder as deps
 WORKDIR /app
 
+ARG MIX_ENV=staging
+ENV MIX_ENV ${MIX_ENV}
+
 COPY mix.* /app/
 COPY apps/montreal_elixir/mix.* /app/apps/montreal_elixir/
 COPY apps/montreal_elixir_web/mix.* /app/apps/montreal_elixir_web/
 COPY apps/social_feeds/mix.* /app/apps/social_feeds/
 COPY apps/twitter/mix.* /app/apps/twitter/
 
-RUN mix do deps.get --only prod, deps.compile
+RUN mix do deps.get --only $MIX_ENV, deps.compile
 
 ## FRONT-END
 
