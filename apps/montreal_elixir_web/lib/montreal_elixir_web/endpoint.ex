@@ -8,7 +8,6 @@ defmodule MontrealElixirWeb.Endpoint do
   ]
 
   socket "/socket", MontrealElixirWeb.UserSocket,
-    websocket: true,
     websocket: [timeout: 45_000],
     longpoll: false
 
