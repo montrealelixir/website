@@ -10,4 +10,4 @@ config :montreal_elixir_web, MontrealElixirWeb.Endpoint,
     host: "montreal-elixir-staging.herokuapp.com",
     port: 80
   ],
-  check_origin: ["//*.herokuapp.com"]
+  check_origin: ["//*.montrealelixir.ca", "//*.herokuapp.com ", "//*.gigalixirapp.com"]
