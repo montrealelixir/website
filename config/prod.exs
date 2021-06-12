@@ -12,4 +12,4 @@ config :montreal_elixir_web, MontrealElixirWeb.Endpoint,
     host: "montrealelixir.ca",
     port: 443
   ],
-  check_origin: ["//*.montrealelixir.ca"]
+  check_origin: ["//*.montrealelixir.ca", "//*.herokuapp.com ", "//*.gigalixirapp.com"]

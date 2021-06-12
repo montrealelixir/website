@@ -23,7 +23,7 @@ build:
 
 run:
 	docker run -i --name $(IMAGE_NAME) -t --rm -p 4000:4000 \
-		-e DATABASE_POOL_SIZE=5 \
+		-e POOL_SIZE=5 \
 		-e DATABASE_URL=$(DATABASE_URL) \
 		-e SECRET_KEY_BASE=$(SECRET_KEY_BASE) \
 		-e ERLANG_COOKIE=local \
@@ -40,7 +40,7 @@ stop:
 
 bash:
 	docker run -i --name $(IMAGE_NAME) -t --rm -p 4000:4000 \
-		-e DATABASE_POOL_SIZE=5 \
+		-e POOL_SIZE=5 \
 		-e DATABASE_URL=$(DATABASE_URL) \
 		-e SECRET_KEY_BASE=$(SECRET_KEY_BASE) \
 		-e TWITTER_CONSUMER_KEY=$(TWITTER_CONSUMER_KEY) \
@@ -49,5 +49,5 @@ bash:
 		-e TWITTER_ACCESS_TOKEN_SECRET=$(TWITTER_ACCESS_TOKEN_SECRET) \
 		-e YOUTUBE_API_KEY=$(YOUTUBE_API_KEY) \
 		-e FORCE_SSL=false \
-		-e DATABASE_POOL_SIZE=1 \
+		-e POOL_SIZE=1 \
 		$(IMAGE_NAME) bash
