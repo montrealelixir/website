@@ -7,11 +7,11 @@ is merged into `master` and the CI passes, see Heroku's [Pipelines](https://blog
 
 `montreal-elixir-staging` can be manually deployed:
 
-    make -f env/staging/Makefile deploy
+    make -f ops/staging/Makefile deploy
 
 ## Production (Gigalixir)
 
-    make -f env/prod/Makefile.gigalixir deploy
+    make -f ops/prod/Makefile.gigalixir deploy
 
 ### Setup
 
@@ -28,4 +28,4 @@ To configure the release option for the application:
 `http://www.montrealelixir.ca` (`montreal-elixir-production`) can only be manually deployed (i.e
 the "Promote to Production" in the Heroku Pipeline cannot be used for container stacks):
 
-    make -f env/prod/Makefile.heroku deploy
+    make -f ops/prod/Makefile.heroku deploy
