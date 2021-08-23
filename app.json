@@ -9,7 +9,7 @@
     "papertrail:choklad"
   ],
   "env": {
-    "DATABASE_POOL_SIZE": {
+    "POOL_SIZE": {
       "description": "Database pool size",
       "value": "5"
     },
