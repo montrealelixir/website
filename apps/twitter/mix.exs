@@ -27,7 +27,9 @@ defmodule Twitter.Mixfile do
   defp deps do
     [
       {:blocking_queue, "~> 1.0"},
-      {:oauther, "~> 1.1"},
+      # {:oauther, "~> 1.1"},
+      {:oauther, git: "https://github.com/tobstarr/oauther", override: true},
+      # OTP 24 https://github.com/lexmag/oauther/pull/22#issuecomment-900820665
       {:extwitter, "~> 0.8"},
       {:jason, "~> 1.0"},
       {:pubsub, "~> 1.0"}
