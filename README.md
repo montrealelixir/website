@@ -112,21 +112,7 @@ The [landing page](http://localhost:4000/) should contain the 3 latest videos fr
 
 ## Deployment
 
-### Staging
-
-`https://montreal-elixir-staging.herokuapp.com` is setup to be automatically deployed when a PR
-is merged into `master` and the CI passes, see Heroku's [Pipelines](https://blog.heroku.com/heroku_flow_pipelines_review_apps_and_github_sync#introducing-pipelines) documentation.
-
-`montreal-elixir-staging` can be manually deployed:
-
-    make -f env/staging/Makefile deploy
-
-### Production
-
-`http://www.montrealelixir.ca` (`montreal-elixir-production`) can only be manually deployed (i.e
-the "Promote to Production" in the Heroku Pipeline cannot be used for container stacks):
-
-    make -f env/prod/Makefile deploy
+See ops/README.md
 
 ### Learn more about Phoenix Framework
 
@@ -146,7 +132,7 @@ organizers and members](https://www.meetup.com/montrealelixir/members/?sort=join
 
 ## Hosting and Deployment
 
-The application is deployed to [Heroku](https://www.heroku.com/). If you wish to deploy your own
+The application can be deployed to [Heroku](https://www.heroku.com/). If you wish to deploy your own
 instance of this application, you can use the [handy deploy button](https://devcenter.heroku.com/articles/heroku-button)
 below.
 
