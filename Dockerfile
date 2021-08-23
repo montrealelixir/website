@@ -1,6 +1,6 @@
 ## BUILDER
 
-FROM elixir:1.11.2-alpine as builder
+FROM elixir:1.12.2-alpine as builder
 RUN apk add --no-cache \
     gcc \
     git \
@@ -56,7 +56,7 @@ RUN MIX_ENV=$MIX_ENV mix do phx.digest, release montreal_elixir_platform_$MIX_EN
 FROM alpine:3.11 as runner
 # bash and openssl for Phoenix
 # and curl to perform deployments on Heroku
-RUN apk add --no-cache -U bash libssl1.1 openssl openssh curl python
+RUN apk add --no-cache -U bash libgcc libstdc++ ncurses-libs openssl openssh curl python
 
 WORKDIR /app
 
