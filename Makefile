@@ -28,6 +28,7 @@ app.config:
 	cp env.sample .env
 
 	echo "Please configure the 'secret' configuration files in ./config directory."
+	echo "If developing on MacOS, update ./env file."
 
 app.console:
 	docker-compose exec application iex --name vm@application --cookie secret -S mix phx.server
@@ -52,15 +53,15 @@ docker.down:
 docker.clean:
 	docker-compose rm -v -f
 	docker-compose down --volumes
-	docker-sync clean -c ops/dev/docker-sync.yml
+	(which docker-sync && docker-sync clean -c ops/dev/docker-sync.yml) || exit 0
 
 docker.start:
-	docker-sync start -c ops/dev/docker-sync.yml
+	(which docker-sync && docker-sync start -c ops/dev/docker-sync.yml) || exit 0
 	docker-compose up --detach
 
 docker.stop:
 	docker-compose stop
-	docker-sync stop -c ops/dev/docker-sync.yml
+	(which docker-sync && docker-sync stop -c ops/dev/docker-sync.yml) || exit 0
 
 docker.restart: stop start
 
