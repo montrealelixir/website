@@ -32,12 +32,17 @@ See Hosting and Deployment for notes on how to deploy the application on a live 
 
 ## Development Setup
 
-You have two options for your development setup:
+You have three options for your development setup:
 
-  1. Docker-based: Setup in a Docker container
-  2. Bare-metal: Setup directly on the OS (to be documented)
+  1. Gitpod: Ephemeral Development Environment
+  2. Local Docker-based: Setup in a Docker container
+  3. Bare-metal: Setup directly on the OS (to be documented)
 
-### Docker-based Development Setup
+### GitPod Development Setup
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/montrealelixir/website)
+
+### Local Docker-based Development Setup
 
 Prerequisites:
 
@@ -49,30 +54,10 @@ Steps:
     git clone https://github.com/montrealelixir/website
     cd website
     make app.config
-    # Configure the access keys, see: "External API Access Keys" below
+    # Configure the access keys, see: "Setup External API Access Keys" below
     make
 
-To run the tests:
-
-    make app.test
-
-To view the application with your browser visit:
-
-    make app.console
-    http://localhost:4000
-
-Other helpful commands:
-
-    # Execute any command against the application container, change CMD
-    make app.do CMD='mix test'
-    # Start the docker container
-    make docker.start
-    # Stop the docker container
-    make docker.stop
-    # To stop and remove all volumes (including sync volume)
-    make docker.clean
-
-### External API Access Keys
+## Setup External API Access Keys
 
 #### Twitter
 
@@ -109,6 +94,28 @@ configured account. If you tweet something new and it should appear on the web p
 
 The [landing page](http://localhost:4000/) should contain the 3 latest videos from the
 [ElixirMontreal channel](https://youtube.com/channel/UCftyx5k7K_0a3wIGRtE2YQw).
+
+## Development
+
+To run the tests:
+
+    make app.test
+
+To view the application with your browser visit:
+
+    make app.console
+    http://localhost:4000
+
+Other helpful commands:
+
+    # Execute any command against the application container, change CMD
+    make app.do CMD='mix test'
+    # Start the docker container
+    make docker.start
+    # Stop the docker container
+    make docker.stop
+    # To stop and remove all volumes (including sync volume)
+    make docker.clean
 
 ## Deployment
 
