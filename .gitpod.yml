@@ -10,7 +10,7 @@ tasks:
       make app.setup
       docker-compose stop
       echo "...init completed."
-  - command: |
+    command: |
       docker-compose up -d
 
 ports:
