@@ -1,15 +1,10 @@
 tasks:
   - init: |
-      echo "Start init..."   
-      echo "pull docker images..." 
       docker-compose pull
-      echo "configure application..."       
       make app.config
       docker-compose up -d
-      echo "setup application..."
       make app.setup
       docker-compose stop
-      echo "...init completed."
     command: |
       docker-compose up -d
 
