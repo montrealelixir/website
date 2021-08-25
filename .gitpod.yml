@@ -20,3 +20,8 @@ ports:
     onOpen: ignore
 
 
+github:
+  prebuilds:
+    addCheck: true
+
+
