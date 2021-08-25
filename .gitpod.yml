@@ -5,7 +5,7 @@ tasks:
       docker-compose pull
       echo "configure application..."       
       make app.config
-      docker-compose up
+      docker-compose up -d
       echo "setup application..."
       make app.setup
       docker-compose stop
