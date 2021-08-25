@@ -1,0 +1,17 @@
+tasks:
+  - init: |
+      docker-compose pull
+      make app.config
+      docker-compose up -d
+      make app.setup
+      docker-compose stop
+    command: |
+      docker-compose up -d
+
+ports:
+  - port: 4000
+    onOpen: ignore
+  - port: 5432
+    onOpen: ignore
+
+
