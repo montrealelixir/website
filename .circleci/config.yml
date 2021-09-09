@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/elixir:1.12.2
+      - image: cimg/elixir:1.12.2
         environment:
           MIX_ENV: test
       - image: circleci/postgres:11.4-alpine
