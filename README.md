@@ -38,11 +38,11 @@ You have three options for your development setup:
   2. Local Docker-based: Setup in a Docker container
   3. Bare-metal: Setup directly on the OS (to be documented)
 
-### GitPod Development Setup
+### Option 1: GitPod Development Setup
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/montrealelixir/website)
 
-### Local Docker-based Development Setup
+### Option 2: Local Docker-based Development Setup
 
 Prerequisites:
 
