@@ -27,3 +27,5 @@ config/test.secret.exs
 .env
 .envrc
 .docker-sync
+
+/tmp

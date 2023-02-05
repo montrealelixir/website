@@ -1,5 +1,5 @@
 {
- "kind": "youtube#activityListResponse",
+ "kind": "youtube#searchListResponse",
  "etag": "\"cbz3lIQ2N25AfwNr-BdxUVxJ_QY/wqqxZoPyMtbST_5YW_XQCAPaV1E\"",
  "nextPageToken": "CAMQAA",
  "pageInfo": {
@@ -8,9 +8,12 @@
  },
  "items": [
   {
-   "kind": "youtube#activity",
+   "kind": "youtube#searchResult",
    "etag": "\"cbz3lIQ2N25AfwNr-BdxUVxJ_QY/Q0x_M3INjItqCemshqjDfJKo2aM\"",
-   "id": "VTE1MDU4MjM4MTI5NDI0ODAyODI5OTQwOA==",
+   "id": {
+     "kind": "youtube#video",
+     "videoId": "y25Suot7vto"
+    },
    "snippet": {
     "publishedAt": "2017-09-19T12:23:32.000Z",
     "channelId": "UCftyx5k7K_0a3wIGRtE2YQw",
@@ -42,20 +45,16 @@
       "width": 1280,
       "height": 720
      }
-    },
-    "channelTitle": "Montreal Elixir",
-    "type": "upload"
-   },
-   "contentDetails": {
-    "upload": {
-     "videoId": "y25Suot7vto"
     }
    }
   },
   {
-   "kind": "youtube#activity",
+   "kind": "youtube#searchResult",
    "etag": "\"cbz3lIQ2N25AfwNr-BdxUVxJ_QY/ytT0art7cB335isZfA2XVofFkxs\"",
-   "id": "VTE1MDU4MjM2NDE5NDI0ODAyODI5OTc5Mg==",
+   "id": {
+     "kind": "youtube#video",
+    "videoId": "iWCCThD040A"
+   },
    "snippet": {
     "publishedAt": "2017-09-19T12:20:41.000Z",
     "channelId": "UCftyx5k7K_0a3wIGRtE2YQw",
@@ -87,20 +86,16 @@
       "width": 1280,
       "height": 720
      }
-    },
-    "channelTitle": "Montreal Elixir",
-    "type": "upload"
-   },
-   "contentDetails": {
-    "upload": {
-     "videoId": "iWCCThD040A"
     }
    }
   },
   {
-   "kind": "youtube#activity",
+   "kind": "youtube#searchResult",
    "etag": "\"cbz3lIQ2N25AfwNr-BdxUVxJ_QY/3Ly_XM7ceLkPwQL648gerPVjeoY\"",
-   "id": "VTE1MDU4MjM0Njk5NDI0ODAyODMwMTMyOA==",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "S362bHXS8UI"
+   },
    "snippet": {
     "publishedAt": "2017-09-19T12:17:49.000Z",
     "channelId": "UCftyx5k7K_0a3wIGRtE2YQw",
@@ -132,13 +127,6 @@
       "width": 1280,
       "height": 720
      }
-    },
-    "channelTitle": "Montreal Elixir",
-    "type": "upload"
-   },
-   "contentDetails": {
-    "upload": {
-     "videoId": "S362bHXS8UI"
     }
    }
   }
