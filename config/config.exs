@@ -58,7 +58,7 @@ config :social_feeds, :meetup_api_client, meetup_url: "https://api.meetup.com/mo
 ###############################################################################
 
 # Configure the Twitter adapter
-config :twitter, adapter: Twitter.Adapter.ExTwitter
+config :twitter, adapter: Twitter.Adapter.Fake, workers: []
 
 # Import environment specific config.
 import_config "#{Mix.env()}.exs"
