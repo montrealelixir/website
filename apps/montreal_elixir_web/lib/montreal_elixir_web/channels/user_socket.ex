@@ -2,7 +2,9 @@ defmodule MontrealElixirWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  channel("twitter_timeline", MontrealElixirWeb.TwitterTimelineChannel)
+
+  # Disabled due to Twitter API key's revoked
+  # channel("twitter_timeline", MontrealElixirWeb.TwitterTimelineChannel)
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
